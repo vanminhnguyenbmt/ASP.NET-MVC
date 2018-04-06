@@ -77,10 +77,24 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC3.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -130,6 +144,10 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -194,6 +212,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -204,13 +223,71 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\BANDONGHO.designer.cs">
+    <Compile Include="Models\BanDongHo.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BANDONGHO.dbml</DependentUpon>
+      <DependentUpon>BanDongHo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BanDongHo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BanDongHo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BanDongHo.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CHITIETDONHANG.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CHITIETKM.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CHITIETSANPHAM.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DONHANG.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\KHACHHANG.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KHUYENMAI.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LOAISANPHAM.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LOAITK.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MAUSAC.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SANPHAM.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SIZE.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TAIKHOAN.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THUONGHIEU.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -258,6 +335,16 @@
     <Content Include="images\search.png" />
     <Content Include="images\star.png" />
     <Content Include="images\tick.png" />
+    <Content Include="Models\BanDongHo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BanDongHo.edmx</DependentUpon>
+      <LastGenOutput>BanDongHo.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BanDongHo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BanDongHo.edmx</DependentUpon>
+      <LastGenOutput>BanDongHo.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -270,10 +357,12 @@
     <Content Include="fonts\Lora-Regular.ttf" />
     <Content Include="fonts\Muli-Regular.ttf" />
     <Content Include="fonts\Philosopher-Regular.ttf" />
-    <Content Include="Models\BANDONGHO.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>BANDONGHO.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
+    <EntityDeploy Include="Models\BanDongHo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BanDongHo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BanDongHo.edmx.diagram">
+      <DependentUpon>BanDongHo.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -347,11 +436,13 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\BANDONGHO.dbml.layout">
-      <DependentUpon>BANDONGHO.dbml</DependentUpon>
-    </None>
+    <ProjectReference Include="..\BanDongHo.Domain\BanDongHo.Domain.csproj">
+      <Project>{785de09e-b170-4a3e-afc0-e28da550e2a1}</Project>
+      <Name>BanDongHo.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
