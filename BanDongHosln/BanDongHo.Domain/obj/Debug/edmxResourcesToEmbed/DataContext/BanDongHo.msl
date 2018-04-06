@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BANDONGHOModelStoreContainer" CdmEntityContainer="BANDONGHOEntities">
+    <EntitySetMapping Name="CHITIETDONHANGs">
+      <EntityTypeMapping TypeName="BANDONGHOModel.CHITIETDONHANG">
+        <MappingFragment StoreEntitySet="CHITIETDONHANG">
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="MADH" ColumnName="MADH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHITIETKMs">
+      <EntityTypeMapping TypeName="BANDONGHOModel.CHITIETKM">
+        <MappingFragment StoreEntitySet="CHITIETKM">
+          <ScalarProperty Name="PHANTRAMKM" ColumnName="PHANTRAMKM" />
+          <ScalarProperty Name="NGAYKETTHUCKM" ColumnName="NGAYKETTHUCKM" />
+          <ScalarProperty Name="NGAYBATDAUKM" ColumnName="NGAYBATDAUKM" />
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="MAKM" ColumnName="MAKM" />
+          <ScalarProperty Name="MACTKM" ColumnName="MACTKM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHITIETSANPHAMs">
+      <EntityTypeMapping TypeName="BANDONGHOModel.CHITIETSANPHAM">
+        <MappingFragment StoreEntitySet="CHITIETSANPHAM">
+          <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="MALOAISP" ColumnName="MALOAISP" />
+          <ScalarProperty Name="MAMAU" ColumnName="MAMAU" />
+          <ScalarProperty Name="MASIZE" ColumnName="MASIZE" />
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DONHANGs">
+      <EntityTypeMapping TypeName="BANDONGHOModel.DONHANG">
+        <MappingFragment StoreEntitySet="DONHANG">
+          <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+          <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+          <ScalarProperty Name="NGAYGIAO" ColumnName="NGAYGIAO" />
+          <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="DIACHIGIAO" ColumnName="DIACHIGIAO" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+          <ScalarProperty Name="MADH" ColumnName="MADH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KHACHHANGs">
+      <EntityTypeMapping TypeName="BANDONGHOModel.KHACHHANG">
+        <MappingFragment StoreEntitySet="KHACHHANG">
+          <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+          <ScalarProperty Name="MATK" ColumnName="MATK" />
+          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KHUYENMAIs">
+      <EntityTypeMapping TypeName="BANDONGHOModel.KHUYENMAI">
+        <MappingFragment StoreEntitySet="KHUYENMAI">
+          <ScalarProperty Name="TENKM" ColumnName="TENKM" />
+          <ScalarProperty Name="MAKM" ColumnName="MAKM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOAISANPHAMs">
+      <EntityTypeMapping TypeName="BANDONGHOModel.LOAISANPHAM">
+        <MappingFragment StoreEntitySet="LOAISANPHAM">
+          <ScalarProperty Name="TENLOAISP" ColumnName="TENLOAISP" />
+          <ScalarProperty Name="MALOAISP" ColumnName="MALOAISP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOAITKs">
+      <EntityTypeMapping TypeName="BANDONGHOModel.LOAITK">
+        <MappingFragment StoreEntitySet="LOAITK">
+          <ScalarProperty Name="TENLOAITK" ColumnName="TENLOAITK" />
+          <ScalarProperty Name="MALOAITK" ColumnName="MALOAITK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAUSACs">
+      <EntityTypeMapping TypeName="BANDONGHOModel.MAUSAC">
+        <MappingFragment StoreEntitySet="MAUSAC">
+          <ScalarProperty Name="TENMAU" ColumnName="TENMAU" />
+          <ScalarProperty Name="MAMAU" ColumnName="MAMAU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SANPHAMs">
+      <EntityTypeMapping TypeName="BANDONGHOModel.SANPHAM">
+        <MappingFragment StoreEntitySet="SANPHAM">
+          <ScalarProperty Name="DANHGIA" ColumnName="DANHGIA" />
+          <ScalarProperty Name="MATH" ColumnName="MATH" />
+          <ScalarProperty Name="THONGTIN" ColumnName="THONGTIN" />
+          <ScalarProperty Name="HINHNHO" ColumnName="HINHNHO" />
+          <ScalarProperty Name="HINHLON" ColumnName="HINHLON" />
+          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIZEs">
+      <EntityTypeMapping TypeName="BANDONGHOModel.SIZE">
+        <MappingFragment StoreEntitySet="SIZE">
+          <ScalarProperty Name="TENSIZE" ColumnName="TENSIZE" />
+          <ScalarProperty Name="MASIZE" ColumnName="MASIZE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAIKHOANs">
+      <EntityTypeMapping TypeName="BANDONGHOModel.TAIKHOAN">
+        <MappingFragment StoreEntitySet="TAIKHOAN">
+          <ScalarProperty Name="MALOAITK" ColumnName="MALOAITK" />
+          <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+          <ScalarProperty Name="TENDN" ColumnName="TENDN" />
+          <ScalarProperty Name="MATK" ColumnName="MATK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="THUONGHIEUx">
+      <EntityTypeMapping TypeName="BANDONGHOModel.THUONGHIEU">
+        <MappingFragment StoreEntitySet="THUONGHIEU">
+          <ScalarProperty Name="HINHTH" ColumnName="HINHTH" />
+          <ScalarProperty Name="TENTH" ColumnName="TENTH" />
+          <ScalarProperty Name="MATH" ColumnName="MATH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

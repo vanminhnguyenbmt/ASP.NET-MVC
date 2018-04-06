@@ -1,0 +1,57 @@
+﻿@model BanDongHo.Models.ViewModel.Register
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--start-breadcrumbs-->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs-main">
+            <ol class="breadcrumb">
+                <li><a href="~/Home/Index">Home</a></li>
+                <li class="active">Register</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!--end-breadcrumbs-->
+<!--register-starts-->
+<div class="register">
+    <div class="container">
+        <form method="post" action="Register">
+            <div class="register-top heading">
+                <h2>REGISTER</h2>
+            </div>
+            <div>
+                <p style="color:#f00">
+                    @ViewBag.MessageRegister
+                </p>
+            </div >
+            <div class="register-main">
+                <div class="col-md-6 account-left">
+                    <input name="FirstName" placeholder="First name" type="text" tabindex="1" required value="@Model.FirstName"/>
+                    <input name="LastName" placeholder="Last name" type="text" tabindex="2" required value="@Model.LastName">
+                    <input name="Address" placeholder="Address" type="text" tabindex="1" required>
+                    <input name="Email" placeholder="Email address" type="text" tabindex="3" required>
+                    <input name="Phone" placeholder="Mobile" type="text" tabindex="3" required>
+                    <ul>
+                        <li><label class="radio left"><input name="Sex" type="radio" checked="" value="Nam"><i></i>Male</label></li>
+                        <li><label class="radio"><input name="Sex" type="radio" value="Nữ"><i></i>Female</label></li>
+                        <div class="clearfix"></div>
+                    </ul>
+                </div>
+                <div class="col-md-6 account-left">
+                    <input name="Account" placeholder="Account" type="text" tabindex="4" required>
+                    <input name="Password" placeholder="Password" type="password" tabindex="4" required>
+                    <input name="ResetPassword" placeholder="Retype password" type="password" tabindex="4" required>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="address submit">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>
+<!--register-end-->
