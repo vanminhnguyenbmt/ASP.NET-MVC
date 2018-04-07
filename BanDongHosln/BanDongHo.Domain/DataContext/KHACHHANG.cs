@@ -20,12 +20,12 @@ namespace BanDongHo.Domain.DataContext
         }
     
         public int MAKH { get; set; }
-        public string TENKH { get; set; }
-        public string DIACHI { get; set; }
-        public string SDT { get; set; }
-        public string EMAIL { get; set; }
-        public string GIOITINH { get; set; }
         public Nullable<int> MATK { get; set; }
+        public string TENKH { get; set; }
+        public string EMAIL { get; set; }
+        public string SDT { get; set; }
+        public string GIOITINH { get; set; }
+        public string DIACHI { get; set; }
     
         public virtual ICollection<DONHANG> DONHANGs { get; set; }
         public virtual TAIKHOAN TAIKHOAN { get; set; }

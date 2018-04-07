@@ -2,78 +2,144 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using BanDongHo.Models.ViewModel;
 using BanDongHo.Domain.DataContext;
 using System.Text.RegularExpressions;
-using BanDongHo.Models.ViewModel;
 
 namespace BanDongHo.Models.Service
 {
-    public class RegisterService : IRegisterSercive
+    public class RegisterService : IRegisterService
     {
-        const string ID_DEFAULT = "KH00001";
+        const int ID_DEFAULT = 1;
+        const int TK_DEFAULT = 1;
         public bool isExistAccount(string account)
         {
-                // get TK => tk.TenDN == account
-                // if tk ==null return true ? false;
-                BANDONGHOEntities db = new BANDONGHOEntities();
-                TAIKHOAN taikhoan = (from tk in db.TAIKHOANs
-                                     where tk.TENDN.Equals(account)
-                                     select tk).SingleOrDefault();
-                if (taikhoan != null)
-                {
-                    return true;
-                }
-                return false;
-        }
-
-        public bool isPasswordAccount(string password)
-        {
-            return Regex.IsMatch(password, @"\w");
-        }
-
-        public bool RegisterAccount(Register register)
-        {
-            string makh = "";
+            // get tk => tk.TENDN == account
+            // if tk == null return true ? falsea
             BANDONGHOEntities db = new BANDONGHOEntities();
-            /* Thêm Tài khoản */
-
-            /* Thêm khách hàng */
-            #region Tạo mã KH
-            // lấy mã khách hàng lớn nhất hiện tại
-            KHACHHANG kh = (from k in db.KHACHHANGs
-                            orderby k.MAKH descending
-                            select k).SingleOrDefault();
-            if (kh == null)
+            TAIKHOAN taikhoan = (from tk in db.TAIKHOANs
+                                 where tk.TENDN.Equals(account)
+                                 select tk).SingleOrDefault();
+            if (taikhoan != null)
             {
-                makh = ID_DEFAULT;
+                return true;
+            }
+            return false;
+        }
+
+        public bool isValidPassword(string password)
+        {
+            return Regex.IsMatch(password, "^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$");
+        }
+
+        //public void GetMaKH(string MAKH)
+        //{
+        //    BANDONGHOEntities db = new BANDONGHOEntities();
+        //    // Lấy mã khách hàng lớn nhất 
+        //    KHACHHANG kh = (from KH in db.KHACHHANGs
+        //                    orderby KH.MAKH
+        //                    select KH).SingleOrDefault();
+        //    if (kh == null)
+        //    {
+        //        MAKH = ID_DEFAULT;
+        //    }
+        //    else
+        //    {
+        //        // cắt 2 ký tự đầu
+        //        int numberID;
+        //        if (!Int32.TryParse(MAKH.Substring(2), out numberID))
+        //        {
+        //            MAKH = ID_DEFAULT;
+        //        }
+        //        else
+        //        {
+        //            numberID++;
+        //            string newID = "KH";
+        //            for (int i = 0; i < 5 - numberID.ToString().Length; i++)
+        //            {
+        //                newID += "0";
+        //            }
+        //            newID += numberID.ToString();
+        //            MAKH = newID;
+        //        }
+        //    }
+        //}
+
+        //public void GetMaTK(string MATK)
+        //{
+        //    BANDONGHOEntities db = new BANDONGHOEntities();
+        //    // Lấy mã tài khoản lớn nhất 
+        //    TAIKHOAN tk = (from TK in db.TAIKHOANs
+        //                   orderby TK.MATK
+        //                   select TK).SingleOrDefault();
+        //    if (tk == null)
+        //    {
+        //        MATK = TK_DEFAULT;
+        //    }
+        //    else
+        //    {
+        //        // cắt 2 ký tự đầu
+        //        int numberID;
+        //        if (!Int32.TryParse(MATK.Substring(2), out numberID))
+        //        {
+        //            MATK = TK_DEFAULT;
+        //        }
+        //        else
+        //        {
+        //            numberID++;
+        //            string newID = "TK";
+        //            for (int i = 0; i < 5 - numberID.ToString().Length; i++)
+        //            {
+        //                newID += "0";
+        //            }
+        //            newID += numberID.ToString();
+        //            MATK = newID;
+        //        }
+        //    }
+        //}
+
+        public void RegisterAccount(RegisterViewModel register)
+        {
+            int MAKH, MATK;
+            BANDONGHOEntities db = new BANDONGHOEntities();
+            // Lấy mã tài khoản lớn nhất
+            TAIKHOAN tk = (from TK in db.TAIKHOANs
+                           orderby TK.MATK
+                            select TK).SingleOrDefault();
+            if (tk == null)
+            {
+                MATK = ID_DEFAULT;
             }
             else
             {
-                //cắt 2 ký tự đầu
-                int numberId;
-                if (!Int32.TryParse(makh.Substring(2), out numberId))
-                {
-                    makh = ID_DEFAULT;
-                }
-                else
-                {
-                    numberId++;
-                    string newId = "KH";
-                    for (int i = 0; i < 5 - numberId.ToString().Length; i++)
-                    {
-                        newId += "0";
-                    }
-                    newId += numberId.ToString();
-                    makh = newId;
-                }
+                int numberTK = tk.MATK;
+                numberTK++;
+                MATK = numberTK;
             }
-            #endregion
-            // tạo mới khách hàng
-            KHACHHANG customer = new KHACHHANG {  TENKH = register.FirstName + register.LastName, DIACHI = "", SDT = register.Phone, GIOITINH = register.Sex };
-            // Thêm khách hàng và db
+
+            // Lấy mã khách hàng lớn nhất 
+            KHACHHANG kh = (from KH in db.KHACHHANGs
+                            orderby KH.MAKH
+                            select KH).SingleOrDefault();
+            if (kh == null)
+            {
+                MAKH = ID_DEFAULT;
+            }
+            else
+            {
+                int numberKH = kh.MAKH;
+                numberKH++;
+                MAKH = numberKH;
+            }
+
+            //Tạo mới tài khoản
+            TAIKHOAN account = new TAIKHOAN {TENDN = register.Account, MATKHAU = register.Password, MALOAITK = "LK00002" };
+            // Tạo mới khách hàng
+            KHACHHANG customer = new KHACHHANG {MATK = MATK, TENKH = register.FirstName + register.LastName, DIACHI = register.Address, EMAIL = register.Email, SDT = register.Phone, GIOITINH = register.Sex };
+            // Thêm khách hàng và tài khoản vào db
+            db.TAIKHOANs.Add(account);
             db.KHACHHANGs.Add(customer);
             db.SaveChanges();
-            return true;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model BanDongHo.Models.ViewModel.Register
+﻿@model BanDongHo.Models.ViewModel.RegisterViewModel
+
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -27,14 +28,14 @@
                 <p style="color:#f00">
                     @ViewBag.MessageRegister
                 </p>
-            </div >
+            </div>
             <div class="register-main">
                 <div class="col-md-6 account-left">
-                    <input name="FirstName" placeholder="First name" type="text" tabindex="1" required value="@Model.FirstName"/>
+                    <input name="FirstName" placeholder="First name" type="text" tabindex="1" required value="@Model.FirstName" />
                     <input name="LastName" placeholder="Last name" type="text" tabindex="2" required value="@Model.LastName">
-                    <input name="Address" placeholder="Address" type="text" tabindex="1" required>
-                    <input name="Email" placeholder="Email address" type="text" tabindex="3" required>
-                    <input name="Phone" placeholder="Mobile" type="text" tabindex="3" required>
+                    <input name="Address" placeholder="Address" type="text" tabindex="1" required value="@Model.Address">
+                    <input name="Email" placeholder="Email address" type="text" tabindex="3" required value="@Model.Email">
+                    <input name="Phone" placeholder="Mobile" type="text" tabindex="3" required value="@Model.Phone">
                     <ul>
                         <li><label class="radio left"><input name="Sex" type="radio" checked="" value="Nam"><i></i>Male</label></li>
                         <li><label class="radio"><input name="Sex" type="radio" value="Nữ"><i></i>Female</label></li>

@@ -19,7 +19,7 @@ namespace BanDongHo.Domain.DataContext
             this.CHITIETDONHANGs = new HashSet<CHITIETDONHANG>();
         }
     
-        public string MADH { get; set; }
+        public int MADH { get; set; }
         public Nullable<int> MAKH { get; set; }
         public string TRANGTHAI { get; set; }
         public string DIACHIGIAO { get; set; }
