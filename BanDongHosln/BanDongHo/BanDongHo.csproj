@@ -153,16 +153,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Service\IRegisterSercive.cs" />
+    <Compile Include="Models\Service\IRegisterService.cs" />
     <Compile Include="Models\Service\ProductService.cs" />
-    <Compile Include="Models\ViewModel\HomePageViewModel.cs" />
-    <Compile Include="Models\ViewModel\Register.cs" />
     <Compile Include="Models\Service\RegisterService.cs" />
+    <Compile Include="Models\ViewModel\HomePageViewModel.cs" />
+    <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +210,7 @@
     <Content Include="Views\Home\Account.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
