@@ -10,7 +10,8 @@ namespace BanDongHo.Models.Service
 {
     public class RegisterService : IRegisterSercive
     {
-        const string ID_DEFAULT = "KH00001";
+        const int KH_DEFAULT = 1;
+        const int TK_DEFAULT = 1;
         public bool isExistAccount(string account)
         {
                 // get TK => tk.TenDN == account
@@ -31,11 +32,24 @@ namespace BanDongHo.Models.Service
             return Regex.IsMatch(password, @"\w");
         }
 
-        public bool RegisterAccount(Register register)
+        public void RegisterAccount(Register register)
         {
-            string makh = "";
+            int makh, matk;
             BANDONGHOEntities db = new BANDONGHOEntities();
             /* Thêm Tài khoản */
+            TAIKHOAN tk = (from TK in db.TAIKHOANs
+                            orderby TK.MATK descending
+                            select TK).SingleOrDefault();
+            if (tk == null)
+            {
+                matk = TK_DEFAULT;
+            }
+            else
+            {
+                int numberTK = tk.MATK;
+                numberTK++;
+                matk = numberTK;
+            }
 
             /* Thêm khách hàng */
             #region Tạo mã KH
@@ -45,35 +59,22 @@ namespace BanDongHo.Models.Service
                             select k).SingleOrDefault();
             if (kh == null)
             {
-                makh = ID_DEFAULT;
+                makh = KH_DEFAULT;
             }
             else
             {
-                //cắt 2 ký tự đầu
-                int numberId;
-                if (!Int32.TryParse(makh.Substring(2), out numberId))
-                {
-                    makh = ID_DEFAULT;
-                }
-                else
-                {
-                    numberId++;
-                    string newId = "KH";
-                    for (int i = 0; i < 5 - numberId.ToString().Length; i++)
-                    {
-                        newId += "0";
-                    }
-                    newId += numberId.ToString();
-                    makh = newId;
-                }
+                int numberkh = kh.MAKH;
+                numberkh++;
+                makh = numberkh;
             }
             #endregion
             // tạo mới khách hàng
-            KHACHHANG customer = new KHACHHANG {  TENKH = register.FirstName + register.LastName, DIACHI = "", SDT = register.Phone, GIOITINH = register.Sex };
+            TAIKHOAN taikhoan = new TAIKHOAN { TENDN = register.Account, MATKHAU = register.Password, MALOAITK = "LK00002" };
+            KHACHHANG customer = new KHACHHANG {  MATK = matk,TENKH = register.FirstName + register.LastName, DIACHI = "", SDT = register.Phone, GIOITINH = register.Sex, EMAIL = register.Email };
             // Thêm khách hàng và db
+            db.TAIKHOANs.Add(taikhoan);
             db.KHACHHANGs.Add(customer);
             db.SaveChanges();
-            return true;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace BanDongHo.Models.Service
         /// </summary>
         /// <param name="register"></param>
         /// <returns></returns>
-        bool RegisterAccount(Register register);
+        void RegisterAccount(Register register);
 
     }
 }

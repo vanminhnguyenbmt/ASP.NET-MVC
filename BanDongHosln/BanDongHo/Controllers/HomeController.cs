@@ -63,6 +63,7 @@ namespace BanDongHo.Controllers
                 ViewBag.MessageRegister += "Mật khẩu sai định dạng!";
                 return View(register);
             }
+            registerservice.RegisterAccount(register);
             return View(register);
         }
 

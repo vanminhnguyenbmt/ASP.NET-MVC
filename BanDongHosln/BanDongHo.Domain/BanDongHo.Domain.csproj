@@ -118,15 +118,6 @@
     <Compile Include="DataContext\SANPHAM.cs">
       <DependentUpon>BanDongHo.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataContext\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>BanDongHo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataContext\sp_helpdiagrams_Result.cs">
-      <DependentUpon>BanDongHo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataContext\sysdiagram.cs">
-      <DependentUpon>BanDongHo.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataContext\TAIKHOAN.cs">
       <DependentUpon>BanDongHo.tt</DependentUpon>
     </Compile>
@@ -136,11 +127,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="DataContext\BanDongHo.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BanDongHo.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config" />
     <None Include="DataContext\BanDongHo.edmx.diagram">
       <DependentUpon>BanDongHo.edmx</DependentUpon>
     </None>

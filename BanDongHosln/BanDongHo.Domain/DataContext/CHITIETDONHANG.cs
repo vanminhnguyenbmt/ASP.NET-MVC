@@ -14,7 +14,7 @@ namespace BanDongHo.Domain.DataContext
     
     public partial class CHITIETDONHANG
     {
-        public string MADH { get; set; }
+        public int MADH { get; set; }
         public int MASP { get; set; }
         public Nullable<int> SOLUONG { get; set; }
     
