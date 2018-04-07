@@ -10,15 +10,13 @@
 namespace BanDongHo.Domain.DataContext
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class CHITIETDONHANG
+    public partial class sp_helpdiagrams_Result
     {
-        public string MADH { get; set; }
-        public int MASP { get; set; }
-        public Nullable<int> SOLUONG { get; set; }
-    
-        public virtual DONHANG DONHANG { get; set; }
-        public virtual SANPHAM SANPHAM { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

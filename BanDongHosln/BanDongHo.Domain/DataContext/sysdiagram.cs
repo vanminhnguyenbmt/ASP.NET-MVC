@@ -12,13 +12,12 @@ namespace BanDongHo.Domain.DataContext
     using System;
     using System.Collections.Generic;
     
-    public partial class CHITIETDONHANG
+    public partial class sysdiagram
     {
-        public string MADH { get; set; }
-        public int MASP { get; set; }
-        public Nullable<int> SOLUONG { get; set; }
-    
-        public virtual DONHANG DONHANG { get; set; }
-        public virtual SANPHAM SANPHAM { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

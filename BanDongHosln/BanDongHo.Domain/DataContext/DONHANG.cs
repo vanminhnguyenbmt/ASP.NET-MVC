@@ -20,14 +20,14 @@ namespace BanDongHo.Domain.DataContext
         }
     
         public string MADH { get; set; }
-        public string MAKH { get; set; }
+        public Nullable<int> MAKH { get; set; }
         public string TRANGTHAI { get; set; }
         public string DIACHIGIAO { get; set; }
         public string SDT { get; set; }
-        public Nullable<System.DateTime> NGAYDAT { get; set; }
+        public System.DateTime NGAYDAT { get; set; }
         public Nullable<System.DateTime> NGAYGIAO { get; set; }
         public string MOTA { get; set; }
-        public Nullable<decimal> TONGTIEN { get; set; }
+        public Nullable<double> TONGTIEN { get; set; }
     
         public virtual ICollection<CHITIETDONHANG> CHITIETDONHANGs { get; set; }
         public virtual KHACHHANG KHACHHANG { get; set; }

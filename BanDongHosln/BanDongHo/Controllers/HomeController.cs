@@ -17,7 +17,10 @@ namespace BanDongHo.Controllers
         }
         public ActionResult Index()
         {
-            return View();
+            HomePageViewModel HomePageVM = new HomePageViewModel();
+            HomePageVM.ProductsSelling = ProductService.GetListProductsSelling();
+            HomePageVM.NewProducts = ProductService.GetListNewProducts().Take(8);
+            return View(HomePageVM);
         }
 
         public ActionResult Checkout()

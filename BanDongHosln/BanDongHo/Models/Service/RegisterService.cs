@@ -69,7 +69,7 @@ namespace BanDongHo.Models.Service
             }
             #endregion
             // tạo mới khách hàng
-            KHACHHANG customer = new KHACHHANG { MAKH = makh, HOTEN = register.FirstName + register.LastName, DIACHI = "", SDT = register.Phone, GIOITINH = register.Sex };
+            KHACHHANG customer = new KHACHHANG {  TENKH = register.FirstName + register.LastName, DIACHI = "", SDT = register.Phone, GIOITINH = register.Sex };
             // Thêm khách hàng và db
             db.KHACHHANGs.Add(customer);
             db.SaveChanges();

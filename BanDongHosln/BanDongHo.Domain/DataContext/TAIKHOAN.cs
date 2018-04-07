@@ -19,7 +19,7 @@ namespace BanDongHo.Domain.DataContext
             this.KHACHHANGs = new HashSet<KHACHHANG>();
         }
     
-        public string MATK { get; set; }
+        public int MATK { get; set; }
         public string TENDN { get; set; }
         public string MATKHAU { get; set; }
         public string MALOAITK { get; set; }

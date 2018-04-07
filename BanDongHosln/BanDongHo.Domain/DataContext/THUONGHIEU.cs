@@ -19,7 +19,7 @@ namespace BanDongHo.Domain.DataContext
             this.SANPHAMs = new HashSet<SANPHAM>();
         }
     
-        public string MATH { get; set; }
+        public int MATH { get; set; }
         public string TENTH { get; set; }
         public string HINHTH { get; set; }
     

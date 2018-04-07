@@ -10,15 +10,10 @@
 namespace BanDongHo.Domain.DataContext
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class CHITIETDONHANG
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public string MADH { get; set; }
-        public int MASP { get; set; }
-        public Nullable<int> SOLUONG { get; set; }
-    
-        public virtual DONHANG DONHANG { get; set; }
-        public virtual SANPHAM SANPHAM { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

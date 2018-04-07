@@ -159,6 +159,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Service\IRegisterSercive.cs" />
+    <Compile Include="Models\Service\ProductService.cs" />
+    <Compile Include="Models\ViewModel\HomePageViewModel.cs" />
     <Compile Include="Models\ViewModel\Register.cs" />
     <Compile Include="Models\Service\RegisterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

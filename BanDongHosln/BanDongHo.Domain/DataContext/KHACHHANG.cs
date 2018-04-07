@@ -19,14 +19,13 @@ namespace BanDongHo.Domain.DataContext
             this.DONHANGs = new HashSet<DONHANG>();
         }
     
-        public string MAKH { get; set; }
-        public string MATK { get; set; }
-        public string HOTEN { get; set; }
-        public string EMAIL { get; set; }
-        public string SDT { get; set; }
-        public string GIOITINH { get; set; }
+        public int MAKH { get; set; }
+        public string TENKH { get; set; }
         public string DIACHI { get; set; }
-        public Nullable<System.DateTime> NGAYSINH { get; set; }
+        public string SDT { get; set; }
+        public string EMAIL { get; set; }
+        public string GIOITINH { get; set; }
+        public Nullable<int> MATK { get; set; }
     
         public virtual ICollection<DONHANG> DONHANGs { get; set; }
         public virtual TAIKHOAN TAIKHOAN { get; set; }

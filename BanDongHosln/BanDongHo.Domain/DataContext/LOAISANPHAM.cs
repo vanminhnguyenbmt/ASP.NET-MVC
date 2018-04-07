@@ -16,12 +16,12 @@ namespace BanDongHo.Domain.DataContext
     {
         public LOAISANPHAM()
         {
-            this.CHITIETSANPHAMs = new HashSet<CHITIETSANPHAM>();
+            this.SANPHAMs = new HashSet<SANPHAM>();
         }
     
         public string MALOAISP { get; set; }
         public string TENLOAISP { get; set; }
     
-        public virtual ICollection<CHITIETSANPHAM> CHITIETSANPHAMs { get; set; }
+        public virtual ICollection<SANPHAM> SANPHAMs { get; set; }
     }
 }

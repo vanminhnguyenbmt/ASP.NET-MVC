@@ -18,20 +18,22 @@ namespace BanDongHo.Domain.DataContext
         {
             this.CHITIETDONHANGs = new HashSet<CHITIETDONHANG>();
             this.CHITIETKMs = new HashSet<CHITIETKM>();
-            this.CHITIETSANPHAMs = new HashSet<CHITIETSANPHAM>();
         }
     
-        public string MASP { get; set; }
+        public int MASP { get; set; }
         public string TENSP { get; set; }
         public string HINHLON { get; set; }
         public string HINHNHO { get; set; }
-        public string THONGTIN { get; set; }
-        public string MATH { get; set; }
+        public string MOTA { get; set; }
+        public Nullable<int> MATH { get; set; }
         public string DANHGIA { get; set; }
+        public Nullable<int> SOLUONG { get; set; }
+        public string MALOAISP { get; set; }
+        public Nullable<double> DONGIA { get; set; }
     
         public virtual ICollection<CHITIETDONHANG> CHITIETDONHANGs { get; set; }
         public virtual ICollection<CHITIETKM> CHITIETKMs { get; set; }
-        public virtual ICollection<CHITIETSANPHAM> CHITIETSANPHAMs { get; set; }
+        public virtual LOAISANPHAM LOAISANPHAM { get; set; }
         public virtual THUONGHIEU THUONGHIEU { get; set; }
     }
 }
