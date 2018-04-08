@@ -55,14 +55,17 @@
                 string source = "~/images/HINHLON/" + item.HINHLON;
 
                 <div class="col-md-4 about-left">
-                    <figure class="effect-bubba">
-                        <img class="img-responsive" src="@Url.Content(source)" alt="" />
-                        @*<img class="img-responsive" src="@tem.HINHLON" alt="" />*@
-                        <figcaption>
-                            <h2>@item.TENSP</h2>
-                            <p>@item.MOTA</p>
-                        </figcaption>
-                    </figure>
+                    <a href="@Url.Content("~/Home/Detail/" + item.MASP)">
+                        <figure class="effect-bubba">
+                            <img class="img-responsive" src="@Url.Content(source)" alt="" />
+
+                            @*<img class="img-responsive" src="@tem.HINHLON" alt="" />*@
+                            <figcaption>
+                                <h2>@item.TENSP</h2>
+                                <p>@item.MOTA</p>
+                            </figcaption>
+                        </figure>
+                    </a>
                 </div>
             }
             <div class="clearfix"></div>
