@@ -46,10 +46,12 @@ namespace BanDongHo.Models.Service
             }
             catch (Exception e) { }
             
-            if(ListProductsSelling==null)
+            if(ListProductsSelling==null || ListProductsSelling.ToList().Count<3)
             {
                 return GetListNewProducts().Take(3);
             }
+
+            List<SANPHAM> lsp = ListProductsSelling.ToList();
 
             return ListProductsSelling;
         }

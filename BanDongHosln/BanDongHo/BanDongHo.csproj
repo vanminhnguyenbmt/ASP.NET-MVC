@@ -153,16 +153,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Service\IRegisterSercive.cs" />
+    <Compile Include="Models\Service\IRegisterService.cs" />
     <Compile Include="Models\Service\ProductService.cs" />
-    <Compile Include="Models\ViewModel\HomePageViewModel.cs" />
-    <Compile Include="Models\ViewModel\Register.cs" />
     <Compile Include="Models\Service\RegisterService.cs" />
+    <Compile Include="Models\ViewModel\HomePageViewModel.cs" />
+    <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +173,39 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\11.png" />
+    <Content Include="images\abt-1.jpg" />
+    <Content Include="images\abt-2.jpg" />
+    <Content Include="images\abt-3.jpg" />
+    <Content Include="images\arrow.png" />
+    <Content Include="images\bnr-1.jpg" />
+    <Content Include="images\bnr-2.jpg" />
+    <Content Include="images\bnr-3.jpg" />
+    <Content Include="images\c-1.jpg" />
+    <Content Include="images\c-2.jpg" />
+    <Content Include="images\c-3.jpg" />
+    <Content Include="images\cart-1.png" />
+    <Content Include="images\cart-2.png" />
+    <Content Include="images\cart-3.png" />
+    <Content Include="images\close.png" />
+    <Content Include="images\crossword.png" />
+    <Content Include="images\p-1.png" />
+    <Content Include="images\p-2.png" />
+    <Content Include="images\p-3.png" />
+    <Content Include="images\p-4.png" />
+    <Content Include="images\p-5.png" />
+    <Content Include="images\p-6.png" />
+    <Content Include="images\p-7.png" />
+    <Content Include="images\p-8.png" />
+    <Content Include="images\pr-1.jpg" />
+    <Content Include="images\pr-2.jpg" />
+    <Content Include="images\s-1.jpg" />
+    <Content Include="images\s-2.jpg" />
+    <Content Include="images\s-3.jpg" />
+    <Content Include="images\s-icons.png" />
+    <Content Include="images\search.png" />
+    <Content Include="images\star.png" />
+    <Content Include="images\tick.png" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -205,14 +239,17 @@
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Account.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\css\" />
+    <Folder Include="images\HINHLON\" />
+    <Folder Include="images\HINHNHO\" />
+    <Folder Include="images\HINHTH\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
