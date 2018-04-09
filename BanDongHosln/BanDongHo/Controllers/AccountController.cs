@@ -44,9 +44,9 @@ namespace BanDongHo.Controllers
 
             // Gửi mail cho người dùng khi đã đăng ký thành công
             string content = System.IO.File.ReadAllText(Server.MapPath("/Views/Others/newuser.html"));
-            content = content.Replace("{{Account}}", register.FirstName + " "+register.LastName);
+            content = content.Replace("{{Account}}", register.FirstName + " " + register.LastName);
             content = content.Replace("{{Link}}", ConfigHelper.GetByKey("CurrentLink") + "Home/Account");
-        
+
             MailHelper.SendMail(register.Email, "Đăng ký thành công", content);
 
             ViewData["SuccessMsg"] = "Đăng ký thành công";

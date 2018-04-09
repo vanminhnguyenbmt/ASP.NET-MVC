@@ -51,15 +51,37 @@
                 </div>
                 <div class="col-md-6 account-left">
                     <input name="Account" placeholder="Account" type="text" tabindex="6" required>
-                    <input name="Password" placeholder="Password" type="password" tabindex="7" required>
-                    <input name="ResetPassword" placeholder="Retype password" type="password" tabindex="8" required>
-                </div>
+                    <input id="inPassWord" name="Password" placeholder="Password" type="password" tabindex="7" required>
+                    <input id="rePassWord" name="ResetPassword" placeholder="Retype password" type="password" tabindex="8" required>
+                    <br />
+                    <span id="LoiPassWord" style="color: red; font-family: 'Lato-Regular'"></span>
+                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="address submit">
-                <input type="submit" value="Submit">
+                <input id="btnSubmit" type="submit" value="Submit">
             </div>
         </form>
     </div>
 </div>
 <!--register-end-->
+
+@*Script kiểm tra ô nhập lại mật khẩu phải trùng với ô trên*@
+<script type="text/javascript">
+    $('#btnSubmit').click(function () {
+        var loi = 0;
+        if($('#inPassWord').val() != $('#rePassWord').val())
+        {
+            $('#LoiPassWord').text('Mật khẩu không khớp nhau !');
+            loi++;
+        }
+        else {
+            $('#LoiPassWord').text('');
+        }
+        if(loi != 0)
+        {
+            return false;
+        }
+        return true;
+    });
+</script>
