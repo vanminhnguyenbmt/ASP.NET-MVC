@@ -102,8 +102,8 @@ namespace BanDongHo.Models.Service
             BANDONGHOEntities db = new BANDONGHOEntities();
             // Lấy mã tài khoản lớn nhất
             TAIKHOAN tk = (from TK in db.TAIKHOANs
-                           orderby TK.MATK
-                            select TK).SingleOrDefault();
+                           orderby TK.MATK descending
+                            select TK).FirstOrDefault();
             if (tk == null)
             {
                 matk = 1;
@@ -115,15 +115,10 @@ namespace BanDongHo.Models.Service
                 matk = numberTK;
             }
 
-            //Tạo mới tài khoản
-            TAIKHOAN account = new TAIKHOAN { TENDN = register.Account, MATKHAU = register.Password, MALOAITK = "LK00002" };
-            db.TAIKHOANs.Add(account);
-            db.SaveChanges();
-
             // Lấy mã khách hàng lớn nhất 
             KHACHHANG kh = (from KH in db.KHACHHANGs
-                            orderby KH.MAKH
-                            select KH).SingleOrDefault();
+                            orderby KH.MAKH descending
+                            select KH).FirstOrDefault();
             if (kh == null)
             {
                 makh = 1;
@@ -135,8 +130,13 @@ namespace BanDongHo.Models.Service
                 makh = numberKH;
             }
 
+            //Tạo mới tài khoản
+            TAIKHOAN account = new TAIKHOAN { TENDN = register.Account, MATKHAU = register.Password, MALOAITK = "LK00002" };
+            db.TAIKHOANs.Add(account);
+            db.SaveChanges();
+
             // Tạo mới khách hàng
-            KHACHHANG customer = new KHACHHANG {MATK = matk, TENKH = register.FirstName + register.LastName, DIACHI = register.Address, EMAIL = register.Email, SDT = register.Phone, GIOITINH = register.Sex };  
+            KHACHHANG customer = new KHACHHANG { MATK = matk, TENKH = register.FirstName + register.LastName, DIACHI = register.Address, EMAIL = register.Email, SDT = register.Phone, GIOITINH = register.Sex };
             db.KHACHHANGs.Add(customer);
             db.SaveChanges();
         }

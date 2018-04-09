@@ -21,6 +21,13 @@
 <div class="register">
     <div class="container">
         <form method="post" action="Register">
+            @if (ViewData["SuccessMsg"] != null)
+            {
+                <div class="alert alert-success" role="alert"> 
+                    <strong>Chúc mừng bạn!</strong> đã đăng ký thành công.
+                    <br />Vui lòng click <a href="~/Home/Account">vào đây</a> để đăng nhập.
+                </div>
+            }
             <div class="register-top heading">
                 <h2>REGISTER</h2>
             </div>

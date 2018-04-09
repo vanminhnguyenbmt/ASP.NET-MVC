@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BanDongHo.Models.Service;
 using BanDongHo.Models.ViewModel;
+using BanDongHo.Common;
 
 namespace BanDongHo.Controllers
 {
@@ -38,7 +39,17 @@ namespace BanDongHo.Controllers
                 ViewBag.MessageRegister += "Mật khẩu sai định dạng !";
                 return View(register);
             }
+            // thêm dữ liệu từ form vào model, sau đó từ model xuống cơ sở dữ liệu
             registerService.RegisterAccount(register);
+
+            // Gửi mail cho người dùng khi đã đăng ký thành công
+            string content = System.IO.File.ReadAllText(Server.MapPath("/Views/Others/newuser.html"));
+            content = content.Replace("{{Account}}", register.FirstName + " "+register.LastName);
+            content = content.Replace("{{Link}}", ConfigHelper.GetByKey("CurrentLink") + "Home/Account");
+        
+            MailHelper.SendMail(register.Email, "Đăng ký thành công", content);
+
+            ViewData["SuccessMsg"] = "Đăng ký thành công";
             return View(register);
         }
     }
