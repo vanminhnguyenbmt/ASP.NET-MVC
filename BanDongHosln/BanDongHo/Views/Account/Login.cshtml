@@ -1,0 +1,52 @@
+﻿@model BanDongHo.Models.ViewModel.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--start-breadcrumbs-->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs-main">
+            <ol class="breadcrumb">
+                <li><a href="~/Home/Index">Home</a></li>
+                <li class="active">Account</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!--end-breadcrumbs-->
+<!--account-starts-->
+<div class="account">
+    <div class="container">
+        <form method="post" action="Login">
+            <div class="account-top heading">
+                <h2>ACCOUNT</h2>
+            </div>
+            <div class="account-main">
+                <div class="col-md-6 account-left">
+                    <h3>Existing User</h3>
+                    <div class="account-bottom">
+                        <input name="UserName" placeholder="Account" type="text" tabindex="3" required value="@Model.UserName">
+                        <input name="PassWord" placeholder="Password" type="password" tabindex="4" required value="@Model.PassWord">
+                        <br />
+                        <input name="RememberMe" type="checkbox" tabindex="5" required value="@Model.RememberMe">
+                        <span style="font-family: 'Lato-Regular'; text-align: center; color: #666; font-weight: 500; font-size: 14px; margin-left: 5px">Remember Me?</span>
+                        <div class="address">
+                            <a class="forgot" href="#">Forgot Your Password?</a>
+                            <input type="submit" value="Login">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 account-right account-left">
+                    <h3>New User? Create an Account</h3>
+                    <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+                    <a href="~/Home/Register">Create an Account</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--account-end-->
