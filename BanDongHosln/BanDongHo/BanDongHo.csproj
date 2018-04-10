@@ -165,6 +165,7 @@
     <Compile Include="Models\Service\ProductService.cs" />
     <Compile Include="Models\Service\RegisterService.cs" />
     <Compile Include="Models\ViewModel\HomePageViewModel.cs" />
+    <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -243,10 +244,10 @@
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Account.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

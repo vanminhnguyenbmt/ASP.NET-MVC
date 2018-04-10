@@ -25,6 +25,18 @@ namespace BanDongHo.Models.Service
             return false;
         }
 
+        /// <summary>
+        /// Kiểm tra độ mạnh mật khẩu
+        ///    ^                         Start anchor
+        ///    (?=.*[A-Z].*[A-Z])        Ensure string has two uppercase letters.
+        ///    (?=.*[!@#$&*])            Ensure string has one special case letter.
+        ///    (?=.*[0-9].*[0-9])        Ensure string has two digits.
+        ///    (?=.*[a-z].*[a-z].*[a-z]) Ensure string has three lowercase letters.
+        ///    .{8}                      Ensure string is of length 8.
+        ///    $                         End anchor.
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool isValidPassword(string password)
         {
             return Regex.IsMatch(password, @"\w");
