@@ -226,3 +226,5 @@ D:\Bin.UIT\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo\bin\Newtonsoft.Json.xml
 D:\Bin.UIT\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo\obj\Debug\BanDongHo.csprojResolveAssemblyReference.cache
 D:\Bin.UIT\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo\obj\Debug\BanDongHo.dll
 D:\Bin.UIT\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo\obj\Debug\BanDongHo.pdb
+D:\Bin.UIT\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo\bin\BotDetect.dll
+D:\Bin.UIT\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo\bin\BotDetect.Web.Mvc.dll

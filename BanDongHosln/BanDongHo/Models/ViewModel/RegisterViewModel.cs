@@ -26,5 +26,6 @@ namespace BanDongHo.Models.ViewModel
         [Required(ErrorMessage = "Bạn cần nhập mật khẩu")]
         [MinLength(6, ErrorMessage = "Mật khẩu phải có ít nhất 6 ký tự")]
         public string Password { get; set; }
+        public DateTime? CreatedDate { get; set; }
     }
 }

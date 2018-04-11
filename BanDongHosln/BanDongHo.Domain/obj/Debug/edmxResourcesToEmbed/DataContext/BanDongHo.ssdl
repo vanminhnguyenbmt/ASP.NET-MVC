@@ -89,6 +89,8 @@
     <Property Name="MATK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TENDN" Type="varchar" MaxLength="20" />
     <Property Name="MATKHAU" Type="varchar" MaxLength="32" />
+    <Property Name="NGAYDANGKY" Type="datetime" />
+    <Property Name="TRANGTHAI" Type="bit" />
     <Property Name="MALOAITK" Type="char" MaxLength="7" />
   </EntityType>
   <EntityType Name="THUONGHIEU">

@@ -104,6 +104,8 @@
     <Property Name="MATK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TENDN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="MATKHAU" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="NGAYDANGKY" Type="DateTime" Precision="3" />
+    <Property Name="TRANGTHAI" Type="Boolean" />
     <Property Name="MALOAITK" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="KHACHHANGs" Relationship="Self.FK_KH_TK" FromRole="TAIKHOAN" ToRole="KHACHHANG" />
     <NavigationProperty Name="LOAITK" Relationship="Self.FK_TK_LTK" FromRole="TAIKHOAN" ToRole="LOAITK" />

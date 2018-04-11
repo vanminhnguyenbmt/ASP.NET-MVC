@@ -5,6 +5,7 @@ using System.Web;
 using BanDongHo.Models.ViewModel;
 using BanDongHo.Domain.DataContext;
 using System.Text.RegularExpressions;
+using BanDongHo.Common;
 
 namespace BanDongHo.Models.Service
 {
@@ -143,7 +144,7 @@ namespace BanDongHo.Models.Service
             }
 
             //Tạo mới tài khoản
-            TAIKHOAN account = new TAIKHOAN { TENDN = register.Account, MATKHAU = register.Password, MALOAITK = "LK00002" };
+            TAIKHOAN account = new TAIKHOAN { TENDN = register.Account, MATKHAU = Encryptor.MD5Hash(register.Password), MALOAITK = "LK00002", NGAYDANGKY = DateTime.Now, TRANGTHAI = true };
             db.TAIKHOANs.Add(account);
             db.SaveChanges();
 

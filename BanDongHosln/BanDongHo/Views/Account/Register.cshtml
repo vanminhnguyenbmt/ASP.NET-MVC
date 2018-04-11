@@ -1,4 +1,10 @@
 ﻿@model BanDongHo.Models.ViewModel.RegisterViewModel
+@using BotDetect.Web.Mvc;
+
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
+      rel="stylesheet" type="text/css" />
+
+@{ MvcCaptcha registerCaptcha = new MvcCaptcha("registerCaptcha"); }
 
 @{
     ViewBag.Title = "Register";
@@ -21,7 +27,7 @@
 <div class="register">
     <div class="container">
         <form method="post" action="Register">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger"})
+        
             @if (ViewData["SuccessMsg"] != null)
             {
                 <div class="alert alert-success" role="alert"> 
@@ -53,8 +59,10 @@
                 <div class="col-md-6 account-left">
                     <input name="Account" placeholder="Account" type="text" tabindex="6" required>    
                     <input id="inPassWord" name="Password" placeholder="Password" type="password" tabindex="7" required>         
-                    <input id="rePassWord" name="ResetPassword" placeholder="Retype password" type="password" tabindex="8" required>
-                    <br />
+                    <input id="rePassWord" name="ResetPassword" placeholder="Retype password" type="password" tabindex="8" required>             
+                    @Html.Captcha(registerCaptcha)
+                    @Html.TextBox("CaptchaCode")
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger", @style = "color: red" })              
                     <span id="LoiPassWord" style="color: red; font-family: 'Lato-Regular'"></span>
                     @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger", @style = "color: red" })
                     @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger", @style = "color: red" })

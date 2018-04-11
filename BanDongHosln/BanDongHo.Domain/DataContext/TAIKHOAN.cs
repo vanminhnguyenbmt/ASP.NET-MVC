@@ -22,6 +22,8 @@ namespace BanDongHo.Domain.DataContext
         public int MATK { get; set; }
         public string TENDN { get; set; }
         public string MATKHAU { get; set; }
+        public Nullable<System.DateTime> NGAYDANGKY { get; set; }
+        public Nullable<bool> TRANGTHAI { get; set; }
         public string MALOAITK { get; set; }
     
         public virtual ICollection<KHACHHANG> KHACHHANGs { get; set; }

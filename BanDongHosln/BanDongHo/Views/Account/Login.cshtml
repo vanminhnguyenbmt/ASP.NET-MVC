@@ -24,14 +24,22 @@
             <div class="account-top heading">
                 <h2>ACCOUNT</h2>
             </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="account-main">
                 <div class="col-md-6 account-left">
                     <h3>Existing User</h3>
+                    <div>
+                        <p style="color:#f00">
+                            @ViewBag.MessageLogin
+                        </p>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger", @style = "color: red" })
+                    @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger", @style = "color: red" })
                     <div class="account-bottom">
                         <input name="UserName" placeholder="Account" type="text" tabindex="3" required value="@Model.UserName">
                         <input name="PassWord" placeholder="Password" type="password" tabindex="4" required value="@Model.PassWord">
                         <br />
-                        <input name="RememberMe" type="checkbox" tabindex="5" required value="@Model.RememberMe">
+                        <input name="RememberMe" type="checkbox" tabindex="5" value="@Model.RememberMe">
                         <span style="font-family: 'Lato-Regular'; text-align: center; color: #666; font-weight: 500; font-size: 14px; margin-left: 5px">Remember Me?</span>
                         <div class="address">
                             <a class="forgot" href="#">Forgot Your Password?</a>

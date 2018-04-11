@@ -96,6 +96,8 @@
           <ScalarProperty Name="MATK" ColumnName="MATK" />
           <ScalarProperty Name="TENDN" ColumnName="TENDN" />
           <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+          <ScalarProperty Name="NGAYDANGKY" ColumnName="NGAYDANGKY" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
           <ScalarProperty Name="MALOAITK" ColumnName="MALOAITK" />
         </MappingFragment>
       </EntityTypeMapping>

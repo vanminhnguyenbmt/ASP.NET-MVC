@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BanDongHo.Models.Service;
 using BanDongHo.Models.ViewModel;
 using BanDongHo.Common;
+using BotDetect.Web.Mvc;
 
 namespace BanDongHo.Controllers
 {
@@ -22,6 +23,7 @@ namespace BanDongHo.Controllers
         }
 
         [HttpPost]
+        [CaptchaValidation("CaptchaCode", "registerCaptcha", "Mã xác nhận không đúng!")]
         public ActionResult Register(RegisterViewModel register)
         {
             ViewBag.MessageRegister = "";
@@ -52,23 +54,56 @@ namespace BanDongHo.Controllers
                 MailHelper.SendMail(register.Email, "Đăng ký thành công", content);
 
                 ViewData["SuccessMsg"] = "Đăng ký thành công";
+                register = new RegisterViewModel();
+                MvcCaptcha.ResetCaptcha("registerCaptcha");
             }
            
             return View(register);
         }
 
-        public ActionResult Login(string returnURL)
+        [HttpGet]
+        public ActionResult Login()
         {
-            LoginViewModel login = new LoginViewModel();
-            ViewBag.ReturnURL = returnURL;
-            return View(login);
+            LoginViewModel loginViewModel = new LoginViewModel();
+            ViewBag.MessageLogin = "";
+            return View(loginViewModel);
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel login, string returnURL)
+        public ActionResult Login(LoginViewModel loginViewModel)
         {
-            ViewBag.ReturnURL = returnURL;
-            return View(login);
+            ViewBag.MessageLogin = "";
+            if (ModelState.IsValid)
+            {
+                LoginService loginService = new LoginService();
+                var result = loginService.Login(loginViewModel.UserName, Encryptor.MD5Hash(loginViewModel.PassWord));
+                if(result == 1)
+                {
+                    var user = loginService.GetById(loginViewModel.UserName);
+                    var userSession = new UserLogin();
+                    userSession.UserName = user.TENDN;
+                    userSession.UserID = user.MATK;
+                    Session.Add(CommonConstands.USER_SESSION, userSession);
+                    return Redirect("/");
+                }
+                else if(result == 0)
+                {
+                    ViewBag.MessageLogin += "Tài khoản không tồn tại";
+                }
+                else if (result == -1)
+                {
+                    ViewBag.MessageLogin += "Tài khoản đang bị khóa";
+                }
+                else if (result == -2)
+                {
+                    ViewBag.MessageLogin += "Mật khẩu không đúng";
+                }
+                else
+                {
+                    ViewBag.MessageLogin += "Đăng nhập không thành công";
+                }
+            }
+            return View(loginViewModel);
         }
     }
 }
