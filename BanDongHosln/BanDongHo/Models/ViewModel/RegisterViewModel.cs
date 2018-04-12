@@ -16,7 +16,6 @@ namespace BanDongHo.Models.ViewModel
         public string Address { get; set; }
         [Required(ErrorMessage = "Bạn cần nhập email")]
         [EmailAddress(ErrorMessage = "Địa chỉ email không hợp lệ")]
-        [RegularExpression(@"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Bạn cần nhập số điện thoại")]
         public string Phone { get; set; }

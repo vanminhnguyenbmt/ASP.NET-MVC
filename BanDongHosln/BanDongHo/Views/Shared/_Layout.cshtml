@@ -20,6 +20,7 @@
     <script>$(document).ready(function(){$(".memenu").memenu();});</script>
     <!--dropdown-->
     <script src="~/Scripts/js/jquery.easydropdown.js"></script>
+    <link href="~/Content/Custom.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
     <!--top-header-->
@@ -46,7 +47,10 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                <div class="col-md-6 top-header-left">
+                <div class="col-md-4 userMenu">
+                    @{ Html.RenderAction("UserMenu", "Account"); }
+                </div>
+                <div class="col-md-2 top-header-left">
                     <div class="cart box_1">
                         <a href="~/Home/Checkout">
                             <div class="total">
@@ -256,7 +260,7 @@
                 <div class="col-md-3 infor-left">
                     <h3>My Account</h3>
                     <ul>
-                        <li><a href="~/Account/Login"><p>My Account</p></a></li>
+                        <li><a href="~/dang-nhap"><p>My Account</p></a></li>
                         <li><a href="#"><p>My Credit slips</p></a></li>
                         <li><a href="#"><p>My Merchandise returns</p></a></li>
                         <li><a href="#"><p>My Personal info</p></a></li>

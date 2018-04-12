@@ -26,13 +26,13 @@
 <!--register-starts-->
 <div class="register">
     <div class="container">
-        <form method="post" action="Register">
-        
+        <form method="post" action="~/dang-ky">
+            @Html.AntiForgeryToken()
             @if (ViewData["SuccessMsg"] != null)
             {
                 <div class="alert alert-success" role="alert"> 
                     <strong>Chúc mừng bạn!</strong> đã đăng ký thành công.
-                    <br />Vui lòng click <a href="~/Home/Account">vào đây</a> để đăng nhập.
+                    <br />Vui lòng click <a href="~/dang-nhap">vào đây</a> để đăng nhập.
                 </div>
             }
             <div class="register-top heading">
@@ -45,11 +45,11 @@
                     </p>
                 </div>
                 <div class="col-md-6 account-left">
-                    <input name="FirstName" placeholder="First name" type="text" tabindex="1" required value="@Model.FirstName" />
-                    <input name="LastName" placeholder="Last name" type="text" tabindex="2" required value="@Model.LastName">
-                    <input name="Address" placeholder="Address" type="text" tabindex="3" required value="@Model.Address">     
-                    <input name="Email" placeholder="Email address" type="text" tabindex="4" required value="@Model.Email">        
-                    <input name="Phone" placeholder="Mobile" type="text" tabindex="5" required value="@Model.Phone">
+                    <input name="FirstName" placeholder="First name" type="text" tabindex="5" required value="@Model.FirstName" />
+                    <input name="LastName" placeholder="Last name" type="text" tabindex="6" required value="@Model.LastName">
+                    <input name="Address" placeholder="Address" type="text" tabindex="7" required value="@Model.Address">     
+                    <input name="Email" placeholder="Email address" type="text" tabindex="8" required value="@Model.Email">        
+                    <input name="Phone" placeholder="Mobile" type="text" tabindex="9" required value="@Model.Phone">
                     <ul>
                         <li><label class="radio left"><input name="Sex" type="radio" checked="" value="Nam"><i></i>Male</label></li>
                         <li><label class="radio"><input name="Sex" type="radio" value="Nữ"><i></i>Female</label></li>
@@ -57,19 +57,21 @@
                     </ul>
                 </div>
                 <div class="col-md-6 account-left">
-                    <input name="Account" placeholder="Account" type="text" tabindex="6" required>    
-                    <input id="inPassWord" name="Password" placeholder="Password" type="password" tabindex="7" required>         
-                    <input id="rePassWord" name="ResetPassword" placeholder="Retype password" type="password" tabindex="8" required>             
+                    <input name="Account" placeholder="Account" type="text" tabindex="10" required>    
+                    <input id="inPassWord" name="Password" placeholder="Password" type="password" tabindex="11" required>         
+                    <input id="rePassWord" name="ResetPassword" placeholder="Retype password" type="password" tabindex="12" required>             
                     @Html.Captcha(registerCaptcha)
-                    @Html.TextBox("CaptchaCode")
-                    @Html.ValidationSummary(false, "", new { @class = "text-danger", @style = "color: red" })              
+                    <input id="CaptchaCode" name="CaptchaCode" type="text" tabindex="12" required>
+                    @*@Html.TextBox("CaptchaCode")*@
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger col-md-6 account-left", @style = "color: red" })              
+                    <br />
                     <span id="LoiPassWord" style="color: red; font-family: 'Lato-Regular'"></span>
                     @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger", @style = "color: red" })
                     @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger", @style = "color: red" })
                     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger", @style = "color: red" })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", @style= "color: red" })
+                    @*@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", @style = "color: red" })*@
                     @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger", @style = "color: red" })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", @style = "color: red" })
+                    @*@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", @style = "color: red" })*@
                     @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger", @style = "color: red" })
                  </div>
                 <div class="clearfix"></div>

@@ -49,7 +49,7 @@ namespace BanDongHo.Controllers
                 // Gửi mail cho người dùng khi đã đăng ký thành công
                 string content = System.IO.File.ReadAllText(Server.MapPath("/Views/Others/newuser.html"));
                 content = content.Replace("{{Account}}", register.FirstName + " " + register.LastName);
-                content = content.Replace("{{Link}}", ConfigHelper.GetByKey("CurrentLink") + "Home/Account");
+                content = content.Replace("{{Link}}", ConfigHelper.GetByKey("CurrentLink") + "dang-nhap");
 
                 MailHelper.SendMail(register.Email, "Đăng ký thành công", content);
 
@@ -70,6 +70,7 @@ namespace BanDongHo.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
             ViewBag.MessageLogin = "";
@@ -104,6 +105,12 @@ namespace BanDongHo.Controllers
                 }
             }
             return View(loginViewModel);
+        }
+
+        [ChildActionOnly]
+        public ActionResult UserMenu()
+        {
+            return PartialView();
         }
     }
 }

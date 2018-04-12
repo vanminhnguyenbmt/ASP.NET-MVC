@@ -20,11 +20,12 @@
 <!--account-starts-->
 <div class="account">
     <div class="container">
-        <form method="post" action="Login">
+        <form method="post" action="~/dang-nhap">
             <div class="account-top heading">
                 <h2>ACCOUNT</h2>
             </div>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.AntiForgeryToken()
             <div class="account-main">
                 <div class="col-md-6 account-left">
                     <h3>Existing User</h3>
@@ -36,10 +37,10 @@
                     @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger", @style = "color: red" })
                     @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger", @style = "color: red" })
                     <div class="account-bottom">
-                        <input name="UserName" placeholder="Account" type="text" tabindex="3" required value="@Model.UserName">
-                        <input name="PassWord" placeholder="Password" type="password" tabindex="4" required value="@Model.PassWord">
+                        <input name="UserName" placeholder="Account" type="text" tabindex="5" required value="@Model.UserName">
+                        <input name="PassWord" placeholder="Password" type="password" tabindex="6" required value="@Model.PassWord">
                         <br />
-                        <input name="RememberMe" type="checkbox" tabindex="5" value="@Model.RememberMe">
+                        <input name="RememberMe" type="checkbox" tabindex="7" value="@Model.RememberMe">
                         <span style="font-family: 'Lato-Regular'; text-align: center; color: #666; font-weight: 500; font-size: 14px; margin-left: 5px">Remember Me?</span>
                         <div class="address">
                             <a class="forgot" href="#">Forgot Your Password?</a>
@@ -50,7 +51,7 @@
                 <div class="col-md-6 account-right account-left">
                     <h3>New User? Create an Account</h3>
                     <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-                    <a href="~/Home/Register">Create an Account</a>
+                    <a href="~/dang-ky">Create an Account</a>
                 </div>
                 <div class="clearfix"></div>
             </div>
