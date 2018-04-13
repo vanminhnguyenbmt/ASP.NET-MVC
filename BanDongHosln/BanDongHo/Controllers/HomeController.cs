@@ -32,14 +32,35 @@ namespace BanDongHo.Controllers
             return View();
         }
 
-        public ActionResult Detail()
+        public ActionResult Detail(int? id = null)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            DetailViewModel detailPage = new DetailViewModel();
+            detailPage.Product = DetailPageService.LoadDetailProduct(id.Value);
+            detailPage.ListProductsRelative = DetailPageService.LoadListProductRelative(id.Value);
+            detailPage.Tag = DetailPageService.GetTag(id.Value);
+            detailPage.ListNewProducts = ProductService.GetListNewProducts().Take(8);
+            return View(detailPage);
+        }
+
+        [HttpGet]
+        public ActionResult Contact()
         {
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult Contact(ContactViewModel contact)
         {
-            return View();
+            // handle in here
+            if(ContactService.SendMail(contact))
+            {
+                RedirectToAction("Index");
+            }
+            return View(contact);
         }
 
         public ActionResult Account()
