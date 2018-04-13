@@ -13,7 +13,7 @@ namespace BanDongHo.Models.ViewModel
         [RegularExpression(@"^(\d{4,15})$", ErrorMessage = "*{0} không hợp lệ")]
         public string Phone { get; set; }
         [Display(Name = "Email")]
-        [EmailAddress(ErrorMessage ="*{0} không hợp lệ")]
+        [EmailAddress(ErrorMessage = "*{0} không hợp lệ")]
         public string Email { get; set; }
         public string Content { get; set; }
     }

@@ -94,37 +94,37 @@
                             <h5 class="item_price">@String.Format("{0:0,0}", Model.Product.DONGIA) vnđ</h5>
                             <p>@Model.Product.MOTA</p>
                             @*<div class="available">
-                                <ul>
-                                    <li>
-                                        Color
-                                        <select>
-                                            <option>Silver</option>
-                                            <option>Black</option>
-                                            <option>Dark Black</option>
-                                            <option>Red</option>
-                                        </select>
-                                    </li>
-                                    <li class="size-in">
-                                        Size<select>
-                                            <option>Large</option>
-                                            <option>Medium</option>
-                                            <option>small</option>
-                                            <option>Large</option>
-                                            <option>small</option>
-                                        </select>
-                                    </li>
-                                    <div class="clearfix"> </div>
-                                </ul>
-                            </div>*@
+                                    <ul>
+                                        <li>
+                                            Color
+                                            <select>
+                                                <option>Silver</option>
+                                                <option>Black</option>
+                                                <option>Dark Black</option>
+                                                <option>Red</option>
+                                            </select>
+                                        </li>
+                                        <li class="size-in">
+                                            Size<select>
+                                                <option>Large</option>
+                                                <option>Medium</option>
+                                                <option>small</option>
+                                                <option>Large</option>
+                                                <option>small</option>
+                                            </select>
+                                        </li>
+                                        <div class="clearfix"> </div>
+                                    </ul>
+                                </div>*@
                             <ul class="tag-men">
                                 <li>
                                     <span>TAG</span>
                                     <span class="women1">: @Model.Tag,</span>
                                 </li>
                                 @*<li>
-                                    <span>SKU</span>
-                                    <span class="women1">: CK09</span>
-                                </li>*@
+                                        <span>SKU</span>
+                                        <span class="women1">: CK09</span>
+                                    </li>*@
                             </ul>
                             <a href="#" class="add-cart item_add">ADD TO CART</a>
 
@@ -153,7 +153,7 @@
                             <a href="#"><img src="~/images/arrow.png" alt="">Reviews</a>
                             <ul>
                                 <li class="subitem1"><a>@Model.Product.MOTA</a></li>
-                             </ul>
+                            </ul>
                         </li>
                         @*<li class="item4">
                                 <a href="#"><img src="~/images/arrow.png" alt="">Helpful Links</a>
@@ -190,7 +190,7 @@
                                 </div>
                             </div>
                         }
-                        
+
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -199,7 +199,7 @@
                 <div class="w_sidebar">
                     <section class="sky-form" style="height:865px; overflow:hidden">
                         <h4>New Products</h4>
-                        <div >
+                        <div>
                             <div class="col col-4" style="padding:5px">
                                 <marquee direction="up" vspace="10px" onmouseover="this.stop()" onmouseout="this.start()">
                                     @foreach (var item in Model.ListNewProducts)

@@ -32,9 +32,9 @@ namespace BanDongHo.Controllers
             return View();
         }
 
-        public ActionResult Detail(int ? id=null)
+        public ActionResult Detail(int? id = null)
         {
-            if(id==null)
+            if (id == null)
             {
                 return RedirectToAction("Index");
             }
@@ -51,6 +51,7 @@ namespace BanDongHo.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Contact(ContactViewModel contact)
         {
@@ -61,6 +62,7 @@ namespace BanDongHo.Controllers
             }
             return View(contact);
         }
+
         public ActionResult Account()
         {
             return View();

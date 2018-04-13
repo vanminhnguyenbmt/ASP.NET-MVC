@@ -5,13 +5,12 @@ using System.Web;
 using BanDongHo.Models.ViewModel;
 using BanDongHo.Domain.DataContext;
 using System.Text.RegularExpressions;
+using BanDongHo.Common;
 
 namespace BanDongHo.Models.Service
 {
     public class RegisterService : IRegisterService
     {
-        const int ID_DEFAULT = 1;
-        const int TK_DEFAULT = 1;
         public bool isExistAccount(string account)
         {
             // get tk => tk.TENDN == account
@@ -27,9 +26,21 @@ namespace BanDongHo.Models.Service
             return false;
         }
 
+        /// <summary>
+        /// Kiểm tra độ mạnh mật khẩu
+        ///    ^                         Start anchor
+        ///    (?=.*[A-Z].*[A-Z])        Ensure string has two uppercase letters.
+        ///    (?=.*[!@#$&*])            Ensure string has one special case letter.
+        ///    (?=.*[0-9].*[0-9])        Ensure string has two digits.
+        ///    (?=.*[a-z].*[a-z].*[a-z]) Ensure string has three lowercase letters.
+        ///    .{8}                      Ensure string is of length 8.
+        ///    $                         End anchor.
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool isValidPassword(string password)
         {
-            return Regex.IsMatch(password, "^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$");
+            return Regex.IsMatch(password, @"\w");
         }
 
         //public void GetMaKH(string MAKH)
@@ -100,44 +111,45 @@ namespace BanDongHo.Models.Service
 
         public void RegisterAccount(RegisterViewModel register)
         {
-            int MAKH, MATK;
+            int makh, matk;
             BANDONGHOEntities db = new BANDONGHOEntities();
             // Lấy mã tài khoản lớn nhất
             TAIKHOAN tk = (from TK in db.TAIKHOANs
-                           orderby TK.MATK
-                            select TK).SingleOrDefault();
+                           orderby TK.MATK descending
+                            select TK).FirstOrDefault();
             if (tk == null)
             {
-                MATK = ID_DEFAULT;
+                matk = 1;
             }
             else
             {
                 int numberTK = tk.MATK;
                 numberTK++;
-                MATK = numberTK;
+                matk = numberTK;
             }
 
             // Lấy mã khách hàng lớn nhất 
             KHACHHANG kh = (from KH in db.KHACHHANGs
-                            orderby KH.MAKH
-                            select KH).SingleOrDefault();
+                            orderby KH.MAKH descending
+                            select KH).FirstOrDefault();
             if (kh == null)
             {
-                MAKH = ID_DEFAULT;
+                makh = 1;
             }
             else
             {
                 int numberKH = kh.MAKH;
                 numberKH++;
-                MAKH = numberKH;
+                makh = numberKH;
             }
 
             //Tạo mới tài khoản
-            TAIKHOAN account = new TAIKHOAN {TENDN = register.Account, MATKHAU = register.Password, MALOAITK = "LK00002" };
-            // Tạo mới khách hàng
-            KHACHHANG customer = new KHACHHANG {MATK = MATK, TENKH = register.FirstName + register.LastName, DIACHI = register.Address, EMAIL = register.Email, SDT = register.Phone, GIOITINH = register.Sex };
-            // Thêm khách hàng và tài khoản vào db
+            TAIKHOAN account = new TAIKHOAN { TENDN = register.Account, MATKHAU = Encryptor.MD5Hash(register.Password), MALOAITK = "LK00002", NGAYDANGKY = DateTime.Now, TRANGTHAI = true };
             db.TAIKHOANs.Add(account);
+            db.SaveChanges();
+
+            // Tạo mới khách hàng
+            KHACHHANG customer = new KHACHHANG { MATK = matk, TENKH = register.FirstName + register.LastName, DIACHI = register.Address, EMAIL = register.Email, SDT = register.Phone, GIOITINH = register.Sex };
             db.KHACHHANGs.Add(customer);
             db.SaveChanges();
         }

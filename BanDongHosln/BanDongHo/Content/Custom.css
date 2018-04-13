@@ -1,0 +1,20 @@
+﻿div.userMenu {
+    color: white;
+    padding-top: 10px;
+}
+div.userMenu span:first-child {
+    border-right: solid 2px white;
+    padding: 0px 5px 0px 5px;
+    margin-right: 5px;
+}
+
+div.userMenu div {
+    float:right;
+}
+
+div.userMenu span a {
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Lato-Regular';  
+}

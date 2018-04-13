@@ -18,7 +18,7 @@ namespace BanDongHo.Models.Service
         public static IEnumerable<SANPHAM> LoadListProductRelative(int Id)
         {
             SANPHAM product = LoadDetailProduct(Id);
-            if(product == null)
+            if (product == null)
             {
                 return ProductService.GetListNewProducts().Take(3);
             }
@@ -28,17 +28,17 @@ namespace BanDongHo.Models.Service
             res = (from sp in db.SANPHAMs
                    where sp.MATH == product.MATH
                    select sp);
-            if(res!=null && res.ToList().Count<3)
+            if (res != null && res.ToList().Count < 3)
             {
                 // lấy những sản phẩm cùng thương hiệu 
                 int amount = res.ToList().Count;
                 List<SANPHAM> lsp = new List<SANPHAM>();
-                foreach(var item in res)
+                foreach (var item in res)
                 {
                     lsp.Add(item);
                 }
                 // lấy những sản phẩm mới
-                IEnumerable<SANPHAM> NewProducts = ProductService.GetListNewProducts().Take(3-amount);
+                IEnumerable<SANPHAM> NewProducts = ProductService.GetListNewProducts().Take(3 - amount);
                 foreach (var item in NewProducts)
                 {
                     lsp.Add(item);

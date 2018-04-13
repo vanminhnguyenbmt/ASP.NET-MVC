@@ -10,7 +10,7 @@ namespace BanDongHo.Models.Service
 {
     public class ContactService
     {
-       public static bool SendMail(ViewModel.ContactViewModel model)
+        public static bool SendMail(ViewModel.ContactViewModel model)
         {
             SmtpClient smtp = new SmtpClient();
             try
@@ -23,12 +23,12 @@ namespace BanDongHo.Models.Service
                 smtp.EnableSsl = true;
                 //UserName và Password của mail
                 smtp.Credentials = new NetworkCredential("tuvanthuan1996@gmail.com", "Thuan302");
-                String message = "Mail send from "+ model.Name+"\n"+
-                  "Phone: "+model.Phone+"\n" + model.Content;
+                String message = "Mail send from " + model.Name + "\n" +
+                  "Phone: " + model.Phone + "\n" + model.Content;
 
-                
+
                 //Tham số lần lượt là địa chỉ người gửi, người nhận, tiêu đề và nội dung thư
-                smtp.Send(model.Email, "tuvanthuan1996@gmail.com", "Contact from "+model.Name, message);
+                smtp.Send(model.Email, "tuvanthuan1996@gmail.com", "Contact from " + model.Name, message);
                 return true;
             }
             catch (Exception ex)
