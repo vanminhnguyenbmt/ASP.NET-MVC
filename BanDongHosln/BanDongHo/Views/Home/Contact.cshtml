@@ -1,8 +1,14 @@
-﻿
+﻿@model BanDongHo.Models.ViewModel.ContactViewModel
 @{
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <style>
+        .validation{
+            color:red;
+        }
+    </style>
 }
+
 
 <!--start-breadcrumbs-->
 <div class="breadcrumbs">
@@ -42,11 +48,17 @@
                 </div>
             </div>
             <div class="col-md-9 contact-right">
-                <form>
-                    <input type="text" placeholder="Name">
-                    <input type="text" placeholder="Phone">
-                    <input type="text" placeholder="Email">
-                    <textarea placeholder="Message" required=""></textarea>
+                <form action="Contact" method="post">
+                    @Html.ValidationMessageFor(m => m.Phone,"", new { @class = "validation" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "validation" })
+                    <br />
+                    @Html.TextBoxFor(m => m.Name, new { placeholder = "Name", required = "" })
+                    @Html.TextBoxFor(m => m.Phone, new { placeholder = "Phone", required = "" })
+                    <br /><br />                    
+                    @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", required = "" })
+                    @Html.ValidationMessageFor(m => m.Content)
+                    @Html.TextAreaFor(m=>m.Content, new { placeholder = "Message", required = "" })
                     <div class="submit-btn">
                         <input type="submit" value="SUBMIT">
                     </div>

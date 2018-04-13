@@ -46,11 +46,21 @@ namespace BanDongHo.Controllers
             return View(detailPage);
         }
 
+        [HttpGet]
         public ActionResult Contact()
         {
             return View();
         }
-
+        [HttpPost]
+        public ActionResult Contact(ContactViewModel contact)
+        {
+            // handle in here
+            if(ContactService.SendMail(contact))
+            {
+                RedirectToAction("Index");
+            }
+            return View(contact);
+        }
         public ActionResult Account()
         {
             return View();

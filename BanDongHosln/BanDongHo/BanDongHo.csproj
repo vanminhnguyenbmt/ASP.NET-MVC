@@ -160,9 +160,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Service\DetailPageService.cs" />
+    <Compile Include="Models\Service\ContactService.cs" />
     <Compile Include="Models\Service\IRegisterService.cs" />
     <Compile Include="Models\Service\ProductService.cs" />
     <Compile Include="Models\Service\RegisterService.cs" />
+    <Compile Include="Models\ViewModel\ContactViewModel.cs" />
     <Compile Include="Models\ViewModel\DetailViewModel.cs" />
     <Compile Include="Models\ViewModel\HomePageViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
