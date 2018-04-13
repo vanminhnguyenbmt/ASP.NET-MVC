@@ -107,6 +107,12 @@ namespace BanDongHo.Controllers
             return View(loginViewModel);
         }
 
+        public ActionResult Logout()
+        {
+            Session[CommonConstands.USER_SESSION] = null;
+            return Redirect("/");
+        }
+
         [ChildActionOnly]
         public ActionResult UserMenu()
         {

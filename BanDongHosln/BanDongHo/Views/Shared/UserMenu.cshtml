@@ -1,5 +1,22 @@
-﻿<div>
-    <span><a href="~/dang-nhap">Đăng nhập</a></span>
-    <span><a href="~/dang-ky">Đăng ký</a></span>
-    <div class="clearfix"> </div>
-</div>      
+@using BanDongHo.Common
+
+@{ 
+    var session = (UserLogin)Session[CommonConstands.USER_SESSION];
+}
+
+@if (session == null)
+{
+    <div>
+        <span><a href="~/dang-nhap">Đăng nhập</a></span>
+        <span><a href="~/dang-ky">Đăng ký</a></span>
+        <div class="clearfix"> </div>
+    </div>
+}
+else
+{
+    <div>
+        <span><a href="#">Xin chào: @session.UserName</a></span>
+        <span><a href="~/Account/Logout">Thoát</a></span>
+        <div class="clearfix"> </div>
+    </div>
+}
