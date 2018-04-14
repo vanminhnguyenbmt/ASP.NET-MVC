@@ -1,0 +1,106 @@
+﻿@model BanDongHo.Models.Models.Cart
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/css/cart.css" rel="stylesheet" />
+}
+
+
+<!--start-breadcrumbs-->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs-main">
+            <ol class="breadcrumb">
+                <li><a href="~/Home/Index">Home</a></li>
+                <li class="active">Checkout</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!--end-breadcrumbs-->
+<!--start-ckeckout-->
+<div class="ckeckout">
+    <div class="container">
+        <div class="ckeck-top heading">
+            <h2>CART</h2>
+        </div>
+        <div class="ckeckout-top">
+            <div class="cart-items">
+                <h3>My Shopping Bag (3)</h3>
+
+                <script type="text/javascript">
+                    $(document).ready(function () {
+
+                        // viết ajax ở đây
+
+
+                        $('.delete').click(function () {
+                            var Id = $(this).attr('data-id');
+                            
+                            // dùng ajax ở đây
+                            $.ajax({
+                                url: 'Cart/DeleteProduct/',
+                                type: 'POST',
+                                dataType: 'html',
+                                data: {
+                                    id: Id
+                                }
+                            }).done(function (ketqua) {
+                                $('#total').html(ketqua);
+                            });
+                            $('#' + Id).fadeOut('slow', function (c) {
+                                $('#' + Id).remove();
+                            });
+                           
+                        });
+
+                        $('.number').on('change mouseup keyup', function ()
+                        {
+                            var Id = $(this).attr('data-id');
+                            // dùng ajax ở đây
+                            $.ajax({
+                                url: 'Cart/UpdateProduct/',
+                                type: 'POST',
+                                dataType: 'html',
+                                data: {
+                                    id: Id,
+                                    sl:$(this).val()
+                                }
+                            }).done(function (ketqua) {
+                                $('#total').html(ketqua);
+                            });
+                        });
+                    });
+                </script>
+
+                <div class="head_bag">
+                    <ul>
+                        <li><span>Image</span></li>
+                        <li><span>Name product</span></li>
+                        <li><span>Price</span></li>
+                        <li><span>Number</span></li>
+                        <li><span>Delete</span></li>
+                    </ul>
+                </div>
+                @foreach (var item in Model.GetList())
+                {
+                    string data_id = item.Product.MASP.ToString();
+                    <div class="item" id="@data_id">
+                        <div style="width:20%;float:left;padding:10px;">
+                            <a href="#"><img src="@Url.Content("~/images/HINHLON/" + item.Product.HINHLON)" style="width:30%;height:95px;" alt=""></a>
+                        </div>
+                        <ul>
+                            <li><span>@item.Product.TENSP</span></li>
+                            <li><span>@String.Format("{0:0,0}", item.Product.DONGIA) vnđ</span></li>
+                            <li><span><input type="number" value="@item.Quantity" class="number" data-id="@data_id" min="0"/></span></li>
+                            <li><span><input type="button" value="X" class="delete" data-id="@data_id" /></span></li>
+                        </ul>
+                    </div>
+                }
+                <div><span style="font-size:2em;" id="total">Total: @String.Format("{0:0,0}", Model.TotalMoney())</span></div>
+                <button class="button-buy">Buy</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end-ckeckout-->
