@@ -104,7 +104,7 @@
           </Key>
           <Property Name="MATH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TENTH" Type="nvarchar" MaxLength="50" />
-          <Property Name="HINHTH" Type="char" MaxLength="50" />
+          <Property Name="HINHTH" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_CTDH_DH">
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
@@ -383,7 +383,7 @@
           </Key>
           <Property Name="MATH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TENTH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HINHTH" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="HINHTH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_SP_TH" FromRole="THUONGHIEU" ToRole="SANPHAM" />
         </EntityType>
         <Association Name="FK_CTDH_DH">

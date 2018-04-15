@@ -1,17 +1,34 @@
-﻿
+﻿@model BanDongHo.Models.ViewModel.ProductCategoryViewModel
+
+
 @{
-    ViewBag.Title = "Product";
+    ViewBag.Title = "Products";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <!--start-breadcrumbs-->
 <div class="breadcrumbs">
     <div class="container">
         <div class="breadcrumbs-main">
             <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">New Products</li>
+                @{
+                    string title = null;
+                    if (Model.CateKey == "dong-ho-nam")
+                    {
+                        title = "Men";
+                    }
+                    if (Model.CateKey == "dong-ho-nu")
+                    {
+                        title = "Women";
+                    }
+                    if (Model.CateKey == "tat-ca")
+                    {
+                        title = "New Products";
+                    }
+
+                    <li><a href="/">Home</a></li>
+                    <li class="active">@title</li>
+                }
             </ol>
         </div>
     </div>
@@ -21,170 +38,99 @@
 <div class="prdt">
     <div class="container">
         <div class="prdt-top">
-            <div class="col-md-9 prdt-left">
+            <div class="col-md-12 prdt-left">
                 <div class="product-one">
-                    <div class="col-md-4 product-left p-left">
+                    @foreach (var item in Model.ListProduct.Skip((Model.Index-1)* (int)(ViewData["pageSize"])).Take(4))
+                    {
+                        var source = "~/images/HINHLON/" + item.HINHLON;
+                    <div class="col-md-3 product-left p-left">
                         <div class="product-main simpleCart_shelfItem">
-                            <a href="~/Home/Detail" class="mask"><img class="img-responsive zoom-img" src="~/images/p-1.png" alt="" /></a>
+                            <a href="~/san-pham/@Model.CateKey/@item.MASP" class="mask"><img class="img-responsive zoom-img" src="@Url.Content(source)" alt="" /></a>
                             <div class="product-bottom">
-                                <h3>Smart Watches</h3>
+                                <h3>@item.TENSP</h3>
                                 <p>Explore Now</p>
-                                <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
+                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", item.DONGIA) VNĐ</span></h4>
                             </div>
                             <div class="srch srch1">
-                                <span>-50%</span>
+                                <span>-0%</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 product-left p-left">
-                        <div class="product-main simpleCart_shelfItem">
-                            <a href="~/Home/Detail" class="mask"><img class="img-responsive zoom-img" src="~/images/p-2.png" alt="" /></a>
-                            <div class="product-bottom">
-                                <h3>Smart Watches</h3>
-                                <p>Explore Now</p>
-                                <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-                            </div>
-                            <div class="srch srch1">
-                                <span>-50%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 product-left p-left">
-                        <div class="product-main simpleCart_shelfItem">
-                            <a href="~/Home/Detail" class="mask"><img class="img-responsive zoom-img" src="~/images/p-3.png" alt="" /></a>
-                            <div class="product-bottom">
-                                <h3>Smart Watches</h3>
-                                <p>Explore Now</p>
-                                <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-                            </div>
-                            <div class="srch srch1">
-                                <span>-50%</span>
-                            </div>
-                        </div>
-                    </div>
+                    }
                     <div class="clearfix"></div>
                 </div>
                 <div class="product-one">
-                    <div class="col-md-4 product-left p-left">
+                    @foreach (var item in Model.ListProduct.Skip((Model.Index - 1) * (int)(ViewData["pageSize"]) + 4).Take(4))
+                    {
+                        var source = "~/images/HINHLON/" + item.HINHLON;
+                    <div class="col-md-3 product-left p-left">
                         <div class="product-main simpleCart_shelfItem">
-                            <a href="~/Home/Detail" class="mask"><img class="img-responsive zoom-img" src="~/images/p-4.png" alt="" /></a>
+                            <a href="~/san-pham/@Model.CateKey/@item.MASP" class="mask"><img class="img-responsive zoom-img" src="@Url.Content(source)" alt="" /></a>
                             <div class="product-bottom">
-                                <h3>Smart Watches</h3>
+                                <h3>@item.TENSP</h3>
                                 <p>Explore Now</p>
-                                <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
+                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", item.DONGIA) VNĐ</span></h4>
                             </div>
                             <div class="srch srch1">
-                                <span>-50%</span>
+                                <span>-0%</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 product-left p-left">
-                        <div class="product-main simpleCart_shelfItem">
-                            <a href="~/Home/Detail" class="mask"><img class="img-responsive zoom-img" src="~/images/p-5.png" alt="" /></a>
-                            <div class="product-bottom">
-                                <h3>Smart Watches</h3>
-                                <p>Explore Now</p>
-                                <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-                            </div>
-                            <div class="srch srch1">
-                                <span>-50%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 product-left p-left">
-                        <div class="product-main simpleCart_shelfItem">
-                            <a href="~/Home/Detail" class="mask"><img class="img-responsive zoom-img" src="~/images/p-6.png" alt="" /></a>
-                            <div class="product-bottom">
-                                <h3>Smart Watches</h3>
-                                <p>Explore Now</p>
-                                <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-                            </div>
-                            <div class="srch srch1">
-                                <span>-50%</span>
-                            </div>
-                        </div>
-                    </div>
+                    }
                     <div class="clearfix"></div>
                 </div>
-            </div>
-            <div class="col-md-3 prdt-right">
-                <div class="w_sidebar">
-                    <section class="sky-form">
-                        <h4>Catogories</h4>
-                        <div class="row1 scroll-pane">
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>All Accessories</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Women Watches</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Kids Watches</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Men Watches</label>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="sky-form">
-                        <h4>Brand</h4>
-                        <div class="row1 row2 scroll-pane">
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>kurtas</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Sonata</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Titan</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Casio</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Omax</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>shree</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Fastrack</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Sports</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Fossil</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Maxima</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Yepme</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Citizen</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Diesel</label>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="sky-form">
-                        <h4>Colour</h4>
-                        <ul class="w_nav2">
-                            <li><a class="color1" href="#"></a></li>
-                            <li><a class="color2" href="#"></a></li>
-                            <li><a class="color3" href="#"></a></li>
-                            <li><a class="color4" href="#"></a></li>
-                            <li><a class="color5" href="#"></a></li>
-                            <li><a class="color6" href="#"></a></li>
-                            <li><a class="color7" href="#"></a></li>
-                            <li><a class="color8" href="#"></a></li>
-                            <li><a class="color9" href="#"></a></li>
-                            <li><a class="color10" href="#"></a></li>
-                            <li><a class="color12" href="#"></a></li>
-                            <li><a class="color13" href="#"></a></li>
-                            <li><a class="color14" href="#"></a></li>
-                            <li><a class="color15" href="#"></a></li>
-                            <li><a class="color5" href="#"></a></li>
-                            <li><a class="color6" href="#"></a></li>
-                            <li><a class="color7" href="#"></a></li>
-                            <li><a class="color8" href="#"></a></li>
-                            <li><a class="color9" href="#"></a></li>
-                            <li><a class="color10" href="#"></a></li>
+                @* Phân trang sản phẩm *@
+                @if (Model.TotalPage > 1)
+                {
+                    int PageDislayNumber = 5;
+                    //tinh start page
+                    int start = Model.Index <= (PageDislayNumber / 2 + 1) ? 1 : Model.Index > Model.TotalPage - (PageDislayNumber / 2) ? Model.TotalPage - (PageDislayNumber-1) : Model.Index - (PageDislayNumber / 2);
+                    start = start <= 0 ? 1 : start;
+                    // tinh end page
+                    var link = "/san-pham/" + Model.CateKey;
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination" style="padding: 15px 15px 15px 15px">
+                            @if (Model.Index != 1)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@link?page=@Model.Prev" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                            }
+                            @for (int i = start; i < start + PageDislayNumber; i++)
+                            {
+                                if (i > Model.TotalPage)
+                                {
+                                    break;
+                                }
+                                if (Model.Index == i)
+                                {
+                                    <li class="page-item"><a class="page-link active" href="@link?page=@i">@i</a></li>
+                                }
+                                else
+                                {
+                                    <li class="page-item"><a class="page-link" href="@link?page=@i">@i</a></li>
+                                }
+                            }
+                            @if (Model.Index != Model.TotalPage)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@link?page=@Model.Next" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            }
+
                         </ul>
-                    </section>
-                    <section class="sky-form">
-                        <h4>discount</h4>
-                        <div class="row1 row2 scroll-pane">
-                            <div class="col col-4">
-                                <label class="radio"><input type="radio" name="radio" checked=""><i></i>60 % and above</label>
-                                <label class="radio"><input type="radio" name="radio"><i></i>50 % and above</label>
-                                <label class="radio"><input type="radio" name="radio"><i></i>40 % and above</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="radio"><input type="radio" name="radio"><i></i>30 % and above</label>
-                                <label class="radio"><input type="radio" name="radio"><i></i>20 % and above</label>
-                                <label class="radio"><input type="radio" name="radio"><i></i>10 % and above</label>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                    </nav>
+                }
+                else
+                {
+                    <span>Không có sản phẩm nào</span>
+                }
             </div>
             <div class="clearfix"></div>
         </div>

@@ -14,6 +14,19 @@ namespace BanDongHo
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("{*botdetect}",
              new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
+            
+            routes.MapRoute(
+                name: "Product Category",
+                url: "san-pham/{cateKey}",
+                defaults: new { controller = "Product", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "BanDongHo.Controllers" }
+            );
+            routes.MapRoute(
+                name: "Product Category Detail",
+                url: "san-pham/{cateKey}/{id}",
+                defaults: new { controller = "Home", action = "Detail", id = UrlParameter.Optional },
+                namespaces: new[] { "BanDongHo.Controllers" }
+            );
 
             routes.MapRoute(
                 name: "Login",

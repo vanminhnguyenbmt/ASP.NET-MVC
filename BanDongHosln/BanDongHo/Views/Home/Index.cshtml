@@ -88,7 +88,8 @@
                             <div class="product-bottom">
                                 <h3>@item.TENSP</h3>
                                 <p>Explore Now</p>
-                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@item.DONGIA  vnđ</span></h4>
+                                @*Dịch dấu chấm động đơn giá sử dụng string.Format("{0:0,0}", tham số)*@
+                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", item.DONGIA) VNĐ</span></h4>
                             </div>
                             <div class="srch">
                                 <span>-0%</span>
@@ -109,7 +110,8 @@
                             <div class="product-bottom">
                                 <h3>@item.TENSP</h3>
                                 <p>Explore Now</p>
-                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@item.DONGIA  vnđ</span></h4>
+                                @*Dịch dấu chấm động đơn giá sử dụng string.Format("{0:0,0}", tham số)*@
+                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", item.DONGIA) VNĐ</span></h4>
                             </div>
                             <div class="srch">
                                 <span>-0%</span>
