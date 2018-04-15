@@ -1,44 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="BANDONGHOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BANDONGHOEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHITIETDONHANGs" EntityType="BANDONGHOModel.CHITIETDONHANG" />
+    <EntitySet Name="CHITIETKMs" EntityType="BANDONGHOModel.CHITIETKM" />
+    <EntitySet Name="DONHANGs" EntityType="BANDONGHOModel.DONHANG" />
+    <EntitySet Name="KHACHHANGs" EntityType="BANDONGHOModel.KHACHHANG" />
+    <EntitySet Name="KHUYENMAIs" EntityType="BANDONGHOModel.KHUYENMAI" />
+    <EntitySet Name="LOAISANPHAMs" EntityType="BANDONGHOModel.LOAISANPHAM" />
+    <EntitySet Name="LOAITKs" EntityType="BANDONGHOModel.LOAITK" />
+    <EntitySet Name="SANPHAMs" EntityType="BANDONGHOModel.SANPHAM" />
+    <EntitySet Name="sysdiagrams" EntityType="BANDONGHOModel.sysdiagram" />
+    <EntitySet Name="TAIKHOANs" EntityType="BANDONGHOModel.TAIKHOAN" />
+    <EntitySet Name="THUONGHIEUx" EntityType="BANDONGHOModel.THUONGHIEU" />
+    <AssociationSet Name="FK_CTDH_DH" Association="BANDONGHOModel.FK_CTDH_DH">
+      <End Role="DONHANG" EntitySet="DONHANGs" />
+      <End Role="CHITIETDONHANG" EntitySet="CHITIETDONHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTDH_SP" Association="BANDONGHOModel.FK_CTDH_SP">
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+      <End Role="CHITIETDONHANG" EntitySet="CHITIETDONHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTKM_KM" Association="BANDONGHOModel.FK_CTKM_KM">
+      <End Role="KHUYENMAI" EntitySet="KHUYENMAIs" />
+      <End Role="CHITIETKM" EntitySet="CHITIETKMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTKM_SP" Association="BANDONGHOModel.FK_CTKM_SP">
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+      <End Role="CHITIETKM" EntitySet="CHITIETKMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DH_KH" Association="BANDONGHOModel.FK_DH_KH">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="DONHANG" EntitySet="DONHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KH_TK" Association="BANDONGHOModel.FK_KH_TK">
+      <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SP_LSP" Association="BANDONGHOModel.FK_SP_LSP">
+      <End Role="LOAISANPHAM" EntitySet="LOAISANPHAMs" />
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TK_LTK" Association="BANDONGHOModel.FK_TK_LTK">
+      <End Role="LOAITK" EntitySet="LOAITKs" />
+      <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SP_TH" Association="BANDONGHOModel.FK_SP_TH">
+      <End Role="THUONGHIEU" EntitySet="THUONGHIEUx" />
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="CHITIETDONHANG">
     <Key>
       <PropertyRef Name="MADH" />
       <PropertyRef Name="MASP" />
     </Key>
-    <Property Name="MADH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MADH" Type="Int32" Nullable="false" />
     <Property Name="MASP" Type="Int32" Nullable="false" />
     <Property Name="SOLUONG" Type="Int32" />
-    <NavigationProperty Name="DONHANG" Relationship="Self.FK_CTDH_DH" FromRole="CHITIETDONHANG" ToRole="DONHANG" />
-    <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CTDH_SP" FromRole="CHITIETDONHANG" ToRole="SANPHAM" />
+    <NavigationProperty Name="DONHANG" Relationship="BANDONGHOModel.FK_CTDH_DH" FromRole="CHITIETDONHANG" ToRole="DONHANG" />
+    <NavigationProperty Name="SANPHAM" Relationship="BANDONGHOModel.FK_CTDH_SP" FromRole="CHITIETDONHANG" ToRole="SANPHAM" />
   </EntityType>
   <EntityType Name="CHITIETKM">
     <Key>
       <PropertyRef Name="MACTKM" />
     </Key>
-    <Property Name="MACTKM" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MACTKM" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
     <Property Name="MAKM" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
     <Property Name="MASP" Type="Int32" />
     <Property Name="NGAYBATDAUKM" Type="DateTime" Precision="3" />
     <Property Name="NGAYKETTHUCKM" Type="DateTime" Precision="3" />
     <Property Name="PHANTRAMKM" Type="Int32" />
-    <NavigationProperty Name="KHUYENMAI" Relationship="Self.FK_CTKM_KM" FromRole="CHITIETKM" ToRole="KHUYENMAI" />
-    <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CTKM_SP" FromRole="CHITIETKM" ToRole="SANPHAM" />
+    <NavigationProperty Name="KHUYENMAI" Relationship="BANDONGHOModel.FK_CTKM_KM" FromRole="CHITIETKM" ToRole="KHUYENMAI" />
+    <NavigationProperty Name="SANPHAM" Relationship="BANDONGHOModel.FK_CTKM_SP" FromRole="CHITIETKM" ToRole="SANPHAM" />
   </EntityType>
   <EntityType Name="DONHANG">
     <Key>
       <PropertyRef Name="MADH" />
     </Key>
-    <Property Name="MADH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MADH" Type="Int32" Nullable="false" />
     <Property Name="MAKH" Type="Int32" />
     <Property Name="TRANGTHAI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="DIACHIGIAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="SDT" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-    <Property Name="NGAYDAT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NGAYDAT" Type="DateTime" Precision="3" />
     <Property Name="NGAYGIAO" Type="DateTime" Precision="3" />
     <Property Name="MOTA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="TONGTIEN" Type="Double" />
-    <NavigationProperty Name="CHITIETDONHANGs" Relationship="Self.FK_CTDH_DH" FromRole="DONHANG" ToRole="CHITIETDONHANG" />
-    <NavigationProperty Name="KHACHHANG" Relationship="Self.FK_DH_KH" FromRole="DONHANG" ToRole="KHACHHANG" />
+    <NavigationProperty Name="CHITIETDONHANGs" Relationship="BANDONGHOModel.FK_CTDH_DH" FromRole="DONHANG" ToRole="CHITIETDONHANG" />
+    <NavigationProperty Name="KHACHHANG" Relationship="BANDONGHOModel.FK_DH_KH" FromRole="DONHANG" ToRole="KHACHHANG" />
   </EntityType>
   <EntityType Name="KHACHHANG">
     <Key>
@@ -51,32 +100,32 @@
     <Property Name="SDT" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
     <Property Name="GIOITINH" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="DONHANGs" Relationship="Self.FK_DH_KH" FromRole="KHACHHANG" ToRole="DONHANG" />
-    <NavigationProperty Name="TAIKHOAN" Relationship="Self.FK_KH_TK" FromRole="KHACHHANG" ToRole="TAIKHOAN" />
+    <NavigationProperty Name="DONHANGs" Relationship="BANDONGHOModel.FK_DH_KH" FromRole="KHACHHANG" ToRole="DONHANG" />
+    <NavigationProperty Name="TAIKHOAN" Relationship="BANDONGHOModel.FK_KH_TK" FromRole="KHACHHANG" ToRole="TAIKHOAN" />
   </EntityType>
   <EntityType Name="KHUYENMAI">
     <Key>
       <PropertyRef Name="MAKM" />
     </Key>
-    <Property Name="MAKM" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MAKM" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
     <Property Name="TENKM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="CHITIETKMs" Relationship="Self.FK_CTKM_KM" FromRole="KHUYENMAI" ToRole="CHITIETKM" />
+    <NavigationProperty Name="CHITIETKMs" Relationship="BANDONGHOModel.FK_CTKM_KM" FromRole="KHUYENMAI" ToRole="CHITIETKM" />
   </EntityType>
   <EntityType Name="LOAISANPHAM">
     <Key>
       <PropertyRef Name="MALOAISP" />
     </Key>
-    <Property Name="MALOAISP" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MALOAISP" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
     <Property Name="TENLOAISP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_SP_LSP" FromRole="LOAISANPHAM" ToRole="SANPHAM" />
+    <NavigationProperty Name="SANPHAMs" Relationship="BANDONGHOModel.FK_SP_LSP" FromRole="LOAISANPHAM" ToRole="SANPHAM" />
   </EntityType>
   <EntityType Name="LOAITK">
     <Key>
       <PropertyRef Name="MALOAITK" />
     </Key>
-    <Property Name="MALOAITK" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MALOAITK" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
     <Property Name="TENLOAITK" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK_TK_LTK" FromRole="LOAITK" ToRole="TAIKHOAN" />
+    <NavigationProperty Name="TAIKHOANs" Relationship="BANDONGHOModel.FK_TK_LTK" FromRole="LOAITK" ToRole="TAIKHOAN" />
   </EntityType>
   <EntityType Name="SANPHAM">
     <Key>
@@ -92,10 +141,20 @@
     <Property Name="SOLUONG" Type="Int32" />
     <Property Name="MALOAISP" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
     <Property Name="DONGIA" Type="Double" />
-    <NavigationProperty Name="CHITIETDONHANGs" Relationship="Self.FK_CTDH_SP" FromRole="SANPHAM" ToRole="CHITIETDONHANG" />
-    <NavigationProperty Name="CHITIETKMs" Relationship="Self.FK_CTKM_SP" FromRole="SANPHAM" ToRole="CHITIETKM" />
-    <NavigationProperty Name="LOAISANPHAM" Relationship="Self.FK_SP_LSP" FromRole="SANPHAM" ToRole="LOAISANPHAM" />
-    <NavigationProperty Name="THUONGHIEU" Relationship="Self.FK_SP_TH" FromRole="SANPHAM" ToRole="THUONGHIEU" />
+    <NavigationProperty Name="CHITIETDONHANGs" Relationship="BANDONGHOModel.FK_CTDH_SP" FromRole="SANPHAM" ToRole="CHITIETDONHANG" />
+    <NavigationProperty Name="CHITIETKMs" Relationship="BANDONGHOModel.FK_CTKM_SP" FromRole="SANPHAM" ToRole="CHITIETKM" />
+    <NavigationProperty Name="LOAISANPHAM" Relationship="BANDONGHOModel.FK_SP_LSP" FromRole="SANPHAM" ToRole="LOAISANPHAM" />
+    <NavigationProperty Name="THUONGHIEU" Relationship="BANDONGHOModel.FK_SP_TH" FromRole="SANPHAM" ToRole="THUONGHIEU" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="TAIKHOAN">
     <Key>
@@ -104,11 +163,11 @@
     <Property Name="MATK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TENDN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="MATKHAU" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="MALOAITK" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
     <Property Name="NGAYDANGKY" Type="DateTime" Precision="3" />
     <Property Name="TRANGTHAI" Type="Boolean" />
-    <Property Name="MALOAITK" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
-    <NavigationProperty Name="KHACHHANGs" Relationship="Self.FK_KH_TK" FromRole="TAIKHOAN" ToRole="KHACHHANG" />
-    <NavigationProperty Name="LOAITK" Relationship="Self.FK_TK_LTK" FromRole="TAIKHOAN" ToRole="LOAITK" />
+    <NavigationProperty Name="KHACHHANGs" Relationship="BANDONGHOModel.FK_KH_TK" FromRole="TAIKHOAN" ToRole="KHACHHANG" />
+    <NavigationProperty Name="LOAITK" Relationship="BANDONGHOModel.FK_TK_LTK" FromRole="TAIKHOAN" ToRole="LOAITK" />
   </EntityType>
   <EntityType Name="THUONGHIEU">
     <Key>
@@ -117,11 +176,11 @@
     <Property Name="MATH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TENTH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="HINHTH" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
-    <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_SP_TH" FromRole="THUONGHIEU" ToRole="SANPHAM" />
+    <NavigationProperty Name="SANPHAMs" Relationship="BANDONGHOModel.FK_SP_TH" FromRole="THUONGHIEU" ToRole="SANPHAM" />
   </EntityType>
   <Association Name="FK_CTDH_DH">
-    <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
-    <End Role="CHITIETDONHANG" Type="Self.CHITIETDONHANG" Multiplicity="*" />
+    <End Type="BANDONGHOModel.DONHANG" Role="DONHANG" Multiplicity="1" />
+    <End Type="BANDONGHOModel.CHITIETDONHANG" Role="CHITIETDONHANG" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DONHANG">
         <PropertyRef Name="MADH" />
@@ -132,8 +191,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CTDH_SP">
-    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
-    <End Role="CHITIETDONHANG" Type="Self.CHITIETDONHANG" Multiplicity="*" />
+    <End Type="BANDONGHOModel.SANPHAM" Role="SANPHAM" Multiplicity="1" />
+    <End Type="BANDONGHOModel.CHITIETDONHANG" Role="CHITIETDONHANG" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SANPHAM">
         <PropertyRef Name="MASP" />
@@ -144,8 +203,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CTKM_KM">
-    <End Role="KHUYENMAI" Type="Self.KHUYENMAI" Multiplicity="0..1" />
-    <End Role="CHITIETKM" Type="Self.CHITIETKM" Multiplicity="*" />
+    <End Type="BANDONGHOModel.KHUYENMAI" Role="KHUYENMAI" Multiplicity="0..1" />
+    <End Type="BANDONGHOModel.CHITIETKM" Role="CHITIETKM" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="KHUYENMAI">
         <PropertyRef Name="MAKM" />
@@ -156,8 +215,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CTKM_SP">
-    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
-    <End Role="CHITIETKM" Type="Self.CHITIETKM" Multiplicity="*" />
+    <End Type="BANDONGHOModel.SANPHAM" Role="SANPHAM" Multiplicity="0..1" />
+    <End Type="BANDONGHOModel.CHITIETKM" Role="CHITIETKM" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SANPHAM">
         <PropertyRef Name="MASP" />
@@ -168,8 +227,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DH_KH">
-    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
-    <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+    <End Type="BANDONGHOModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+    <End Type="BANDONGHOModel.DONHANG" Role="DONHANG" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="KHACHHANG">
         <PropertyRef Name="MAKH" />
@@ -180,8 +239,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_KH_TK">
-    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
-    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
+    <End Type="BANDONGHOModel.TAIKHOAN" Role="TAIKHOAN" Multiplicity="0..1" />
+    <End Type="BANDONGHOModel.KHACHHANG" Role="KHACHHANG" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TAIKHOAN">
         <PropertyRef Name="MATK" />
@@ -192,8 +251,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SP_LSP">
-    <End Role="LOAISANPHAM" Type="Self.LOAISANPHAM" Multiplicity="0..1" />
-    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+    <End Type="BANDONGHOModel.LOAISANPHAM" Role="LOAISANPHAM" Multiplicity="0..1" />
+    <End Type="BANDONGHOModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LOAISANPHAM">
         <PropertyRef Name="MALOAISP" />
@@ -204,8 +263,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_TK_LTK">
-    <End Role="LOAITK" Type="Self.LOAITK" Multiplicity="0..1" />
-    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
+    <End Type="BANDONGHOModel.LOAITK" Role="LOAITK" Multiplicity="0..1" />
+    <End Type="BANDONGHOModel.TAIKHOAN" Role="TAIKHOAN" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LOAITK">
         <PropertyRef Name="MALOAITK" />
@@ -216,8 +275,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SP_TH">
-    <End Role="THUONGHIEU" Type="Self.THUONGHIEU" Multiplicity="0..1" />
-    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+    <End Type="BANDONGHOModel.THUONGHIEU" Role="THUONGHIEU" Multiplicity="0..1" />
+    <End Type="BANDONGHOModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="THUONGHIEU">
         <PropertyRef Name="MATH" />
@@ -227,52 +286,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="BANDONGHOEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="CHITIETDONHANGs" EntityType="Self.CHITIETDONHANG" />
-    <EntitySet Name="CHITIETKMs" EntityType="Self.CHITIETKM" />
-    <EntitySet Name="DONHANGs" EntityType="Self.DONHANG" />
-    <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
-    <EntitySet Name="KHUYENMAIs" EntityType="Self.KHUYENMAI" />
-    <EntitySet Name="LOAISANPHAMs" EntityType="Self.LOAISANPHAM" />
-    <EntitySet Name="LOAITKs" EntityType="Self.LOAITK" />
-    <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
-    <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
-    <EntitySet Name="THUONGHIEUx" EntityType="Self.THUONGHIEU" />
-    <AssociationSet Name="FK_CTDH_DH" Association="Self.FK_CTDH_DH">
-      <End Role="DONHANG" EntitySet="DONHANGs" />
-      <End Role="CHITIETDONHANG" EntitySet="CHITIETDONHANGs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CTDH_SP" Association="Self.FK_CTDH_SP">
-      <End Role="SANPHAM" EntitySet="SANPHAMs" />
-      <End Role="CHITIETDONHANG" EntitySet="CHITIETDONHANGs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CTKM_KM" Association="Self.FK_CTKM_KM">
-      <End Role="KHUYENMAI" EntitySet="KHUYENMAIs" />
-      <End Role="CHITIETKM" EntitySet="CHITIETKMs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CTKM_SP" Association="Self.FK_CTKM_SP">
-      <End Role="SANPHAM" EntitySet="SANPHAMs" />
-      <End Role="CHITIETKM" EntitySet="CHITIETKMs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DH_KH" Association="Self.FK_DH_KH">
-      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
-      <End Role="DONHANG" EntitySet="DONHANGs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_KH_TK" Association="Self.FK_KH_TK">
-      <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
-      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SP_LSP" Association="Self.FK_SP_LSP">
-      <End Role="LOAISANPHAM" EntitySet="LOAISANPHAMs" />
-      <End Role="SANPHAM" EntitySet="SANPHAMs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TK_LTK" Association="Self.FK_TK_LTK">
-      <End Role="LOAITK" EntitySet="LOAITKs" />
-      <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SP_TH" Association="Self.FK_SP_TH">
-      <End Role="THUONGHIEU" EntitySet="THUONGHIEUx" />
-      <End Role="SANPHAM" EntitySet="SANPHAMs" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

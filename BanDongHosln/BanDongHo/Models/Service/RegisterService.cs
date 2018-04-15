@@ -144,7 +144,7 @@ namespace BanDongHo.Models.Service
             }
 
             //Tạo mới tài khoản
-            TAIKHOAN account = new TAIKHOAN { TENDN = register.Account, MATKHAU = Encryptor.MD5Hash(register.Password), MALOAITK = "LK00002", NGAYDANGKY = DateTime.Now, TRANGTHAI = true };
+            TAIKHOAN account = new TAIKHOAN { TENDN = register.Account, MATKHAU = Encryptor.MD5Hash(register.Password), MALOAITK = "LK00002", NGAYDANGKY = DateTime.Now,  TRANGTHAI = true };
             db.TAIKHOANs.Add(account);
             db.SaveChanges();
 

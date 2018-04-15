@@ -38,7 +38,7 @@ namespace BanDongHo.Models.Service
                 ListProductsSelling = (from sp in db.SANPHAMs
                                        let totalQuantity = (from ct in db.CHITIETDONHANGs
                                                             join dh in db.DONHANGs on ct.MADH equals dh.MADH
-                                                            where sp.MASP == ct.MASP && dh.NGAYDAT.Month == Month && dh.NGAYDAT.Year == Year
+                                                            where sp.MASP == ct.MASP && dh.NGAYDAT.Value.Month == Month && dh.NGAYDAT.Value.Year == Year
                                                             select ct.SOLUONG).Sum()
                                        where totalQuantity > 0
                                        orderby totalQuantity descending

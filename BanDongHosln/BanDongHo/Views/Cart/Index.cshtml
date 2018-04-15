@@ -72,7 +72,11 @@
                         });
                     });
                 </script>
-
+                <br />
+                @foreach(var mes in Model.Message)
+                {
+                    <li>@mes.ToString()</li>
+                }
                 <div class="head_bag">
                     <ul>
                         <li><span>Image</span></li>
@@ -98,7 +102,7 @@
                     </div>
                 }
                 <div><span style="font-size:2em;" id="total">Total: @String.Format("{0:0,0}", Model.TotalMoney())</span></div>
-                <button class="button-buy">Buy</button>
+                <a class="button-buy" href="Cart/Checkout/">Buy</a>
             </div>
         </div>
     </div>
