@@ -1,0 +1,50 @@
+﻿.cus-title{
+    padding:10px;
+    text-align:center;
+}
+.cus-title h1{
+    font-size:2.2em;
+    text-transform:uppercase;
+    font-family: 'BreeSerif-Regular';
+}
+.cus-body
+{
+    padding: 50px 80px;
+    text-align:center;
+}
+.cus-body form .text-box
+{
+    width:70%;
+    font-size:1.7em;
+    margin-bottom:10px;
+    padding:0 5px;
+}
+.sub-title{
+    font-size:1.8em;
+    text-transform:uppercase;
+    font-family: 'BreeSerif-Regular';
+}
+table{
+    width:100%;
+    margin:20px 0;
+}
+table tr td{
+    font-size:1.5em; 
+    padding:5px 0;
+}
+.head-table{
+    text-align:center;
+    background:#d0d0d0;
+}
+.foot-table{
+    background:#d0d0d0;
+}
+.button{
+    font-size:1.5em;
+    text-transform:uppercase;
+    width:80px;
+}
+.validation{
+    padding-left:80px;
+    color:#f00;
+}

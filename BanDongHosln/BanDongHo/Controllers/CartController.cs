@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BanDongHo.Models.Models;
 using BanDongHo.Domain.DataContext;
 using System.Globalization;
+using BanDongHo.Models.Service;
 
 namespace BanDongHo.Controllers
 {
@@ -14,6 +15,7 @@ namespace BanDongHo.Controllers
         // GET: Cart
         public ActionResult Index()
         {
+            
             Cart cart = Session["Cart"] as Cart;
             if (cart == null)
             {
@@ -55,6 +57,26 @@ namespace BanDongHo.Controllers
             Session["Cart"] = cart;
             string res="Total: "+ cart.TotalMoney().ToString("0,0");
             return res;
+        }
+        public ActionResult Checkout()
+        {
+            Cart cart = (Cart)Session["Cart"];
+            bool isFalse = false;
+            foreach(var item in cart.GetList())
+            {
+                if(!CartService.CheckNumberProduct(item.Product.MASP,item.Quantity))
+                {
+                    isFalse = true;
+                }
+            }
+            if(!isFalse)
+            {
+                return RedirectToAction("Index", "CusInfo");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
     }
 }

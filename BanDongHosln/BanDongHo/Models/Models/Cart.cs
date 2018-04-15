@@ -3,13 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using BanDongHo.Domain.DataContext;
+using BanDongHo.Models.Service;
 
 namespace BanDongHo.Models.Models
 {
     public class Cart
     {
         private List<CartItem> Products = new List<CartItem>();
-
+        public List<string> Message {
+            get
+            {
+                List<string> res = new List<string>(); 
+                foreach(var item in Products)
+                {
+                    if(!CartService.CheckNumberProduct(item.Product.MASP,item.Quantity))
+                    {
+                        string mes = "Sản phẩm " + item.Product.TENSP + " không đủ số lượng";
+                        res.Add(mes);
+                    }
+                }
+                return res;
+            }
+                }
         // phương thức thêm sản phẩm
         public void AddProduct(int id, int soluong)
         {

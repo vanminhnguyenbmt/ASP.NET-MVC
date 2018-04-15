@@ -24,7 +24,7 @@ namespace BanDongHo.Domain.DataContext
         public string TRANGTHAI { get; set; }
         public string DIACHIGIAO { get; set; }
         public string SDT { get; set; }
-        public System.DateTime NGAYDAT { get; set; }
+        public Nullable<System.DateTime> NGAYDAT { get; set; }
         public Nullable<System.DateTime> NGAYGIAO { get; set; }
         public string MOTA { get; set; }
         public Nullable<double> TONGTIEN { get; set; }

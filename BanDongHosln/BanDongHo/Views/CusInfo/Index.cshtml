@@ -1,0 +1,45 @@
+﻿@model BanDongHo.Models.ViewModel.CusInfoViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/css/cusinfo.css" rel="stylesheet" />
+}
+
+<div class="cus-title">
+    <h1>Customer information</h1>
+</div>
+<div class="cus-body">
+    @Html.ValidationMessageFor(m => m.Sdt, "", new { @class = "validation" })
+    <form method="post">
+        @Html.TextBoxFor(m => m.DiaChiGiao, new { placeholder = "Địa chỉ giao hàng", @class = "text-box", required = "" })
+        <br />
+        @Html.TextBoxFor(m => m.Sdt, new { placeholder = "Số điện thoại", @class = "text-box", required = "" })
+        <br />
+        @Html.TextAreaFor(m => m.MoTa, new { rows = "5", placeholder = "Mô tả", @class = "text-box" })
+        <div class="sub-title">Bill Detail</div>
+        <table>
+            <tr class="head-table">
+                <td>STT</td>
+                <td>Tên Sản Phẩm</td>
+                <td>Đơn giá</td>
+                <td>Số lượng</td>
+            </tr>
+            @for(int i = 0;i< Model.cart.GetList().Count;i++)
+            {
+                <tr>
+                    <td>@(i+1)</td>
+                    <td>@Model.cart.GetList()[i].Product.TENSP</td>
+                    <td>@Model.cart.GetList()[i].Product.DONGIA.Value.ToString("0,0") VNĐ</td>
+                    <td>@Model.cart.GetList()[i].Quantity</td>
+                </tr>
+            }
+            <tr class="foot-table">
+                <td colspan="4" style="text-align:left;padding-left:10px;">Tổng tiền: @Model.cart.TotalMoney().ToString("0,0") VNĐ</td>
+            </tr>
+        </table>
+        
+        <input type="submit" value="Go" class="button"/>
+    </form>
+    
+</div>
+
