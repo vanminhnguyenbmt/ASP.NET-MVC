@@ -179,6 +179,7 @@
     <Compile Include="Models\Service\DetailPageService.cs" />
     <Compile Include="Models\Service\IRegisterService.cs" />
     <Compile Include="Models\Service\LoginService.cs" />
+    <Compile Include="Models\Service\ProductCategoryService.cs" />
     <Compile Include="Models\Service\ProductService.cs" />
     <Compile Include="Models\Service\RegisterService.cs" />
     <Compile Include="Models\ViewModel\CartViewModel.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Models\ViewModel\DetailViewModel.cs" />
     <Compile Include="Models\ViewModel\HomePageViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Models\ViewModel\ProductCategoryViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
