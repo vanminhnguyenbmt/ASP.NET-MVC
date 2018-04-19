@@ -228,3 +228,5 @@ D:\Bin.UIT\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo\obj\Debug\BanDongHo.dll
 D:\Bin.UIT\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo\obj\Debug\BanDongHo.pdb
 D:\Bin.UIT\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo\bin\BotDetect.dll
 D:\Bin.UIT\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo\bin\BotDetect.Web.Mvc.dll
+E:\User\HocTap\HK2-2017-2018\Net\Source\git\ASP.NET-MVC\BanDongHosln\BanDongHo\bin\BotDetect.dll
+E:\User\HocTap\HK2-2017-2018\Net\Source\git\ASP.NET-MVC\BanDongHosln\BanDongHo\bin\BotDetect.Web.Mvc.dll

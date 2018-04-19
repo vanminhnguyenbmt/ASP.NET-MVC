@@ -1,0 +1,54 @@
+﻿.head_bag {
+    margin-top: 20px;
+}
+
+    .head_bag > ul {
+        border: 1px solid black;
+        padding: 10px 10px 30px 10px;
+    }
+
+        .head_bag > ul li {
+            float: left;
+            width: 20%;
+        }
+
+            .head_bag > ul li span {
+                font-size: 1.2em;
+                font-family: 'BreeSerif-Regular';
+            }
+
+.item {
+    background: #f8f8f8;
+    border-bottom:1px solid #000;
+    margin: 10px 0;
+}
+.item:hover {
+    background: #f2f2f2;
+}
+
+    .item > ul {
+        padding: 35px 10px 70px 10px;
+    }
+
+        .item > ul li {
+            float: left;
+            width: 20%;
+        }
+
+            .item > ul li span {
+                font-size: 1.5em;
+                font-family: 'BreeSerif-Regular';
+            }
+.number{
+    width:100px;
+    text-align:center;
+}
+.delete{
+    background:#f00;
+    color:#fff;
+}
+.button-buy{
+    font-size:2em;
+    width:100px;
+    float:right;
+}

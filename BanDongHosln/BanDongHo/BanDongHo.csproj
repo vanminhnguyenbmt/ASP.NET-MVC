@@ -167,19 +167,27 @@
     <Compile Include="Common\MailHelper.cs" />
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CusInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Models\Cart.cs" />
+    <Compile Include="Models\Models\CartItem.cs" />
+    <Compile Include="Models\Service\CartService.cs" />
     <Compile Include="Models\Service\ContactService.cs" />
+    <Compile Include="Models\Service\CusInfoService.cs" />
     <Compile Include="Models\Service\DetailPageService.cs" />
     <Compile Include="Models\Service\IRegisterService.cs" />
     <Compile Include="Models\Service\LoginService.cs" />
     <Compile Include="Models\Service\ProductCategoryService.cs" />
     <Compile Include="Models\Service\ProductService.cs" />
     <Compile Include="Models\Service\RegisterService.cs" />
+    <Compile Include="Models\ViewModel\CartViewModel.cs" />
     <Compile Include="Models\ViewModel\ContactViewModel.cs" />
+    <Compile Include="Models\ViewModel\CusInfoViewModel.cs" />
     <Compile Include="Models\ViewModel\DetailViewModel.cs" />
     <Compile Include="Models\ViewModel\HomePageViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
@@ -190,6 +198,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\cart.css" />
+    <Content Include="Content\css\cusinfo.css" />
     <Content Include="Content\Custom.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -268,10 +278,12 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\UserMenu.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\CusInfo\Index.cshtml" />
+    <Content Include="Views\CusInfo\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\css\" />
     <Folder Include="images\HINHLON\" />
     <Folder Include="images\HINHNHO\" />
     <Folder Include="images\HINHTH\" />
