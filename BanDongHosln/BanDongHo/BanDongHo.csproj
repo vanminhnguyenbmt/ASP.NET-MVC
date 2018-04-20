@@ -198,8 +198,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\cart.css" />
     <Content Include="Content\css\cusinfo.css" />
+    <Content Include="Content\css\flexslider.css" />
+    <Content Include="Content\css\memenu.css" />
+    <Content Include="Content\css\style.css" />
     <Content Include="Content\Custom.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -246,6 +250,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="AppSettings.config" />
+    <Content Include="fonts\BreeSerif-Regular.ttf" />
+    <Content Include="fonts\Lato-Regular.ttf" />
+    <Content Include="fonts\Lora-Regular.ttf" />
+    <Content Include="fonts\Muli-Regular.ttf" />
+    <Content Include="fonts\Philosopher-Regular.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -254,6 +263,13 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\imagezoom.js" />
+    <Content Include="Scripts\js\jquery-1.11.0.min.js" />
+    <Content Include="Scripts\js\jquery.easydropdown.js" />
+    <Content Include="Scripts\js\jquery.flexslider.js" />
+    <Content Include="Scripts\js\memenu.js" />
+    <Content Include="Scripts\js\responsiveslides.min.js" />
+    <Content Include="Scripts\js\simpleCart.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

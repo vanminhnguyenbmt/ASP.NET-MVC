@@ -1,4 +1,4 @@
-/*--A Design by W3layouts
+/*--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -17,19 +17,19 @@ body a{
 }
 @font-face {
     font-family: 'Lora-Regular';
-    src:url(../fonts/Lora-Regular.ttf) format('truetype');
+    src:url(../../fonts/Lora-Regular.ttf) format('truetype');
 }
 @font-face {
     font-family: 'Muli-Regular';
-    src:url(../fonts/Muli-Regular.ttf) format('truetype');
+    src:url(../../fonts/Muli-Regular.ttf) format('truetype');
 }
 @font-face {
     font-family: 'Lato-Regular';
-    src:url(../fonts/Lato-Regular.ttf) format('truetype');
+    src:url(../../fonts/Lato-Regular.ttf) format('truetype');
 }
 @font-face {
     font-family: 'BreeSerif-Regular';
-    src:url(../fonts/BreeSerif-Regular.ttf) format('truetype');
+    src:url(../../fonts/BreeSerif-Regular.ttf) format('truetype');
 }
 /*--starts-logo--*/
 .logo {
@@ -67,7 +67,7 @@ body a{
 	position: relative;
 }
 .search-bar input[type="submit"] {
-    background: url(../images/search.png)no-repeat 0px 0px;
+    background: url(../../images/search.png)no-repeat 0px 0px;
     outline: none;
     -webkit-appearance: none;
     border: 0;
@@ -110,7 +110,7 @@ body a{
 .item_add {
 	color: #fff;
 	border:none;
-}
+}	
 .grid_1 img{
 	margin-bottom:1em;
 }
@@ -136,7 +136,7 @@ span.simpleCart_total {
 }
 .box_1 p {
 	margin: 0px 0 0px 8px;
-}
+}	
 .total {
 	display: inline-block;
 	vertical-align: middle;
@@ -269,7 +269,7 @@ span.simpleCart_total {
 	height: 100%;
 	opacity: 0;
 }
-/* SELECTED FEEDBACK ITEM */
+/* SELECTED FEEDBACK ITEM */ 
 .dropdown .selected, .dropdown li {
     color: #000;
 }
@@ -399,7 +399,7 @@ span.simpleCart_total {
   	text-decoration: none;
   	height: 30px;
   	width: 30px;
-  	background: transparent url("../images/arrow.png") no-repeat left top;
+  	background: transparent url("../../images/arrow.png") no-repeat left top;
 	display: none;
 }
 .callbacks_nav:active {
@@ -475,7 +475,7 @@ span.simpleCart_total {
 ul.callbacks_tabs.callbacks2_tabs {
 	display: block;
 }
-/*--Slider-Part-Ends-Here--*/
+/*--Slider-Part-Ends-Here--*/	
 /*--banner-Part-Ends-Here --*/
 /*--about-starts--*/
 .about {
@@ -532,7 +532,7 @@ figure.effect-bubba figcaption::after {
 	left: 30px;
 	content: '';
 	opacity: 0;
-	-webkit-transition: opacity 0.35s,-webkit-transform 0.35s;
+	-webkit-transition: opacity 0.35s,-webkit-transform 0.35s;	
 	-moz-transition: opacity 0.35s, -moz-transform 0.35s;
 	-o-transition: opacity 0.35s, -o-transform 0.35s;
 	-ms-transition: opacity 0.35s, -ms-transform 0.35s;
@@ -542,7 +542,7 @@ figure.effect-bubba figcaption::before {
 	border-top: 1px solid #fff;
 	border-bottom: 1px solid #fff;
 	-webkit-transform: scale(0,1);
-	-moz-transform: scale(0,1);
+	-moz-transform: scale(0,1); 
 	-o-transform: scale(0,1);
 	-ms-transform: scale(0,1);
 	transform: scale(0,1);
@@ -638,7 +638,7 @@ figure.effect-bubba:hover p,figure.effect-bubba:hover h2 {
     font-family: 'BreeSerif-Regular';
 }
 .product-bottom h4 i {
-    background: url(../images/cart-2.png) no-repeat;
+    background: url(../../images/cart-2.png) no-repeat;
     width: 20px;
     height: 15px;
     display: inline-block;
@@ -646,7 +646,7 @@ figure.effect-bubba:hover p,figure.effect-bubba:hover h2 {
     vertical-align: middle;
 }
 .product-left:hover .product-bottom h4 i{
-	background: url(../images/cart-3.png) no-repeat;
+	background: url(../../images/cart-3.png) no-repeat;
 }
 .product-bottom {
     text-align: left;
@@ -736,7 +736,7 @@ a.mask {
     font-family: 'BreeSerif-Regular';
 }
 .infor-left ul li a span {
-    background: url(../images/s-icons.png) no-repeat;
+    background: url(../../images/s-icons.png) no-repeat;
     width: 34px;
     height: 34px;
     display: inline-block;
@@ -866,7 +866,6 @@ a.mask {
 	-ms-transition: 0.5s all;
 }
 .footer{
-	
 	padding:3em 0px;
 }
 .footer-right {
@@ -1103,7 +1102,7 @@ a.mask {
 	left: 2px;
 	width: 10px;
 	height: 7px;
-	background: url(../images/tick.png) no-repeat;
+	background: url(../../images/tick.png) no-repeat;
 	text-align: center;
 }
 .sky-form .radio input:checked + i:after,
@@ -1152,7 +1151,7 @@ a.mask {
 	-webkit-transition: border-color 0.3s;
 }
 .sky-form .toggle i:before {
-	background-color: #2da5da;
+	background-color: #2da5da;	
 }
 /* hover state */
 .sky-form .input:hover input,
@@ -1177,7 +1176,7 @@ a.mask {
 }
 /* checked state */
 .sky-form .radio input + i:after {
-	background-color: #73B6E1;
+	background-color: #73B6E1;	
 }
 .sky-form .checkbox input + i:after {
 	color: #73B6E1;
@@ -1185,7 +1184,7 @@ a.mask {
 .sky-form .radio input:checked + i,
 .sky-form .checkbox input:checked + i,
 .sky-form .toggle input:checked + i {
-	border-color: #73B6E1;
+	border-color: #73B6E1;	
 }
 /* error state */
 .sky-form .state-error input,
@@ -1484,7 +1483,7 @@ a.mask {
 	padding:6em 0px;
 }
 .close1,.close2,.close3{
-	background: url('../images/close.png') no-repeat 0px 0px;
+	background: url('../../images/close.png') no-repeat 0px 0px;
 	cursor: pointer;
 	width: 28px;
 	height: 28px;
@@ -1609,7 +1608,7 @@ ul.star-footer li {
 ul.star-footer li i {
     height: 16px;
     width: 16px;
-    background: url("../images/star.png") no-repeat;
+    background: url("../../images/star.png") no-repeat;
     display: inline-block;
 }
 .review {
@@ -1736,7 +1735,7 @@ ul {
     text-transform: uppercase;
     font-size: 14px;
 	text-decoration:none;
-}
+} 
 .menu_drop ul li a {
 	background: #fff;
 	width: 100%;
@@ -1817,7 +1816,7 @@ h3.ghj {
 .heading h2{
 	font-size: 2.2em;
 	margin: 0 0 0 0;
-    color: #000;
+    color: #000;  
     font-family: 'BreeSerif-Regular';
 }
 .typo-top{
@@ -1878,7 +1877,7 @@ h3.ghj {
 @media (max-width:1440px){
 .banner,.banner1,.banner2{
 	min-height:570px;
-}
+}	
 }
 @media (max-width:1366px){
 .banner, .banner1, .banner2 {
@@ -2593,7 +2592,7 @@ h3.ghj {
 }
 .single-para h5 {
     font-size: 1.7em;
-	padding: 10px 0 6px 0;
+	padding: 10px 0 6px 0;	
 }
 .dropdown {
     width: 60px;
@@ -2624,7 +2623,7 @@ a.simpleCart_empty {
     font-size: 18px;
 }
 .memenu>li.showhide span.title {
-    margin: 11px 0 0 20px !important;
+    margin: 11px 0 0 20px !important; 
     font-size: 14px !important;
 }
 .memenu>li.showhide span.icon1:after {
