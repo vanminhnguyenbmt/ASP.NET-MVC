@@ -118,9 +118,6 @@
     <Compile Include="DataContext\SANPHAM.cs">
       <DependentUpon>BanDongHo.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataContext\sysdiagram.cs">
-      <DependentUpon>BanDongHo.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataContext\TAIKHOAN.cs">
       <DependentUpon>BanDongHo.tt</DependentUpon>
     </Compile>
@@ -130,11 +127,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="DataContext\BanDongHo.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BanDongHo.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config" />
     <None Include="DataContext\BanDongHo.edmx.diagram">
       <DependentUpon>BanDongHo.edmx</DependentUpon>
     </None>
@@ -143,7 +140,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="DataContext\BanDongHo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

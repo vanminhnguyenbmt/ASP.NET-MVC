@@ -82,24 +82,3 @@ D:\Bin.UIT\visual studio 2015\backup BanDongHo\BanDongHo.Domain\bin\Debug\System
 D:\Bin.UIT\visual studio 2015\backup BanDongHo\BanDongHo.Domain\obj\Debug\BanDongHo.Domain.csprojResolveAssemblyReference.cache
 D:\Bin.UIT\visual studio 2015\backup BanDongHo\BanDongHo.Domain\obj\Debug\BanDongHo.Domain.dll
 D:\Bin.UIT\visual studio 2015\backup BanDongHo\BanDongHo.Domain\obj\Debug\BanDongHo.Domain.pdb
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\BanDongHo.Domain.dll.config
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\BanDongHo.Domain.dll
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\BanDongHo.Domain.pdb
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\EntityFramework.dll
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\Microsoft.Web.Infrastructure.dll
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.Helpers.dll
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.Mvc.dll
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.Razor.dll
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.WebPages.Deployment.dll
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.WebPages.dll
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.WebPages.Razor.dll
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\EntityFramework.xml
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.Helpers.xml
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.Mvc.xml
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.Razor.xml
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.WebPages.xml
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.WebPages.Deployment.xml
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.WebPages.Razor.xml
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\obj\Debug\BanDongHo.Domain.csprojResolveAssemblyReference.cache
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\obj\Debug\BanDongHo.Domain.dll
-C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\obj\Debug\BanDongHo.Domain.pdb

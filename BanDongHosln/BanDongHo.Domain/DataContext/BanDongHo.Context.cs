@@ -33,7 +33,6 @@ namespace BanDongHo.Domain.DataContext
         public DbSet<LOAISANPHAM> LOAISANPHAMs { get; set; }
         public DbSet<LOAITK> LOAITKs { get; set; }
         public DbSet<SANPHAM> SANPHAMs { get; set; }
-        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<TAIKHOAN> TAIKHOANs { get; set; }
         public DbSet<THUONGHIEU> THUONGHIEUx { get; set; }
     }
