@@ -34,6 +34,7 @@ namespace BanDongHo.Controllers
                     prctViewModel.ListProduct = ProductCategoryService.LoadProductWomen().ToList();
                 }
             }
+
             int totalRecord = prctViewModel.ListProduct.Count;
             prctViewModel.CateKey = cateKey;
             prctViewModel.Index = page;

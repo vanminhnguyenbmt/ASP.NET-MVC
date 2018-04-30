@@ -1,1 +1,360 @@
 ﻿
+// javascript function show detail of a customer
+function DetailPopup(header, masp) {
+    // Get the popup
+    var popup = document.getElementById('myDetailPopup');
+    // Get the <span> element that closes the popup
+    var span = document.getElementById("span-close-detail");
+
+    //var btn = ducument.getElementById("btn-cancel-detail")
+
+    // Get the <div> header
+    var a = document.getElementById('hd-popup-content-detail');
+    // Get the <span> content
+
+    a.innerText = header;
+
+    popup.style.display = "block";
+
+    $.ajax(
+    {
+        type: 'post',
+        url: '~/Admin/Product/Detail?masp=' + masp,
+        success: function (result) {
+            $('#DetailPopup').html(result);
+        },
+        error: function () {
+            alert('load fail');
+        }
+    });
+
+    span.onclick = function () {
+        popup.style.display = "none";
+    }
+}
+
+// javascript function for remove a customer out of a shop
+function DeletePopup(header, masp) {
+    // Get the popup
+    var popup = document.getElementById('myDeletePopup');
+    // Get the <span> element that closes the popup
+    var span = document.getElementById("span-close-delete");
+
+    var btn = document.getElementById('btn-cancel-delete');
+    // Get the <div> header
+    var a = document.getElementById('hd-popup-content-delete');
+    // Get the <span> content
+    var b = document.getElementById('bd-popup-content-delete');
+
+    a.innerText = header;
+    b.innerText = 'Bạn có muốn xóa sản phẩm này?';
+
+    popup.style.display = "block";
+    // When the user clicks on <span> (x), close the popup
+    span.onclick = function () {
+        popup.style.display = "none";
+    }
+    btn.onclick = function () {
+        popup.style.display = "none";
+    }
+
+    function handler() {
+        $.ajax(
+        {
+            type: 'POST',
+            url: '~/Admin/Product/Removed?masp=' + masp,
+            dataType: 'json',
+            //cache: false,
+            success: function (data) {
+                if (data.res == true) {
+                    alert("remove successful");
+                    GetListUser();
+                } else {
+                    alert("remove fail");
+                }
+
+            },
+            error: function () {
+                alert("remove fail");
+            }
+        });
+        popup.style.display = "none";
+        $('#btn-ok-delete').unbind('click', handler);
+    }
+
+    $('#btn-ok-delete').bind('click', handler);
+}
+
+// javascript fucntion for update a user in to be a customer
+function UpdatePopup(header, id, shopid) {
+    // Get the popup
+    var popup = document.getElementById('myUpdatePopup');
+    // Get the <span> element that closes the popup
+    var span = document.getElementById("span-close-update");
+
+    var btn = document.getElementById('btn-cancel-update');
+    // Get the <div> header
+    var a = document.getElementById('hd-popup-content-update');
+    // Get the <span> content
+    var b = document.getElementById('bd-popup-content-update');
+
+    a.innerText = header;
+    b.innerText = 'Do you wanna update this user into be a customer?';
+
+    popup.style.display = "block";
+    // When the user clicks on <span> (x), close the popup
+    span.onclick = function () {
+        popup.style.display = "none";
+    }
+    btn.onclick = function () {
+        popup.style.display = "none";
+    }
+
+    function handler() {
+        $.ajax(
+        {
+            type: 'POST',
+            url: '/User/Deleted?id=' + id,
+            success: function () {
+                alert("delete successful");
+                GetListUser();
+            },
+            error: function () {
+                alert("delete fail");
+            }
+        });
+        popup.style.display = "none";
+        $('#btn-ok-delete').unbind('click', handler);
+    }
+
+    $('#btn-ok-delete').bind('click', handler);
+}
+
+// javascript function for edit infor for a customer
+function EditPopup(element, header, id) {
+    // Get the popup
+    var popup = document.getElementById('myPopup');
+    // Get the <span> element that closes the popup
+    var span = document.getElementById("span-close-popup");
+
+    // Get the <div> header
+    var a = document.getElementById('hd-popup-content');
+    // Get the <span> content
+
+    a.innerText = header;
+
+    popup.style.display = "block";
+
+    $.ajax(
+    {
+        type: 'POST',
+        url: '/User/Edit?id=' + id,
+        success: function (result) {
+            $('#UserPopup').html(result);
+            $('#btn-cancel-edit').click(function () {
+                popup.style.display = "none";
+            });
+            $('#btn-ok-edit').bind('click', handler);
+        },
+        error: function () {
+            alert('load fail');
+        }
+    });
+
+
+    span.onclick = function () {
+        popup.style.display = "none";
+    }
+
+    function handler() {
+        if (!validateEdit()) {
+            return;
+        }
+
+        var user = {
+            ID: id,
+            Name: $('#NameUserEdit').val(),
+            Identity: $('#IdentityUserEdit').val(),
+            Email: $('#EmailUserEdit').val(),
+            WardID: $('#WardIDUser').val(),
+            DetailAddress: $('#DetailAddressUserEdit').val(),
+            PhoneNumber: $('#PhoneNumberUserEdit').val(),
+            BirthDay: $('#BirthDayUserEdit').val(),
+            Sex: $('#SexUserEdit').val(),
+            Description: $('#DescriptionUserEdit').val(),
+
+        };
+        $.ajax(
+        {
+            type: 'POST',
+            url: '/User/Edited',
+            data: user,
+            processData: true,
+            success: function (result) {
+                alert("edit successful");
+                var a = $(element).parent().parent().find('td');
+                $(a[0]).text(result.Name);
+                $(a[1]).text(result.Email);
+                $(a[2]).text(result.Sex);
+                $(a[3]).text(result.BirthDay);
+                $(a[4]).text(result.PhoneNumber);
+            },
+            error: function () {
+                alert("edit fail");
+            }
+        });
+        popup.style.display = "none";
+        $('#btn-ok-edit').unbind('click', handler);
+    }
+
+}
+
+// javascript function for add a customer to a shop
+function CreatePopup(header) {
+    // Get the popup
+    var popup = document.getElementById('myPopup');
+    // Get the <span> element that closes the popup
+    var span = document.getElementById("span-close-popup");
+    // Get the <div> header
+    var a = document.getElementById('hd-popup-content');
+    // Get the <span> content
+
+    a.innerText = header;
+
+    popup.style.display = "block";
+
+    $.ajax(
+    {
+        type: 'POST',
+        url: '~/Admin/Product/Create/',
+        cache: false,
+        success: function (result) {
+            $('#UserPopup').html(result);
+            $('#btn-cancel-create').click(function () {
+                popup.style.display = "none";
+            });
+            $('#btn-ok-create').bind('click', Handler);
+
+        },
+        error: function () {
+            alert('load fail');
+        }
+    });
+
+    span.onclick = function () {
+        popup.style.display = "none";
+    }
+
+    function Handler() {
+
+       
+        var sanpham = {
+            TENSP: $('#TENSP').val(),
+            SOLUONG: $('#SOLUONG').val(),
+            MOTA : $('MOTA').val(),
+            MATH: $('#MATH').val(),
+            DANHGIA: $('#DANHGIA').val(),
+            MALOAISP: $('#MALOAISP').val(),
+            DONGIA: $('#DONGIA').val(),
+            HINHLON: $('#HINHLON').val(),
+            HINHNHO: $('#HINHNHO').val()
+        };
+
+        $.ajax(
+        {
+            type: 'POST',
+            url: '~/Admin/Product/Created',
+            data: sanpham,
+            dataType: 'json',
+            cache: false,
+            processData: true,
+            success: function (data) {
+                if (data.flag == true) {
+                    alert("create successful");
+                    GetListSanPham();
+                } else {
+                    alert("create not successful!");
+                }
+            },
+            error: function () {
+                alert("create fail");
+            }
+        });
+        popup.style.display = "none";
+    }
+
+    $('#btn-ok-create').unbind('click', Handler);
+}
+
+
+function GetListUser() {
+    $.ajax(
+        {
+            type: 'POST',
+            url: '/Admin/Product/Product',
+            success: function (result) {
+                $('#table-list').html(result);
+            },
+            error: function () {
+                alert('load user fail');
+            }
+        });
+}
+
+
+
+function isEmpty(str) {
+    return !str.replace(/^\s+/g, '').length;
+}
+
+function isPhoneNumber(phone) {
+    var re = /^[0][0-9]{9,10}$/;
+    return re.test(phone);
+}
+
+function isIdentity(cmnd) {
+    var re = /^[0-9]{9}$/;
+    var rec = /^[0-9]{12}$/;
+
+    if (re.test(cmnd)) {
+        return true;
+    } else {
+        if (rec.test(cmnd)) {
+            return true;
+        }
+        return false;
+    }
+}
+
+function isDate(date) {
+    if (!/^\d{4}\-\d{1,2}\-\d{1,2}$/.test(date))
+        return false;
+
+    // Parse the date parts to integers
+    var parts = dateString.split("-");
+    var day = parseInt(parts[2], 10);
+    var month = parseInt(parts[1], 10);
+    var year = parseInt(parts[0], 10);
+
+    // Check the ranges of month and year
+    if (year < 1000 || year > 3000 || month == 0 || month > 12)
+        return false;
+
+    var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    // Adjust for leap years
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+        monthLength[1] = 29;
+
+    // Check the range of the day
+    return day > 0 && day <= monthLength[month - 1];
+}
+
+
+
+
+
+
+
+
+

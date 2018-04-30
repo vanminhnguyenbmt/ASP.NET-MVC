@@ -1,0 +1,71 @@
+﻿@model BanDongHo.Domain.DataContext.SANPHAM
+@{
+    Layout = null;
+}
+
+<div class="form-group">
+    <dl class="dl-horizontal">
+        <dt>
+            Mã sản phẩm
+        </dt>
+        <dd>
+            @Model.MASP
+        </dd>
+        <dt>
+            Tên sản phẩm
+        </dt>
+        <dd>
+            @Model.TENSP
+        </dd>
+        <dt>
+            Số lượng
+        </dt>
+        <dd>
+            @Model.SOLUONG
+        </dd>
+        <dt>
+            Thương hiệu
+        </dt>
+        <dd>
+            @Model.THUONGHIEU
+        </dd>
+
+        <dt>
+            Mô tả
+        </dt>
+        <dd>
+            @Model.MOTA
+        </dd>
+        <dt>
+            Loại sản phẩm
+        </dt>
+        <dd>
+            @Model.LOAISANPHAM.TENLOAISP
+        </dd>
+        <dt>
+            Đánh giá
+        </dt>
+        <dd>
+            @Model.DANHGIA
+        </dd>
+        <dt>
+            Đơn giá
+        </dt>
+        <dd>
+            @Model.DONGIA
+        </dd>
+        <dt>
+            Hình Lớn
+        </dt>
+        <dd>
+            @Model.HINHLON
+        </dd>
+        <dt>
+           Hình Nhỏ
+        </dt>
+        <dd>
+            @Model.HINHNHO
+        </dd>
+    </dl>
+</div>
+

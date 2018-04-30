@@ -1,4 +1,4 @@
-﻿
+﻿@model BanDongHo.Areas.Admin.Models.LoginViewModel
 @{
     Layout = null;
 }
@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>LOGIN FOR ADMINSITE of LUXURY WATCHES</title>
     <!-- Bootstrap Core CSS -->
     <link href="~/Areas/Admin/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -36,21 +36,24 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <p style="color:red">@ViewBag.ErrorMessage</p>
+                        <form role="form" action="~/Admin/Login/Login" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="E-mail" name="UserName" required value="@Model.UserName" autofocus>
                                 </div>
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger", @style = "color: red" })                            
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" name="Password" type="password" required value="@Model.Password">
                                 </div>
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", @style = "color: red" })
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                        <input name="RememberMe" type="checkbox" value=""/>Remember Me
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="~/Admin/Home/Index" class="btn btn-lg btn-success btn-block">Login</a>
+                                <input class="btn btn-lg btn-success btn-block" type="submit" value="Login"/>
                             </fieldset>
                         </form>
                     </div>

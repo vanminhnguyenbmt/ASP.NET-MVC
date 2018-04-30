@@ -1,0 +1,77 @@
+﻿
+@{
+    Layout = null;
+}
+<div class="form-group">
+    <label class="control-label">Tên sản phẩm</label>
+    <input type="text" class="form-control" id="TENSP" onblur="validateName()" placeholder="" />
+</div>
+<div class="form-group">
+    <label class="control-label">Số lượng</label>
+    <input type="number" class="form-control" id="SOLUONG" placeholder="" />
+</div>
+<div class="form-group">
+    <label class="control-label">Mô tả</label>
+    <input type="text" class="form-control" id="MOTA" placeholder="" />
+</div>
+<div class="form-group">
+    <label class="control-label">Thương hiệu</label>
+    <select id="MALOAISP" class="form-control">
+       @foreach (var item in ViewBag.ThuongHieu)
+       {
+        <option value="@item.MATH"> @item.TENTH </option>
+       }
+    </select>
+</div>
+<div class="form-group">
+    <label class="control-label">Đánh giá</label>
+    <input type="text" class="form-control" id="DANHGIA" placeholder="" />
+</div>
+<div class="form-group">
+    <label class="control-label">Loại sản phẩm</label>
+    <select id="MALOAISP" class="form-control">
+        @foreach (var item in ViewBag.LoaiSanPham)
+        {
+            <option value="@item.MALOAISP"> @item.TENLOAISP </option>
+        }
+        
+    </select>
+</div>
+
+<div class="form-group">
+    <label class="control-label">Đơn giá</label>
+    <input type="text" class="form-control" id="DONGIA" />
+</div>
+<div class="form-group">
+    <label class="control-label">Hình lớn</label>
+    <input type="text" class="form-control" id="HINHLON" />
+</div>
+<div class="form-group">
+    <label class="control-label">Hình nhỏ</label>
+    <input type="text" class="form-control" id="HINHNHO" />
+</div>
+
+<div>
+    <button class="btn btn-success" id="btn-ok-create"> Ok </button>
+    <button class="btn btn-danger" id="btn-cancel-create"> Cancel </button>
+</div>
+
+<script>
+
+  
+    function validateName() {
+       var name = $('#TENSP').val();
+
+        if (isEmpty(name)) {
+            $('#TENSP').css("border-color", "red");
+            return false;
+        } else {
+            $('#TENSP').css("border-color", "green");
+        }
+        return true;
+    }
+
+  
+</script>
+
+
