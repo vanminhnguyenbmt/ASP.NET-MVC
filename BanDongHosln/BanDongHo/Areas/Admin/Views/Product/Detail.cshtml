@@ -27,9 +27,28 @@
             Thương hiệu
         </dt>
         <dd>
-            @Model.THUONGHIEU
+            @Model.THUONGHIEU.TENTH
         </dd>
-
+        <dt>
+            Đơn giá
+        </dt>
+        <dd>
+            @String.Format("{0:0,0}", Model.DONGIA) VNĐ
+        </dd>
+        <dt>
+            Hình Lớn
+        </dt>
+        <dd>
+            <img src="~/images/HINHLON/@Model.HINHLON" width="180" height="120"/>
+        </dd>
+        <dt>
+            Hình Nhỏ
+        </dt>
+        <dd>
+            <img src="~/images/HINHNHO/@Model.HINHNHO/1.jpg" width="60" height="40"/> <span/>
+            <img src="~/images/HINHNHO/@Model.HINHNHO/2.jpg" width="60" height="40"/> <span/>
+            <img src="~/images/HINHNHO/@Model.HINHNHO/2.jpg" width="60" height="40"/>
+        </dd>
         <dt>
             Mô tả
         </dt>
@@ -48,24 +67,7 @@
         <dd>
             @Model.DANHGIA
         </dd>
-        <dt>
-            Đơn giá
-        </dt>
-        <dd>
-            @Model.DONGIA
-        </dd>
-        <dt>
-            Hình Lớn
-        </dt>
-        <dd>
-            @Model.HINHLON
-        </dd>
-        <dt>
-           Hình Nhỏ
-        </dt>
-        <dd>
-            @Model.HINHNHO
-        </dd>
+       
     </dl>
 </div>
 

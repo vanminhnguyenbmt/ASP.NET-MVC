@@ -14,11 +14,10 @@ namespace BanDongHo.Areas.Admin.Models
             return db.SANPHAMs;
         }
 
-        public void addProduct(SANPHAM sp)
+        public int getTotalRecord()
         {
             BANDONGHOEntities db = new BANDONGHOEntities();
-            db.SANPHAMs.Add(sp);
-            db.SaveChanges();
+            return (from sp in db.SANPHAMs orderby sp.MASP descending select sp).Count();
         }
 
         public SANPHAM getProductById(int masp)
@@ -27,21 +26,67 @@ namespace BanDongHo.Areas.Admin.Models
             return db.SANPHAMs.Find(masp);
         }
 
-        public void deleteProduct(int masp)
+        public bool addProduct(SANPHAM sp)
         {
             BANDONGHOEntities db = new BANDONGHOEntities();
-            db.SANPHAMs.Remove(db.SANPHAMs.Find(masp));
-            db.SaveChanges();
+            try
+            {
+                db.SANPHAMs.Add(sp);
+                db.SaveChanges();
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+            
+        }
+
+        public bool updateProduct(SANPHAM sp)
+        {
+            BANDONGHOEntities db = new BANDONGHOEntities();
+            try
+            {
+                var result = db.SANPHAMs.Find(sp.MASP);
+                if(result != null)
+                {
+                    result.TENSP = sp.TENSP;
+                    result.SOLUONG = sp.SOLUONG;
+                    result.MATH = sp.MATH;
+                    result.MOTA = sp.MOTA;
+                    result.DONGIA = sp.DONGIA;
+                    result.MALOAISP = sp.MALOAISP;
+                    result.HINHLON = sp.HINHLON;
+                    result.HINHNHO = sp.HINHNHO;
+                    result.DANHGIA = sp.DANHGIA;
+                }
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool deleteProduct(int masp)
+        {
+            BANDONGHOEntities db = new BANDONGHOEntities();
+            try {
+                db.SANPHAMs.Remove(db.SANPHAMs.Find(masp));
+                db.SaveChanges();
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+            
 
         }
 
-        public int getTotalRecord()
-        {
-            BANDONGHOEntities db = new BANDONGHOEntities();
-            return (from sp in db.SANPHAMs orderby sp.MASP descending select sp).Count();
-        }
-
-        public IEnumerable<SANPHAM> loadProduct(int pageIndex, int pageSize = 8)
+     
+        public IEnumerable<SANPHAM> loadProduct(int pageIndex, int pageSize)
         {
             IEnumerable<SANPHAM> ListProduct = null;
             BANDONGHOEntities db = new BANDONGHOEntities();

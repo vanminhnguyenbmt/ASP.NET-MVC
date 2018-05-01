@@ -1,5 +1,5 @@
 ﻿
-// javascript function show detail of a customer
+// javascript function show detail of a product
 function DetailPopup(header, masp) {
     // Get the popup
     var popup = document.getElementById('myDetailPopup');
@@ -19,7 +19,7 @@ function DetailPopup(header, masp) {
     $.ajax(
     {
         type: 'post',
-        url: '~/Admin/Product/Detail?masp=' + masp,
+        url: '/Admin/Product/Detail?masp=' + masp,
         success: function (result) {
             $('#DetailPopup').html(result);
         },
@@ -33,7 +33,7 @@ function DetailPopup(header, masp) {
     }
 }
 
-// javascript function for remove a customer out of a shop
+// javascript function for remove a product
 function DeletePopup(header, masp) {
     // Get the popup
     var popup = document.getElementById('myDeletePopup');
@@ -62,15 +62,14 @@ function DeletePopup(header, masp) {
         $.ajax(
         {
             type: 'POST',
-            url: '~/Admin/Product/Removed?masp=' + masp,
-            dataType: 'json',
-            //cache: false,
+            url: '/Admin/Product/deleteProduct?masp=' + masp,
+            dataType: 'json',      
             success: function (data) {
-                if (data.res == true) {
+                if (data.result == true) {
                     alert("remove successful");
-                    GetListUser();
+                    getListProduct(1);                 
                 } else {
-                    alert("remove fail");
+                    alert("remove not succsessful");
                 }
 
             },
@@ -81,57 +80,11 @@ function DeletePopup(header, masp) {
         popup.style.display = "none";
         $('#btn-ok-delete').unbind('click', handler);
     }
-
     $('#btn-ok-delete').bind('click', handler);
 }
 
-// javascript fucntion for update a user in to be a customer
-function UpdatePopup(header, id, shopid) {
-    // Get the popup
-    var popup = document.getElementById('myUpdatePopup');
-    // Get the <span> element that closes the popup
-    var span = document.getElementById("span-close-update");
-
-    var btn = document.getElementById('btn-cancel-update');
-    // Get the <div> header
-    var a = document.getElementById('hd-popup-content-update');
-    // Get the <span> content
-    var b = document.getElementById('bd-popup-content-update');
-
-    a.innerText = header;
-    b.innerText = 'Do you wanna update this user into be a customer?';
-
-    popup.style.display = "block";
-    // When the user clicks on <span> (x), close the popup
-    span.onclick = function () {
-        popup.style.display = "none";
-    }
-    btn.onclick = function () {
-        popup.style.display = "none";
-    }
-
-    function handler() {
-        $.ajax(
-        {
-            type: 'POST',
-            url: '/User/Deleted?id=' + id,
-            success: function () {
-                alert("delete successful");
-                GetListUser();
-            },
-            error: function () {
-                alert("delete fail");
-            }
-        });
-        popup.style.display = "none";
-        $('#btn-ok-delete').unbind('click', handler);
-    }
-
-    $('#btn-ok-delete').bind('click', handler);
-}
-
-// javascript function for edit infor for a customer
-function EditPopup(element, header, id) {
+// javascript function for edit infor for a product
+function UpdatePopup(element, header, masp) {
     // Get the popup
     var popup = document.getElementById('myPopup');
     // Get the <span> element that closes the popup
@@ -148,13 +101,13 @@ function EditPopup(element, header, id) {
     $.ajax(
     {
         type: 'POST',
-        url: '/User/Edit?id=' + id,
+        url: '/Admin/Product/Update?masp=' + masp,
         success: function (result) {
             $('#UserPopup').html(result);
-            $('#btn-cancel-edit').click(function () {
+            $('#btn-cancel-update').click(function () {
                 popup.style.display = "none";
             });
-            $('#btn-ok-edit').bind('click', handler);
+            $('#btn-ok-update').bind('click', handler);
         },
         error: function () {
             alert('load fail');
@@ -167,49 +120,47 @@ function EditPopup(element, header, id) {
     }
 
     function handler() {
-        if (!validateEdit()) {
-            return;
-        }
-
-        var user = {
-            ID: id,
-            Name: $('#NameUserEdit').val(),
-            Identity: $('#IdentityUserEdit').val(),
-            Email: $('#EmailUserEdit').val(),
-            WardID: $('#WardIDUser').val(),
-            DetailAddress: $('#DetailAddressUserEdit').val(),
-            PhoneNumber: $('#PhoneNumberUserEdit').val(),
-            BirthDay: $('#BirthDayUserEdit').val(),
-            Sex: $('#SexUserEdit').val(),
-            Description: $('#DescriptionUserEdit').val(),
-
+      
+        var sanpham = {
+            MASP: masp,
+            TENSP: $('#TENSP').val(),
+            SOLUONG: $('#SOLUONG').val(),
+            MOTA : $('#MOTA').val(),
+            MATH: $('#MATH').val(),
+            DANHGIA: $('#DANHGIA').val(),
+            MALOAISP: $('#MALOAISP').val(),
+            DONGIA: parseFloat($('#DONGIA').val()),
+            HINHLON: $('#HINHLON').val(),
+            HINHNHO: $('#HINHNHO').val()
         };
+
+        
         $.ajax(
         {
             type: 'POST',
-            url: '/User/Edited',
-            data: user,
+            url: '/Admin/Product/updateProduct',
+            data: sanpham,
             processData: true,
             success: function (result) {
-                alert("edit successful");
+                alert("update successful");
                 var a = $(element).parent().parent().find('td');
-                $(a[0]).text(result.Name);
-                $(a[1]).text(result.Email);
-                $(a[2]).text(result.Sex);
-                $(a[3]).text(result.BirthDay);
-                $(a[4]).text(result.PhoneNumber);
+                $(a[1]).text(result.TENSP);
+                $(a[2]).text(result.SOLUONG);
+                $(a[3]).text(result.TENTH);
+                $(a[4]).text(result.TENLOAISP);
+                $(a[5]).text(result.DONGIA.toFixed().replace(/(\d)(?=(\d{3})+(,|$))/g, '$1,'));
             },
             error: function () {
-                alert("edit fail");
+                alert("update fail");
             }
         });
         popup.style.display = "none";
-        $('#btn-ok-edit').unbind('click', handler);
+        $('#btn-ok-update').unbind('click', handler);
     }
 
 }
 
-// javascript function for add a customer to a shop
+// javascript function for add a new product
 function CreatePopup(header) {
     // Get the popup
     var popup = document.getElementById('myPopup');
@@ -226,7 +177,7 @@ function CreatePopup(header) {
     $.ajax(
     {
         type: 'POST',
-        url: '~/Admin/Product/Create/',
+        url: '/Admin/Product/Create',
         cache: false,
         success: function (result) {
             $('#UserPopup').html(result);
@@ -251,11 +202,11 @@ function CreatePopup(header) {
         var sanpham = {
             TENSP: $('#TENSP').val(),
             SOLUONG: $('#SOLUONG').val(),
-            MOTA : $('MOTA').val(),
+            MOTA : $('#MOTA').val(),
             MATH: $('#MATH').val(),
             DANHGIA: $('#DANHGIA').val(),
             MALOAISP: $('#MALOAISP').val(),
-            DONGIA: $('#DONGIA').val(),
+            DONGIA: parseFloat($('#DONGIA').val()),
             HINHLON: $('#HINHLON').val(),
             HINHNHO: $('#HINHNHO').val()
         };
@@ -263,15 +214,15 @@ function CreatePopup(header) {
         $.ajax(
         {
             type: 'POST',
-            url: '~/Admin/Product/Created',
+            url: '/Admin/Product/addProduct',
             data: sanpham,
             dataType: 'json',
             cache: false,
             processData: true,
             success: function (data) {
-                if (data.flag == true) {
+                if (data.result == true) {
                     alert("create successful");
-                    GetListSanPham();
+                    getListProduct(1);
                 } else {
                     alert("create not successful!");
                 }
@@ -287,16 +238,16 @@ function CreatePopup(header) {
 }
 
 
-function GetListUser() {
+function getListProduct(page) {
     $.ajax(
         {
             type: 'POST',
-            url: '/Admin/Product/Product',
+            url: '/Admin/Product/Product?page=' + page,
             success: function (result) {
-                $('#table-list').html(result);
+                $('#product-list').html(result);
             },
             error: function () {
-                alert('load user fail');
+                alert('load product fail');
             }
         });
 }

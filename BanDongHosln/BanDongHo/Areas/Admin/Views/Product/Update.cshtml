@@ -1,18 +1,19 @@
-﻿
+﻿@model BanDongHo.Domain.DataContext.SANPHAM
 @{
     Layout = null;
 }
+
 <div class="form-group">
     <label class="control-label">Tên sản phẩm</label>
-    <input type="text" class="form-control" id="TENSP" onblur="validateName()" placeholder="" />
+    <input type="text" class="form-control" id="TENSP" onblur="validateName()" placeholder="" value="@Model.TENSP" />
 </div>
 <div class="form-group">
     <label class="control-label">Số lượng</label>
-    <input type="number" class="form-control" id="SOLUONG" placeholder="" value="1"/>
+    <input type="number" class="form-control" id="SOLUONG" placeholder="" value="@Model.SOLUONG"  />
 </div>
 <div class="form-group">
     <label class="control-label">Mô tả</label>
-    <input type="text" class="form-control" id="MOTA" placeholder="" />
+    <input type="text" class="form-control" id="MOTA" placeholder="" value="@Model.MOTA" />
 </div>
 <div class="form-group">
     <label class="control-label">Thương hiệu</label>
@@ -25,16 +26,17 @@
 </div>
 <div class="form-group">
     <label class="control-label">Đơn giá(VNĐ)</label>
-    <input type="number" step="100000" class="form-control" id="DONGIA" value="1000000"/>
+    <input type="number" step="100000" class="form-control" id="DONGIA" value="@Model.DONGIA" />
 </div>
 <div class="form-group">
     <label class="control-label">Hình lớn</label>
-    <input type="text" class="form-control" id="HINHLON" />
+    <input type="text" class="form-control" id="HINHLON" value="@Model.HINHLON" />
 </div>
 <div class="form-group">
     <label class="control-label">Hình nhỏ</label>
-    <input type="text" class="form-control" id="HINHNHO" />
+    <input type="text" class="form-control" id="HINHNHO" value="@Model.HINHNHO" />
 </div>
+
 <div class="form-group">
     <label class="control-label">Loại sản phẩm</label>
     <select id="MALOAISP" class="form-control">
@@ -45,25 +47,34 @@
 
     </select>
 </div>
-
 <div class="form-group">
     <label class="control-label">Đánh giá</label>
-    <input type="text" class="form-control" id="DANHGIA" placeholder="" />
+    <input type="text" class="form-control" id="DANHGIA" placeholder="" value="@Model.DANHGIA"/>
 </div>
-
-
 
 
 <div>
-    <button class="btn btn-success" id="btn-ok-create"> Ok </button>
-    <button class="btn btn-danger" id="btn-cancel-create"> Cancel </button>
+    <button class="btn btn-success" id="btn-ok-update"> Ok </button>
+    <button class="btn btn-danger" id="btn-cancel-update"> Cancel </button>
 </div>
 
 <script>
+    var temp1 = '@Model.MALOAISP';
+    $("#MALOAISP option").each(function () {
+        if ($(this).val() == temp1) {
+            $(this).attr("selected", "selected");
+        }
+    });
 
-  
+    var temp2 = '@Model.MATH';
+    $("#MATH option").each(function () {
+        if ($(this).val() == temp2) {
+            $(this).attr("selected", "selected");
+        }
+    });
+
     function validateName() {
-       var name = $('#TENSP').val();
+        var name = $('#TENSP').val();
 
         if (isEmpty(name)) {
             $('#TENSP').css("border-color", "red");
@@ -73,8 +84,4 @@
         }
         return true;
     }
-
-  
 </script>
-
-
