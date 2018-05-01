@@ -1,0 +1,75 @@
+﻿                                             
+            <!-- /.table -->              
+            <table style="width:100%" class="table table-striped table-bordered table-hover" id="table-list">
+                <thead class="th-bg">
+                    <tr>
+                        <th>Mã SP</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Thương hiệu</th>
+                        <th>Loại Sản phẩm</th>
+                        <th>Đơn giá(VNĐ)</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody class="tr-bg">
+                    @foreach (var item in Model.Products)
+                    {
+                        <tr>
+                            <td>@item.MASP</td>
+                            <td>@item.TENSP</td>
+                            <td>@item.SOLUONG</td>
+                            <td>@item.THUONGHIEU.TENTH</td>
+                            <td>@item.LOAISANPHAM.TENLOAISP</td>
+                            <td>@String.Format("{0:0,0}", item.DONGIA)</td>
+                            <td>
+                                <button class="btn btn-primary" onclick="DetailPopup('Chi tiết sản phẩm', @item.MASP)" title="Detail"> <span class="glyphicon glyphicon-eye-open" /></button>
+                                <button class="btn btn-default" onclick="UpdatePopup(this, 'Sửa thông tin sản phẩm', @item.MASP)" title="Edit"> <span class="glyphicon glyphicon-edit" /></button>
+                                <button class="btn btn-danger" onclick="DeletePopup('Xóa sản phẩm',@item.MASP)" title="Delete"> <span class="glyphicon glyphicon-remove" /></button>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+
+            <nav aria-label="Page navigation example">                             
+                    @if (Model.Pager.EndPage > 1)
+                    {
+                        <ul class="pagination">
+                            @if (Model.Pager.CurrentPage > 1)
+                            {
+                                <li>
+                                    <a href="#" onclick="getListProduct(@(Model.Pager.StartPage))">First</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="getListProduct(@(Model.Pager.CurrentPage - 1))">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            }
+
+                            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                            {
+                                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                                    <a href="#" onclick="getListProduct(@page)">@page</a>
+                                </li>
+                            }
+
+                            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                            {
+                                <li>
+                                    <a href="#" onclick="getListProduct(@(Model.Pager.CurrentPage + 1))">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="getListProduct(@(Model.Pager.TotalPages))">Last</a>
+                                </li>
+                            }
+                        </ul>
+                    }                 
+            </nav>
+                         
+       
