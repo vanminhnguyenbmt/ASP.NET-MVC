@@ -197,18 +197,17 @@ function CreatePopup(header) {
     }
 
     function Handler() {
-
-       
+    
         var sanpham = {
             TENSP: $('#TENSP').val(),
             SOLUONG: $('#SOLUONG').val(),
-            MOTA : $('#MOTA').val(),
+            MOTA: $('#MOTA').val(),
             MATH: $('#MATH').val(),
             DANHGIA: $('#DANHGIA').val(),
             MALOAISP: $('#MALOAISP').val(),
             DONGIA: parseFloat($('#DONGIA').val()),
-            HINHLON: $('#HINHLON').val(),
-            HINHNHO: $('#HINHNHO').val()
+            HINHLON: getFileName($('#HINHLON').val()),
+            HINHNHO: getFileName($('#HINHLON').val()).split('.')[0]
         };
 
         $.ajax(
@@ -231,12 +230,17 @@ function CreatePopup(header) {
                 alert("create fail");
             }
         });
+        
         popup.style.display = "none";
+        $('#btn-ok-create').unbind('click', Handler);
     }
-
-    $('#btn-ok-create').unbind('click', Handler);
+    
+    
 }
 
+function getFileName(filePath) {
+    return filePath.substr(filePath.lastIndexOf('\\') + 1);
+}
 
 function getListProduct(page) {
     $.ajax(
@@ -251,8 +255,6 @@ function getListProduct(page) {
             }
         });
 }
-
-
 
 function isEmpty(str) {
     return !str.replace(/^\s+/g, '').length;

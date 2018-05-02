@@ -3,6 +3,7 @@ using BanDongHo.Common;
 using BanDongHo.Domain.DataContext;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -97,8 +98,38 @@ namespace BanDongHo.Areas.Admin.Controllers
         }
 
         public ActionResult addProduct(SANPHAM sanpham)
-        {         
-            return Json(new { result = productService.addProduct(sanpham) });
+        {
+            //sanpham.HINHLON = Photo();
+            if (sanpham.HINHLON != null)
+            {
+                return Json(new { result = productService.addProduct(sanpham) });
+            }
+            return Json(new { result = false });
         }
+
+
+
+        [HttpPost]
+        public string Photo()
+        {
+            var fileName = "";
+            for (int i = 0; i < Request.Files.Count; i++)
+            {
+                var file = Request.Files[i];
+
+                if (file != null)
+                {
+                    fileName = Path.GetFileName(file.FileName);
+
+                    var path = Path.Combine(Server.MapPath("~/images/HINHLON/"), fileName);
+                    file.SaveAs(path);
+                   
+                }
+                
+            }
+            return fileName;
+        }
+
+
     }
 }

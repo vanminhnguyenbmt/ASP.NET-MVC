@@ -12,7 +12,7 @@
 </div>
 <div class="form-group">
     <label class="control-label">Mô tả</label>
-    <input type="text" class="form-control" id="MOTA" placeholder="" />
+    <textarea class="form-control" id="MOTA" placeholder="" />
 </div>
 <div class="form-group">
     <label class="control-label">Thương hiệu</label>
@@ -29,7 +29,7 @@
 </div>
 <div class="form-group">
     <label class="control-label">Hình lớn</label>
-    <input type="text" class="form-control" id="HINHLON" />
+    <input type="file" class="form-control" id="HINHLON" accept="image/*"/>
 </div>
 <div class="form-group">
     <label class="control-label">Hình nhỏ</label>
@@ -48,7 +48,7 @@
 
 <div class="form-group">
     <label class="control-label">Đánh giá</label>
-    <input type="text" class="form-control" id="DANHGIA" placeholder="" />
+    <textarea class="form-control" id="DANHGIA" placeholder="" />
 </div>
 
 
@@ -61,7 +61,6 @@
 
 <script>
 
-  
     function validateName() {
        var name = $('#TENSP').val();
 
@@ -74,6 +73,34 @@
         return true;
     }
 
+    $("#HINHLON").change(function () {
+        //productImage();
+    });
+
+    function productImage() {
+        var formData = new FormData();
+        var totalFiles = document.getElementById("HINHLON").files.length;
+        for (var i = 0; i < totalFiles; i++) {
+            var file = document.getElementById("HINHLON").files[i];
+            formData.append("HINHLON", file);
+        }
+        $.ajax({
+            type: "POST",
+            url: '/Admin/Product/Photo',
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function () {
+                
+                alert("upload image success");
+
+            },
+            error: function () {
+                alert("upload image fail");
+            }
+        });
+    }
   
 </script>
 
