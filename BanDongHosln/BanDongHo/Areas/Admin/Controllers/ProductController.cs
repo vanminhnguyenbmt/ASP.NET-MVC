@@ -3,7 +3,6 @@ using BanDongHo.Common;
 using BanDongHo.Domain.DataContext;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,7 +24,7 @@ namespace BanDongHo.Areas.Admin.Controllers
             }
 
             var pager = new Pager(productService.getTotalRecord(), page);
-            var viewModel = new ProductViewModel
+            var viewModel = new ProductPagerViewModel
             {
                 Products = productService.loadProduct(pager.CurrentPage, pager.PageSize),
                 Pager = pager
@@ -37,7 +36,7 @@ namespace BanDongHo.Areas.Admin.Controllers
         public ActionResult Product(int? page)
         {
             var pager = new Pager(productService.getTotalRecord(), page);
-            var viewModel = new ProductViewModel
+            var viewModel = new ProductPagerViewModel
             {
                 Products = productService.loadProduct(pager.CurrentPage, pager.PageSize),
                 Pager = pager
@@ -88,8 +87,8 @@ namespace BanDongHo.Areas.Admin.Controllers
             {
                 return null;
             }
-            
-            
+
+
         }
 
         public ActionResult deleteProduct(int masp)
@@ -99,37 +98,7 @@ namespace BanDongHo.Areas.Admin.Controllers
 
         public ActionResult addProduct(SANPHAM sanpham)
         {
-            //sanpham.HINHLON = Photo();
-            if (sanpham.HINHLON != null)
-            {
-                return Json(new { result = productService.addProduct(sanpham) });
-            }
-            return Json(new { result = false });
+            return Json(new { result = productService.addProduct(sanpham) });
         }
-
-
-
-        [HttpPost]
-        public string Photo()
-        {
-            var fileName = "";
-            for (int i = 0; i < Request.Files.Count; i++)
-            {
-                var file = Request.Files[i];
-
-                if (file != null)
-                {
-                    fileName = Path.GetFileName(file.FileName);
-
-                    var path = Path.Combine(Server.MapPath("~/images/HINHLON/"), fileName);
-                    file.SaveAs(path);
-                   
-                }
-                
-            }
-            return fileName;
-        }
-
-
     }
 }

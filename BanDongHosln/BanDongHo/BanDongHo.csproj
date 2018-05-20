@@ -164,12 +164,27 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductBrandController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PromotionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PromotionDetailController.cs" />
     <Compile Include="Areas\Admin\Models\LoginService.cs" />
     <Compile Include="Areas\Admin\Models\LoginViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\OrderService.cs" />
     <Compile Include="Areas\Admin\Models\Pager.cs" />
+    <Compile Include="Areas\Admin\Models\ProductBrandService.cs" />
+    <Compile Include="Areas\Admin\Models\ProductBrandViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductCategoryService.cs" />
+    <Compile Include="Areas\Admin\Models\ProductCategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductService.cs" />
+    <Compile Include="Areas\Admin\Models\ProductPagerViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\PromotionDetail.cs" />
+    <Compile Include="Areas\Admin\Models\PromotionDetailViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\PromotionService.cs" />
+    <Compile Include="Areas\Admin\Models\PromotionViewModel.cs" />
     <Compile Include="Common\CommonConstands.cs" />
     <Compile Include="Common\ConfigHelper.cs" />
     <Compile Include="Common\Encryptor.cs" />
@@ -334,6 +349,11 @@
     <Content Include="Areas\Admin\Views\Product\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotion\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductBrand\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -354,7 +374,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Others\newuser.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
