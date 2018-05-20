@@ -24,7 +24,7 @@ namespace BanDongHo.Areas.Admin.Controllers
             }
 
             var pager = new Pager(productService.getTotalRecord(), page);
-            var viewModel = new ProductViewModel
+            var viewModel = new ProductPagerViewModel
             {
                 Products = productService.loadProduct(pager.CurrentPage, pager.PageSize),
                 Pager = pager
@@ -36,7 +36,7 @@ namespace BanDongHo.Areas.Admin.Controllers
         public ActionResult Product(int? page)
         {
             var pager = new Pager(productService.getTotalRecord(), page);
-            var viewModel = new ProductViewModel
+            var viewModel = new ProductPagerViewModel
             {
                 Products = productService.loadProduct(pager.CurrentPage, pager.PageSize),
                 Pager = pager
@@ -87,8 +87,8 @@ namespace BanDongHo.Areas.Admin.Controllers
             {
                 return null;
             }
-            
-            
+
+
         }
 
         public ActionResult deleteProduct(int masp)
@@ -97,7 +97,7 @@ namespace BanDongHo.Areas.Admin.Controllers
         }
 
         public ActionResult addProduct(SANPHAM sanpham)
-        {         
+        {
             return Json(new { result = productService.addProduct(sanpham) });
         }
     }
