@@ -26,7 +26,7 @@ namespace BanDongHo.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 LoginService loginService = new LoginService();
-                var result = loginService.Login(loginViewModel.UserName, loginViewModel.Password);
+                var result = loginService.Login(loginViewModel.UserName, Encryptor.MD5Hash(loginViewModel.Password));
                 if(result == 1)
                 {
                     var user = loginService.GetUserByName(loginViewModel.UserName);

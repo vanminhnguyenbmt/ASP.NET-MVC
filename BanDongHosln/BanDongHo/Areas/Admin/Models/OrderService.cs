@@ -8,9 +8,14 @@ namespace BanDongHo.Areas.Admin.Models
 {
     public class OrderService
     {
-        public IEnumerable<DONHANG> getAllOrder()
+        BANDONGHOEntities db;
+
+        public OrderService()
         {
-            BANDONGHOEntities db = new BANDONGHOEntities();
+            db = new BANDONGHOEntities();
+        }
+        public IEnumerable<DONHANG> getAllOrder()
+        {          
             return db.DONHANGs;
         }
     }

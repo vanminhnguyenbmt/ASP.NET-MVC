@@ -1,5 +1,4 @@
-﻿
-@model BanDongHo.Areas.Admin.Models.ProductPagerViewModel
+﻿@model BanDongHo.Areas.Admin.Models.ProductPagerViewModel
 @{
     Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
 }
@@ -10,7 +9,7 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">List Products Table</h1>
+            <h1 class="page-header">Danh sách sản phẩm</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -18,9 +17,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div style="padding: 0px 0px 10px 0px">
-                <button class="btn btn-success" onclick="CreatePopup('Thêm sản phẩm')" title="Thêm sản phẩm">
+                <a class="btn btn-success" title="Thêm sản phẩm" href="~/Admin/Product/Create" target="_blank">
                      <span class="fa fa-plus" /> Thêm
-                </button>
+                </a>
             </div>
         </div>
         
@@ -55,7 +54,7 @@
                             <td>@String.Format("{0:0,0}", item.DONGIA)</td>
                             <td>
                                 <button class="btn btn-primary" onclick="DetailPopup('Chi tiết sản phẩm', @item.MASP)" title="Detail"> <span class="glyphicon glyphicon-eye-open" /></button>
-                                <button class="btn btn-default" onclick="UpdatePopup(this, 'Sửa thông tin sản phẩm', @item.MASP)" title="Edit"> <span class="glyphicon glyphicon-edit" /></button>
+                                <a class="btn btn-default" title="Edit" href="~/Admin/Product/Update?masp=@item.MASP" target="_blank"> <span class="glyphicon glyphicon-edit" /></a>
                                 <button class="btn btn-danger" onclick="DeletePopup('Xóa sản phẩm',@item.MASP)" title="Delete"> <span class="glyphicon glyphicon-remove" /></button>
                             </td>
                         </tr>

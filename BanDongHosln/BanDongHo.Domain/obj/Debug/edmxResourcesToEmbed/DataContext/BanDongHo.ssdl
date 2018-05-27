@@ -11,13 +11,11 @@
   </EntityType>
   <EntityType Name="CHITIETKM">
     <Key>
-      <PropertyRef Name="MACTKM" />
+      <PropertyRef Name="MAKM" />
+      <PropertyRef Name="MASP" />
     </Key>
-    <Property Name="MACTKM" Type="char" MaxLength="7" Nullable="false" />
-    <Property Name="MAKM" Type="char" MaxLength="7" />
-    <Property Name="MASP" Type="int" />
-    <Property Name="NGAYBATDAUKM" Type="datetime" />
-    <Property Name="NGAYKETTHUCKM" Type="datetime" />
+    <Property Name="MAKM" Type="char" MaxLength="7" Nullable="false" />
+    <Property Name="MASP" Type="int" Nullable="false" />
     <Property Name="PHANTRAMKM" Type="int" />
   </EntityType>
   <EntityType Name="DONHANG">
@@ -52,6 +50,8 @@
     </Key>
     <Property Name="MAKM" Type="char" MaxLength="7" Nullable="false" />
     <Property Name="TENKM" Type="nvarchar" MaxLength="50" />
+    <Property Name="NGAYBD" Type="datetime" />
+    <Property Name="NGAYKT" Type="datetime" />
   </EntityType>
   <EntityType Name="LOAISANPHAM">
     <Key>
@@ -126,7 +126,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CTKM_KM">
-    <End Role="KHUYENMAI" Type="Self.KHUYENMAI" Multiplicity="0..1" />
+    <End Role="KHUYENMAI" Type="Self.KHUYENMAI" Multiplicity="1" />
     <End Role="CHITIETKM" Type="Self.CHITIETKM" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="KHUYENMAI">
@@ -138,7 +138,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CTKM_SP">
-    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
     <End Role="CHITIETKM" Type="Self.CHITIETKM" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SANPHAM">

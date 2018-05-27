@@ -181,7 +181,7 @@
     <Compile Include="Areas\Admin\Models\ProductService.cs" />
     <Compile Include="Areas\Admin\Models\ProductPagerViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\PromotionDetail.cs" />
+    <Compile Include="Areas\Admin\Models\PromotionDetailService.cs" />
     <Compile Include="Areas\Admin\Models\PromotionDetailViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PromotionService.cs" />
     <Compile Include="Areas\Admin\Models\PromotionViewModel.cs" />

@@ -48,47 +48,124 @@ namespace BanDongHo.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
+            var userSession = (UserLogin)Session[CommonConstands.ADMIN_SESSION];
+            if (userSession == null)
+            {
+                return Redirect("~/Admin/Login/Login");
+            }
+            ProductViewModel productviewmodel = new ProductViewModel();
             ViewBag.ThuongHieu = productService.getThuongHieu();
             ViewBag.LoaiSanPham = productService.getLoaiSanPham();
-            return View();
+            return View(productviewmodel);
         }
 
+
+        public ActionResult Detail(int masp)
+        {
+            var userSession = (UserLogin)Session[CommonConstands.ADMIN_SESSION];
+            if (userSession == null)
+            {
+                return Redirect("~/Admin/Login/Login");
+            }
+            return View(productService.getProductById(masp));
+        }
+
+        [HttpPost]
+        public ActionResult Create(ProductViewModel sanpham)
+        {
+            ViewBag.ThuongHieu = productService.getThuongHieu();
+            ViewBag.LoaiSanPham = productService.getLoaiSanPham();
+            if (ModelState.IsValid)
+            {
+                SANPHAM sp = new SANPHAM();
+                sp.TENSP = sanpham.TENSP;
+                sp.SOLUONG = (int)sanpham.SOLUONG;
+                sp.MATH = sanpham.MATH;
+                sp.MOTA = sanpham.MOTA;
+                sp.DANHGIA = sanpham.DANHGIA;
+                sp.DONGIA = (double)sanpham.DONGIA;
+                sp.MALOAISP = sanpham.MALOAISP;
+                sp.HINHLON = sanpham.HINHLON;
+                sp.HINHNHO = sanpham.HINHNHO;
+                return View(sanpham);
+
+            }
+            else
+            {
+                return View(sanpham);
+            }
+
+        }
+
+        [HttpGet]
         public ActionResult Update(int masp)
         {
             ViewBag.ThuongHieu = productService.getThuongHieu();
             ViewBag.LoaiSanPham = productService.getLoaiSanPham();
-            return View(productService.getProductById(masp));
+
+            ProductViewModel sp = new ProductViewModel();
+            var sanpham = productService.getProductById(masp);
+
+            sp.TENSP = sanpham.TENSP;
+            sp.SOLUONG = (int) sanpham.SOLUONG;
+            sp.MATH = (int) sanpham.MATH;
+            sp.MOTA = sanpham.MOTA;
+            sp.DANHGIA = sanpham.DANHGIA;
+            sp.DONGIA = (double)sanpham.DONGIA;
+            sp.MALOAISP = sanpham.MALOAISP;
+            sp.HINHLON = sanpham.HINHLON;
+            sp.HINHNHO = sanpham.HINHNHO;
+
+            return View(sp);
         }
 
-        public ActionResult Detail(int masp)
+        [HttpPost]
+        public ActionResult Update(ProductViewModel sanpham)
         {
-            return View(productService.getProductById(masp));
-        }
+            ViewBag.ThuongHieu = productService.getThuongHieu();
+            ViewBag.LoaiSanPham = productService.getLoaiSanPham();
 
-
-        public ActionResult updateProduct(SANPHAM sanpham)
-        {
-            productService.updateProduct(sanpham);
-            var sp = productService.getProductById(sanpham.MASP);
-
-            if (sp != null)
+            if (ModelState.IsValid)
             {
-                var result = new
-                {
-                    sp.TENSP,
-                    sp.SOLUONG,
-                    sp.THUONGHIEU.TENTH,
-                    sp.LOAISANPHAM.TENLOAISP,
-                    sp.DONGIA
-                };
-                return Json(result, JsonRequestBehavior.AllowGet);
+                SANPHAM sp = new SANPHAM();
+
+                sp.TENSP = sanpham.TENSP;
+                sp.SOLUONG = (int)sanpham.SOLUONG;
+                sp.MATH = (int) sanpham.MATH;
+                sp.MOTA = sanpham.MOTA;
+                sp.DANHGIA = sanpham.DANHGIA;
+                sp.DONGIA = (double)sanpham.DONGIA;
+                sp.MALOAISP = sanpham.MALOAISP;
+                sp.HINHLON = sanpham.HINHLON;
+                sp.HINHNHO = sanpham.HINHNHO;
+
+                productService.updateProduct(sp);
+                
+                return View(sanpham);
+
             }
             else
             {
-                return null;
+                return View(sanpham);
             }
 
-
+            //var spx = productService.getProductById(sp.MASP);
+            //if (spx != null)
+            //{
+            //    var result = new
+            //    {
+            //        sp.TENSP,
+            //        sp.SOLUONG,
+            //        sp.THUONGHIEU.TENTH,
+            //        sp.LOAISANPHAM.TENLOAISP,
+            //        sp.DONGIA
+            //    };
+            //    return Json(result, JsonRequestBehavior.AllowGet);
+            //}
+            //else
+            //{
+            //    return null;
+            //}
         }
 
         public ActionResult deleteProduct(int masp)
@@ -96,9 +173,5 @@ namespace BanDongHo.Areas.Admin.Controllers
             return Json(new { result = productService.deleteProduct(masp) });
         }
 
-        public ActionResult addProduct(SANPHAM sanpham)
-        {
-            return Json(new { result = productService.addProduct(sanpham) });
-        }
     }
 }

@@ -8,9 +8,16 @@ namespace BanDongHo.Areas.Admin.Models
 {
     public class ProductCategoryService
     {
-        public IEnumerable<LOAISANPHAM> getAllProductCategory()
+
+        BANDONGHOEntities db;
+
+        public ProductCategoryService()
         {
-            BANDONGHOEntities db = new BANDONGHOEntities();
+            db = new BANDONGHOEntities();
+        }
+
+        public IEnumerable<LOAISANPHAM> getAllProductCategory()
+        {        
             return db.LOAISANPHAMs;
         }
     }

@@ -14,11 +14,8 @@ namespace BanDongHo.Domain.DataContext
     
     public partial class CHITIETKM
     {
-        public string MACTKM { get; set; }
         public string MAKM { get; set; }
-        public Nullable<int> MASP { get; set; }
-        public Nullable<System.DateTime> NGAYBATDAUKM { get; set; }
-        public Nullable<System.DateTime> NGAYKETTHUCKM { get; set; }
+        public int MASP { get; set; }
         public Nullable<int> PHANTRAMKM { get; set; }
     
         public virtual KHUYENMAI KHUYENMAI { get; set; }

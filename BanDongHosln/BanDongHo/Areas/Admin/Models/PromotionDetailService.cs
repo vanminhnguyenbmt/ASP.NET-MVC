@@ -6,11 +6,16 @@ using BanDongHo.Domain.DataContext;
 
 namespace BanDongHo.Areas.Admin.Models
 {
-    public class PromotionDetail
+    public class PromotionDetailService
     {
-        public IEnumerable<CHITIETKM> getAllPromotionDetail()
+        BANDONGHOEntities db;
+
+        public PromotionDetailService()
         {
-            BANDONGHOEntities db = new BANDONGHOEntities();
+            db = new BANDONGHOEntities();
+        }
+        public IEnumerable<CHITIETKM> getAllPromotionDetail()
+        {           
             return db.CHITIETKMs;
         }
         
