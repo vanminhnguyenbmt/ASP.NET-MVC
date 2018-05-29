@@ -79,11 +79,11 @@ namespace BanDongHo.Areas.Admin.Controllers
             {
                 SANPHAM sp = new SANPHAM();
                 sp.TENSP = sanpham.TENSP;
-                sp.SOLUONG = (int)sanpham.SOLUONG;
+                sp.SOLUONG = sanpham.SOLUONG;
                 sp.MATH = sanpham.MATH;
                 sp.MOTA = sanpham.MOTA;
                 sp.DANHGIA = sanpham.DANHGIA;
-                sp.DONGIA = (double)sanpham.DONGIA;
+                sp.DONGIA = sanpham.DONGIA;
                 sp.MALOAISP = sanpham.MALOAISP;
                 sp.HINHLON = sanpham.HINHLON;
                 sp.HINHNHO = sanpham.HINHNHO;
@@ -94,7 +94,6 @@ namespace BanDongHo.Areas.Admin.Controllers
             {
                 return View(sanpham);
             }
-
         }
 
         [HttpGet]

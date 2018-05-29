@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<BanDongHo.Domain.DataContext.KHUYENMAI>
+﻿@model IEnumerable<BanDongHo.Domain.DataContext.KHUYENMAI>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
@@ -19,7 +18,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div style="padding: 0px 0px 10px 0px">
-                <a class="btn btn-success" title="Thêm sản phẩm" href="~/Admin/Product/Create" target="_blank">
+                <a class="btn btn-success" title="Thêm sản phẩm" href="~/Admin/Promotion/Create" target="_blank">
                     <span class="fa fa-plus" /> Thêm
                 </a>
             </div>
@@ -49,10 +48,9 @@
                             <td>@item.TENKM</td>
                             <td>@item.NGAYBD</td>
                             <td>@item.NGAYKT</td>
-                            <td>
-                                <button class="btn btn-primary" onclick="DetailPopup('Chi tiết thương hiệu', @item.MAKM)" title="Detail"> <span class="glyphicon glyphicon-eye-open" /></button>
-                                <a class="btn btn-default" title="Edit" href="~/Admin/Product/Update?math=@item.MAKM" target="_blank"> <span class="glyphicon glyphicon-edit" /></a>
-                                <button class="btn btn-danger" onclick="DeletePopup('Xóa thương hiệu',@item.MAKM)" title="Delete"> <span class="glyphicon glyphicon-remove" /></button>
+                            <td>                          
+                                <a class="btn btn-default" title="Edit" href="~/Admin/Promotion/Update?makm=@item.MAKM"> <span class="glyphicon glyphicon-edit" /></a>
+                                <button class="btn btn-danger" onclick="DeletePopup('Xóa khuyến mãi','@item.MAKM')" title="Delete"> <span class="glyphicon glyphicon-remove" /></button>
                             </td>
                         </tr>
                     }
@@ -85,35 +83,62 @@
     </div>
 </div>
 
-<!-- Hiển thị popup create, edit -->
-<div id="myPopup" class="popup">
-    <div class="popup-content">
-        <div class="popup-header">
-            <span id="span-close-popup" class="close">&times;</span>
-            <h2 id="hd-popup-content"></h2>
-        </div>
-        <div class="popup-body" id="UserPopup">
-        </div>
-
-    </div>
-</div>
-
-<!-- Hiển thị popup detail -->
-<div id="myDetailPopup" class="popup">
-    <div class="popup-content">
-        <div class="popup-header">
-            <span id="span-close-detail" class="close">&times;</span>
-            <h2 id="hd-popup-content-detail"></h2>
-        </div>
-
-        <div class="popup-body" id="DetailPopup">
-        </div>
-
-    </div>
-</div>
 
 
-<script src="~/Areas/Admin/Content/js/script.js"></script>
+
+<script>
+
+    function DeletePopup(header, makm) {
+        // Get the popup
+        var popup = document.getElementById('myDeletePopup');
+        // Get the <span> element that closes the popup
+        var span = document.getElementById("span-close-delete");
+
+        var btn = document.getElementById('btn-cancel-delete');
+        // Get the <div> header
+        var a = document.getElementById('hd-popup-content-delete');
+        // Get the <span> content
+        var b = document.getElementById('bd-popup-content-delete');
+
+        a.innerText = header;
+        b.innerText = 'Bạn có muốn xóa loại sản phẩm này?';
+
+        popup.style.display = "block";
+        // When the user clicks on <span> (x), close the popup
+        span.onclick = function () {
+            popup.style.display = "none";
+        }
+        btn.onclick = function () {
+            popup.style.display = "none";
+        }
+
+        function handler() {
+            $.ajax(
+            {
+                type: 'POST',
+                url: '/Admin/Promotion/Delete?makm=' + makm,
+                dataType: 'json',
+                success: function (data) {                  
+                    if (data.result == true) {
+                        alert("delete successful");
+                        window.location.reload();
+                    } else {
+                        alert("delete fail");
+                    }
+
+                },
+                error: function () {
+                  
+                }
+            });
+            popup.style.display = "none";
+            $('#btn-ok-delete').unbind('click', handler);
+        }
+
+        $('#btn-ok-delete').bind('click', handler);
+    }
+
+</script>
 
 
 

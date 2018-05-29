@@ -1,5 +1,6 @@
 ﻿using BanDongHo.Areas.Admin.Models;
 using BanDongHo.Common;
+using BanDongHo.Domain.DataContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,108 @@ namespace BanDongHo.Areas.Admin.Controllers
                 return Redirect("~/Admin/Login/Login");
             }
             return View(promotionService.getAllPromotion());
+        }
+
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            PromotionViewModel promotionViewModel = new PromotionViewModel();
+            promotionViewModel.MAKM = newMAKM(promotionService.getLastRecord());
+            return View(promotionViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(PromotionViewModel km)
+        {
+            ViewBag.message = "";
+            if (ModelState.IsValid)
+            {
+                KHUYENMAI khuyenmai = new KHUYENMAI();
+                khuyenmai.MAKM = km.MAKM;
+                khuyenmai.TENKM = km.TENKM;
+                khuyenmai.NGAYBD = km.NGAYBD;
+                khuyenmai.NGAYKT = km.NGAYKT;
+
+                if (promotionService.addPromotion(khuyenmai))
+                {
+                    ViewBag.message = "Thêm mới khuyến mãi thành công";
+                    PromotionViewModel promotionViewModel = new PromotionViewModel();
+                    promotionViewModel.MAKM = newMAKM(promotionService.getLastRecord());
+                    return RedirectToAction("Create", "Promotion", promotionViewModel);
+                }
+                else
+                {
+                    ViewBag.message = "Thêm mới khuyến mãi thất bại";
+                }
+            }
+            return View(km);
+        }
+
+        [HttpGet]
+        public ActionResult Update(string makm)
+        {
+            PromotionViewModel promotionViewModel = new PromotionViewModel();
+            promotionViewModel.MAKM = promotionService.getPromotionById(makm).MAKM;
+            return View(promotionViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Update(PromotionViewModel km)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                KHUYENMAI khuyenmai = new KHUYENMAI();
+                khuyenmai.MAKM = km.MAKM;
+                khuyenmai.TENKM = km.TENKM;
+                khuyenmai.NGAYBD = km.NGAYBD;
+                khuyenmai.NGAYKT = km.NGAYKT;
+
+                if (promotionService.updatePromotion(khuyenmai))
+                {                  
+                    return RedirectToAction("Index","Promotion", promotionService.getAllPromotion());
+                }
+              
+            }
+            return View(km);
+        }
+
+        public ActionResult Delete(string makm)
+        {
+            return Json(new { result = promotionService.deletePromotion(makm) });
+
+
+        }
+
+        public string newMAKM(string lastMAKM)
+        {
+            string res = "KM00001";
+            if (String.Compare(lastMAKM, "", false) != 0)
+            {
+                int tam = Int32.Parse(lastMAKM.Substring(2)) + 1;
+                if (tam < 10)
+                {
+                    res = "KM0000" + tam.ToString();
+                }
+                else if (tam >= 10 && tam < 100)
+                {
+                    res = "KM000" + tam.ToString();
+                }
+                else if (tam >= 100 && tam < 1000)
+                {
+                    res = "KM00" + tam.ToString();
+                }
+                else if (tam >= 1000 && tam < 10000)
+                {
+                    res = "KM0" + tam.ToString();
+                }
+                else
+                {
+                    res = "KM" + tam.ToString();
+                }
+            }
+            return res;
         }
     }
 }
