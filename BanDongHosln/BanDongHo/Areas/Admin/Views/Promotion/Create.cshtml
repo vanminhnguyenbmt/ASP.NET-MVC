@@ -23,13 +23,13 @@
                         <div class="col-md-4">
                             <label class="control-label">Mã khuyến mãi</label>
                             @Html.ValidationMessageFor(model => model.MAKM, "", new { @class = "text-danger", @style = "color: red" })
-                            <input type="text" class="form-control" id="MALOAISP" name="MALOAISP" placeholder="" value="@Model.MAKM" readonly />
+                            <input type="text" class="form-control" id="MAKM" name="MAKM" placeholder="" value="@Model.MAKM" readonly />
                         </div>
 
                         <div class="col-md-8">
                             @Html.ValidationMessageFor(model => model.TENKM, "", new { @class = "text-danger", @style = "color: red" })
                             <label class="control-label">Tên Khuyến mãi</label>
-                            <input type="text" class="form-control" id="TENLOAISP" name="TENLOAISP" placeholder="" required value="@Model.TENKM" />
+                            <input type="text" class="form-control" id="TENKM" name="TENKM" placeholder="" required value="@Model.TENKM" />
                         </div>
                     </div>
 
@@ -39,13 +39,13 @@
                             <div class="col-md-4">
                                 <label class="control-label">Ngày bắt đầu</label>
                                 @Html.ValidationMessageFor(model => model.NGAYBD, "", new { @class = "text-danger", @style = "color: red" })
-                                <input type="datetime" class="form-control" id="NGAYBD" name="NGAYBD" placeholder="" value="@Model.NGAYBD"/>
+                                <input type="datetime-local" class="form-control" id="NGAYBD" name="NGAYBD" placeholder="" value="@Model.NGAYBD"/>
                             </div>
 
                             <div class="col-md-8">
                                 @Html.ValidationMessageFor(model => model.NGAYKT, "", new { @class = "text-danger", @style = "color: red" })
                                 <label class="control-label">Ngày kết thúc</label>
-                                <input type="datetime" class="form-control" id="NGAYKT" name="NGAYKT" placeholder="" required value="@Model.NGAYKT" />
+                                <input type="datetime-local" class="form-control" id="NGAYKT" name="NGAYKT" placeholder="" required value="@Model.NGAYKT" />
                             </div>
                         </div>
 

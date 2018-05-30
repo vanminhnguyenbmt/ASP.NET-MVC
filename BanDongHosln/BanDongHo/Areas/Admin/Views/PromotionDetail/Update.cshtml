@@ -1,0 +1,86 @@
+﻿@model BanDongHo.Areas.Admin.Models.PromotionDetailViewModel
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Chỉnh sửa chi tiết khuyến mãi</h1>
+            <p style="color:green">@ViewBag.message</p>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form method="post" action="~/Admin/PromotionDetail/Update">
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label">Mã khuyến mãi</label>
+                            @Html.ValidationMessageFor(model => model.MAKM, "", new { @class = "text-danger", @style = "color: red" })                         
+                            <input type="hidden" class="form-control" id="MAKM" name="MAKM" placeholder="" required value="@Model.MAKM" readonly />
+                            <input type="text" class="form-control" placeholder="" required value="@ViewBag.KHUYENMAI" readonly />
+                            
+                        </div>
+
+                        <div class="col-md-4">                                        
+                            <label class="control-label">Tên Sản phẩm</label>
+                            @Html.ValidationMessageFor(model => model.MASP, "", new { @class = "text-danger", @style = "color: red" })
+                            <input type="hidden" class="form-control" id="MASP" name="MASP" placeholder="" required value="@Model.MASP" readonly />
+                            <input type="text" class="form-control" placeholder="" required value="@ViewBag.SANPHAM" readonly />
+                        </div>
+
+                        <div class="col-md-4">                      
+                            <label class="control-label">Phầm trăm giảm giá</label>
+                            @Html.ValidationMessageFor(model => model.PHANTRAMKM, "", new { @class = "text-danger", @style = "color: red" })
+                            <input type="number" class="form-control" id="PHANTRAMKM" name="PHANTRAMKM" placeholder="" required value="@Model.PHANTRAMKM" min="0" max="100" />
+                        </div>
+                    </div>
+                 </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-success" id="btn-ok-create" type="submit"> Ok </button>
+                        <button class="btn btn-danger" id="btn-cancel-create"> Cancel </button>
+                    </div>
+            </form>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+</div>
+
+
+<!-- javascript -->
+<script>
+    var temp1 = '@Model.MAKM';
+    $("#MAKM option").each(function () {
+        if ($(this).val() == temp1) {
+            $(this).attr("selected", "selected");
+        }
+    });
+
+    var temp2 = '@Model.MASP';
+    $("#MASP option").each(function () {
+        if ($(this).val() == temp2) {
+            $(this).attr("selected", "selected");
+        }
+    });
+
+        //function validateName() {
+        //    var name = $('#MAKM').val();
+
+        //    if (isEmpty(name)) {
+        //        $('#MALOAISP').css("border-color", "red");
+        //        return false;
+        //    } else {
+        //        $('#MALOAISP').css("border-color", "green");
+        //    }
+        //    return true;
+        //}
+</script>
+
+
+

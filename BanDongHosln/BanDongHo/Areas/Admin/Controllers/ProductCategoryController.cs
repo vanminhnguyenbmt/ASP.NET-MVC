@@ -97,26 +97,17 @@ namespace BanDongHo.Areas.Admin.Controllers
         public string newMALOAISP(string lastMALOAISP)
         {
             string res = "LP00001";
-            if(String.Compare(lastMALOAISP, "", false) != 0)
+            if (String.Compare(lastMALOAISP, "", false) != 0)
             {
                 int tam = Int32.Parse(lastMALOAISP.Substring(2)) + 1;
-                if(tam < 10)
+                string rs = tam.ToString();
+                while (rs.Length < 5)
                 {
-                    res = "LP0000" + tam.ToString();
-                }else if(tam >= 10 && tam < 100)
-                {
-                    res = "LP000" + tam.ToString();
-                }else if( tam >= 100 && tam < 1000)
-                {
-                    res = "LP00" + tam.ToString();
-                }else if(tam >= 1000 && tam < 10000)
-                {
-                    res = "LP0" + tam.ToString();
+                    rs = "0" + rs;
                 }
-                else
-                {
-                    res = "LP" + tam.ToString();
-                }
+
+                res = "LP" + rs;
+
             }
             return res;
         }

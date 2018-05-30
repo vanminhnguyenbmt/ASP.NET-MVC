@@ -63,7 +63,11 @@ namespace BanDongHo.Areas.Admin.Controllers
         public ActionResult Update(string makm)
         {
             PromotionViewModel promotionViewModel = new PromotionViewModel();
-            promotionViewModel.MAKM = promotionService.getPromotionById(makm).MAKM;
+            var km = promotionService.getPromotionById(makm);
+            promotionViewModel.MAKM = km.MAKM;
+            promotionViewModel.TENKM = km.TENKM;
+            promotionViewModel.NGAYBD = (DateTime)km.NGAYBD;
+            promotionViewModel.NGAYKT = (DateTime)km.NGAYKT;
             return View(promotionViewModel);
         }
 
@@ -99,28 +103,16 @@ namespace BanDongHo.Areas.Admin.Controllers
         {
             string res = "KM00001";
             if (String.Compare(lastMAKM, "", false) != 0)
-            {
+            {              
                 int tam = Int32.Parse(lastMAKM.Substring(2)) + 1;
-                if (tam < 10)
+                string rs = tam.ToString();
+                while (rs.Length < 5)
                 {
-                    res = "KM0000" + tam.ToString();
+                    rs = "0" + rs;
                 }
-                else if (tam >= 10 && tam < 100)
-                {
-                    res = "KM000" + tam.ToString();
-                }
-                else if (tam >= 100 && tam < 1000)
-                {
-                    res = "KM00" + tam.ToString();
-                }
-                else if (tam >= 1000 && tam < 10000)
-                {
-                    res = "KM0" + tam.ToString();
-                }
-                else
-                {
-                    res = "KM" + tam.ToString();
-                }
+                                           
+                res = "KM" + rs;
+                
             }
             return res;
         }

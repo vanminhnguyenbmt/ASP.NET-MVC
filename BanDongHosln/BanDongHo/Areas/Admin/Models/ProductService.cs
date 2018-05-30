@@ -73,8 +73,13 @@ namespace BanDongHo.Areas.Admin.Models
         public bool deleteProduct(int masp)
         {        
             try {
-                db.SANPHAMs.Remove(db.SANPHAMs.Find(masp));
-                db.SaveChanges();
+                string query = "DELETE FROM CHITIETKM WHERE MASP = '" + masp + "'";
+                string query2 = "DELETE FROM CHITIETDONHANG WHERE MASP = '" + masp + "'";
+                string query3 = "DELETE FROM SANPHAM WHERE MASP = '" + masp + "'";
+               
+                db.Database.ExecuteSqlCommand(query);
+                db.Database.ExecuteSqlCommand(query2);
+                db.Database.ExecuteSqlCommand(query3);
                 return true;
             }
             catch(Exception)

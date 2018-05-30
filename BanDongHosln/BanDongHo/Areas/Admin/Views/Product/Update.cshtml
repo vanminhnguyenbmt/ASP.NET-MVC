@@ -7,21 +7,22 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Chỉnh sửa thông tin sản phẩm</h1>
+            <p style="color:green">@ViewBag.message</p>
         </div>
         <!-- /.col-lg-12 -->
     </div>
 
     <div class="row">
         <div class="col-lg-12">
-            <form method="post" action="~/Admin/Product/Create">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+            <form method="post" action="~/Admin/Product/Update" id="form-update">
+                
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-8">
                             <label class="control-label">Tên sản phẩm</label>
                             @Html.ValidationMessageFor(model => model.TENSP, "", new { @class = "text-danger", @style = "color: red" })
-                            <input type="text" class="form-control" id="TENSP" name="TENSP" onblur="validateName()" placeholder="" value="@Model.TENSP" />
+                            <input type="hidden" class="form-control" id="MASP" name="MASP" placeholder="" value="@Model.MASP" required />
+                            <input type="text" class="form-control" id="TENSP" name="TENSP" onblur="validateName()" placeholder="" value="@Model.TENSP" required/>
                         </div>
 
                         <div class="col-md-4">
@@ -42,7 +43,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label class="control-label">Thương hiệu</label>
-                            <select id="MATH" name="THUONGHIEU" class="form-control">
+                            <select id="MATH" name="MATH" class="form-control">
                                 @foreach (var item in ViewBag.ThuongHieu)
                                 {
                                     <option value="@item.MATH"> @item.TENTH </option>
@@ -68,31 +69,51 @@
                     </div>
                 </div>
 
+
                 <div class="form-group">
-                    <label class="control-label">Hình lớn</label>
-                    @Html.ValidationMessageFor(model => model.HINHLON, "", new { @class = "text-danger", @style = "color: red" })
-                    <input type="file" class="form-control" id="HINHLON" name="HINHLON" accept="image/*" required />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label">Hình lớn</label>
+                            @Html.ValidationMessageFor(model => model.HINHLON, "", new { @class = "text-danger", @style = "color: red" })
+                            <input type="text" class="form-control form-group" id="TENHINHLON" name="HINHLON" accept="image/*" value="@Model.HINHLON" readonly />
+                            <input type="file" class="form-control" id="HINHLON" accept="image/*" />
+                        </div>
+                        <div class="col-md-8">
+                            <img id="HINH1" src="~/images/HINHLON/@Model.HINHLON" width="180" height="120" />
+                        </div>
+                    </div>
+
                 </div>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-4">
                             <label class="control-label">Hình nhỏ 1</label>
-                            <input type="file" class="form-control" id="HINHNHO1" name="HINHNHO1" accept="image/*" required />
+                            <input type="hidden" class="form-control form-group" id="HINHNHO" name="HINHNHO" value="@Model.HINHNHO"/>
+                            <input type="file" class="form-control form-group" id="HINHNHO1" name="HINHNHO1" accept="image/*" />
+                            <div>
+                                <img id="HINH2" src="~/images/HINHNHO/@Model.HINHNHO/1.jpg" width="180" height="120" />
+                            </div>
                         </div>
 
                         <div class="col-md-4">
                             <label class="control-label">Hình nhỏ 2</label>
-                            <input type="file" class="form-control" id="HINHNHO2" name="HINHNHO2" accept="image/*" required />
+                            <input type="file" class="form-control form-group" id="HINHNHO2" name="HINHNHO2" accept="image/*" />
+                            <div>
+                                <img id="HINH3" src="~/images/HINHNHO/@Model.HINHNHO/2.jpg" width="180" height="120"/>
+                            </div>
                         </div>
 
                         <div class="col-md-4">
                             <label class="control-label">Hình nhỏ 3</label>
-                            <input type="file" class="form-control" id="HINHNHO3" name="HINHNHO3" accept="image/*" required />
+                            <input type="file" class="form-control form-group" id="HINHNHO3" name="HINHNHO3" accept="image/*"/>
+                            <div>
+                                <img id="HINH4" src="~/images/HINHNHO/@Model.HINHNHO/3.jpg" width="180" height="120" />
+                            </div>
                         </div>
                     </div>
 
 
-                </div>
+                </div>           
 
                 <div class="form-group">
                     <label class="control-label">Đánh giá</label>
@@ -138,4 +159,136 @@
         }
         return true;
     }
+
+    $("#form-update").submit(function () {
+        var filename = getFileName($('#TENHINHLON').val());
+        var extendFile = filename.split('.')[0];
+       
+        if ($('#HINHLON').val().length > 0) {
+            Image(filename);
+        }
+        if ($('#HINHNHO1').val().length > 0) {
+            Photo(extendFile, "1.jpg", "HINHNHO1");
+        }
+        if ($('#HINHNHO1').val().length > 0) {
+            Photo(extendFile, "2.jpg", "HINHNHO2");
+        }
+        if ($('#HINHNHO1').val().length > 0) {
+            Photo(extendFile, "3.jpg", "HINHNHO3");
+        }
+       
+    });
+
+    /// preview image with onchange
+    $("#HINHLON").change(function () {
+        var filename = getFileName($('#HINHLON').val());
+        var extendFile = filename.split('.')[1];
+        var hinh = tenhinh() + "." + extendFile;
+        document.getElementById("TENHINHLON").value = hinh;
+        readURL(this, 'HINH1');
+    });
+    $("#HINHNHO1").change(function () {
+        readURL(this, 'HINH2');
+    });
+    $("#HINHNHO2").change(function () {
+        readURL(this, 'HINH3');
+    });
+    $("#HINHNHO3").change(function () {
+        readURL(this, 'HINH4');
+    });
+
+
+    function getFileName(filePath) {
+        return filePath.substr(filePath.lastIndexOf('\\') + 1);
+    };
+
+    function addZero(x, n) {
+        while (x.toString().length < n) {
+            x = "0" + x;
+        }
+        return x;
+    };
+
+    /// preview image
+    function readURL(input, id) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {            
+                $('#' + id).attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+
+    function tenhinh() {
+        var d = new Date();
+
+        var year = d.getFullYear();
+        var mont = addZero(d.getMonth() + 1, 2);
+        var date = addZero(d.getDate(), 2);
+        var h = addZero(d.getHours(), 2);
+        var m = addZero(d.getMinutes(), 2);
+        var s = addZero(d.getSeconds(), 2);
+        var ms = addZero(d.getMilliseconds(), 3);
+        var res = year + mont + date + h + m + s + ms;
+
+        return res;
+    };
+
+    function Image(tenhinh) {
+        var formData = new FormData();
+        var totalFiles = document.getElementById("HINHLON").files.length;
+        for (var i = 0; i < totalFiles; i++) {
+            var file = document.getElementById("HINHLON").files[i];
+            formData.append("HINHLON", file);
+        }
+        $.ajax({
+            type: "POST",
+            url: '/Admin/Product/PhotoCreate?tenhinh=' + tenhinh,
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data.result == true) {
+                    alert("upload image success");
+                } else {
+                    alert("upload image fail ccc");
+                }
+
+            },
+            error: function () {
+                alert("upload image fail");
+            }
+        });
+    }
+
+    function Photo(hinhlon, hinhnho, id) {
+        var formData = new FormData();
+        var totalFiles = document.getElementById(id).files.length;
+        for (var i = 0; i < totalFiles; i++) {
+            var file = document.getElementById(id).files[i];
+            formData.append(id, file);
+        }
+        $.ajax({
+            type: "POST",
+            url: '/Admin/Product/Photo?hinhlon=' + hinhlon + '&hinhnho=' + hinhnho,
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+
+
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+
 </script>

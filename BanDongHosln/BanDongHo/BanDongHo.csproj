@@ -358,6 +358,10 @@
     <Content Include="Areas\Admin\Views\ProductCategory\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Promotion\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Promotion\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetail\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetail\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductBrand\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductBrand\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

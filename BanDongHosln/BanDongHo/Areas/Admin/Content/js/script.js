@@ -62,7 +62,7 @@ function DeletePopup(header, masp) {
         $.ajax(
         {
             type: 'POST',
-            url: '/Admin/Product/deleteProduct?masp=' + masp,
+            url: '/Admin/Product/Delete?masp=' + masp,
             dataType: 'json',      
             success: function (data) {
                 if (data.result == true) {
@@ -83,7 +83,7 @@ function DeletePopup(header, masp) {
     $('#btn-ok-delete').bind('click', handler);
 }
 
-// javascript function for edit infor for a product
+/* javascript function for edit infor for a product
 function UpdatePopup(element, header, masp) {
     // Get the popup
     var popup = document.getElementById('myPopup');
@@ -158,9 +158,9 @@ function UpdatePopup(element, header, masp) {
         $('#btn-ok-update').unbind('click', handler);
     }
 
-}
+}*/
 
-// javascript function for add a new product
+/* //javascript function for add a new product
 function CreatePopup(header) {
     // Get the popup
     var popup = document.getElementById('myPopup');
@@ -240,7 +240,7 @@ function CreatePopup(header) {
     }
     
     
-}
+}*/
 
 function getFileName(filePath) {
     return filePath.substr(filePath.lastIndexOf('\\') + 1);

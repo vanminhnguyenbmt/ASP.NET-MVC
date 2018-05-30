@@ -59,8 +59,8 @@ namespace BanDongHo.Areas.Admin.Models
         {
             try
             {
-                string query = "DELETE FROM CHITIETKM WHERE MALOAISP = '" + makm + "'";
-                string query2 = "DELETE FROM KHUYENMAI WHERE MALOAISP = '" + makm + "'";
+                string query = "DELETE FROM CHITIETKM WHERE MAKM = '" + makm + "'";
+                string query2 = "DELETE FROM KHUYENMAI WHERE MAKM = '" + makm + "'";
                 db.Database.ExecuteSqlCommand(query);
                 db.Database.ExecuteSqlCommand(query2);
                 return true;

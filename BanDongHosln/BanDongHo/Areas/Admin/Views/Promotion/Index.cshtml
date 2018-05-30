@@ -36,7 +36,7 @@
                         <th>Mã khuyến mãi</th>
                         <th>Tên khuyến mãi</th>
                         <th>Ngày bắt đầu</th>
-                        <th>Tên kết thúc</th>
+                        <th>Ngày kết thúc</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
@@ -46,8 +46,8 @@
                         <tr>
                             <td>@item.MAKM</td>
                             <td>@item.TENKM</td>
-                            <td>@item.NGAYBD</td>
-                            <td>@item.NGAYKT</td>
+                            <td>@item.NGAYBD.Value.ToString("dd-MM-yyyy HH:mm:ss tt")</td>
+                            <td>@item.NGAYKT.Value.ToString("dd-MM-yyyy HH:mm:ss tt")</td>
                             <td>                          
                                 <a class="btn btn-default" title="Edit" href="~/Admin/Promotion/Update?makm=@item.MAKM"> <span class="glyphicon glyphicon-edit" /></a>
                                 <button class="btn btn-danger" onclick="DeletePopup('Xóa khuyến mãi','@item.MAKM')" title="Delete"> <span class="glyphicon glyphicon-remove" /></button>
@@ -101,7 +101,7 @@
         var b = document.getElementById('bd-popup-content-delete');
 
         a.innerText = header;
-        b.innerText = 'Bạn có muốn xóa loại sản phẩm này?';
+        b.innerText = 'Bạn có muốn xóa khuyến mãi này?';
 
         popup.style.display = "block";
         // When the user clicks on <span> (x), close the popup
