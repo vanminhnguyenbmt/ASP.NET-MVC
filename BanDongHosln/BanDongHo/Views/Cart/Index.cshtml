@@ -26,7 +26,7 @@
         </div>
         <div class="ckeckout-top">
             <div class="cart-items">
-                <h3>My Shopping Bag (3)</h3>
+                <h3>My Shopping Bag (@Model.GetList().Count)</h3>
 
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -95,7 +95,7 @@
                         </div>
                         <ul>
                             <li><span>@item.Product.TENSP</span></li>
-                            <li><span>@String.Format("{0:0,0}", item.Product.DONGIA) vnđ</span></li>
+                            <li><span>@String.Format("{0:0,0}", (item.Product.DONGIA*(1-((float)item.Promotion/100)))) vnđ</span></li>
                             <li><span><input type="number" value="@item.Quantity" class="number" data-id="@data_id" min="0"/></span></li>
                             <li><span><input type="button" value="X" class="delete" data-id="@data_id" /></span></li>
                         </ul>

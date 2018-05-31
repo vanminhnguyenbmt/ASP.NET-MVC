@@ -21,6 +21,8 @@ namespace BanDongHo.Domain.DataContext
     
         public string MAKM { get; set; }
         public string TENKM { get; set; }
+        public Nullable<System.DateTime> NGAYBD { get; set; }
+        public Nullable<System.DateTime> NGAYKT { get; set; }
     
         public virtual ICollection<CHITIETKM> CHITIETKMs { get; set; }
     }

@@ -29,7 +29,7 @@
                 <tr>
                     <td>@(i+1)</td>
                     <td>@Model.cart.GetList()[i].Product.TENSP</td>
-                    <td>@Model.cart.GetList()[i].Product.DONGIA.Value.ToString("0,0") VNĐ</td>
+                    <td>@((Model.cart.GetList()[i].Product.DONGIA.Value*(1-((float)Model.cart.GetList()[i].Promotion/100))).ToString("0,0")) VNĐ</td>
                     <td>@Model.cart.GetList()[i].Quantity</td>
                 </tr>
             }

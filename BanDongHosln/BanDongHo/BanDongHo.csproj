@@ -204,10 +204,12 @@
     <Compile Include="Models\Service\ContactService.cs" />
     <Compile Include="Models\Service\CusInfoService.cs" />
     <Compile Include="Models\Service\DetailPageService.cs" />
+    <Compile Include="Models\Service\IRegisterSercive.cs" />
     <Compile Include="Models\Service\IRegisterService.cs" />
     <Compile Include="Models\Service\LoginService.cs" />
     <Compile Include="Models\Service\ProductCategoryService.cs" />
     <Compile Include="Models\Service\ProductService.cs" />
+    <Compile Include="Models\Service\PromotionService.cs" />
     <Compile Include="Models\Service\RegisterService.cs" />
     <Compile Include="Models\ViewModel\CartViewModel.cs" />
     <Compile Include="Models\ViewModel\ContactViewModel.cs" />
@@ -216,6 +218,8 @@
     <Compile Include="Models\ViewModel\HomePageViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductCategoryViewModel.cs" />
+    <Compile Include="Models\ViewModel\ProductViewModel.cs" />
+    <Compile Include="Models\ViewModel\Register.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -298,8 +302,6 @@
     <Content Include="fonts\Lora-Regular.ttf" />
     <Content Include="fonts\Muli-Regular.ttf" />
     <Content Include="fonts\Philosopher-Regular.ttf" />
-
-
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_layout.cshtml" />
@@ -400,6 +402,8 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\CusInfo\Index.cshtml" />
     <Content Include="Views\CusInfo\Success.cshtml" />
+    <Content Include="Views\Home\Account.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

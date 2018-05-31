@@ -14,16 +14,12 @@ namespace BanDongHo.Controllers
         {
             
         }
+
         public ActionResult Index()
         {
             HomePageViewModel HomePageVM = new HomePageViewModel();
             HomePageVM.ProductsSelling = ProductService.GetListProductsSelling();
             HomePageVM.NewProducts = ProductService.GetListNewProducts().Take(8);
-            foreach(var i in HomePageVM.ProductsSelling)
-            {
-                string s = i.HINHLON.ToString();
-            }
-             
             return View(HomePageVM);
         }
 
@@ -39,8 +35,13 @@ namespace BanDongHo.Controllers
                 return RedirectToAction("Index");
             }
             DetailViewModel detailPage = new DetailViewModel();
-            detailPage.Product = DetailPageService.LoadDetailProduct(id.Value);
-            detailPage.ListProductsRelative = DetailPageService.LoadListProductRelative(id.Value);
+            // Lấy sản phẩm
+            detailPage.Product = new ProductViewModel();
+            detailPage.Product.Product = ProductService.Find(id.Value);
+            detailPage.Product.Promotion = PromotionService.GetPromotion(id.Value);
+            // Lấy danh sách sản phẩm liên quan
+            detailPage.ListProductsRelative = ProductService.GetListProductRelative(detailPage.Product.Product.MATH.Value).Take(3);
+            // Lấy danh sách 
             detailPage.Tag = DetailPageService.GetTag(id.Value);
             detailPage.ListNewProducts = ProductService.GetListNewProducts().Take(8);
             return View(detailPage);

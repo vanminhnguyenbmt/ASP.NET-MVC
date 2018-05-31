@@ -4,11 +4,12 @@ using System.Linq;
 using System.Web;
 using BanDongHo.Domain.DataContext;
 
+
 namespace BanDongHo.Models.ViewModel
 {
-    public class HomePageViewModel
+    public class ProductViewModel
     {
-        public IEnumerable<SANPHAM> ProductsSelling { get; set; }
-        public IEnumerable<ProductViewModel> NewProducts { get; set; }
+        public SANPHAM Product { get; set; }
+        public int Promotion { get; set; }
     }
 }

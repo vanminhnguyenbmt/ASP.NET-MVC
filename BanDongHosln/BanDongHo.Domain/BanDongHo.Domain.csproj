@@ -118,6 +118,9 @@
     <Compile Include="DataContext\SANPHAM.cs">
       <DependentUpon>BanDongHo.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataContext\sysdiagram.cs">
+      <DependentUpon>BanDongHo.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataContext\TAIKHOAN.cs">
       <DependentUpon>BanDongHo.tt</DependentUpon>
     </Compile>

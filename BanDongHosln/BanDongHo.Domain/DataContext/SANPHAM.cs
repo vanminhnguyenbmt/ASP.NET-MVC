@@ -32,8 +32,8 @@ namespace BanDongHo.Domain.DataContext
         public Nullable<double> DONGIA { get; set; }
     
         public virtual ICollection<CHITIETDONHANG> CHITIETDONHANGs { get; set; }
-        public virtual ICollection<CHITIETKM> CHITIETKMs { get; set; }
         public virtual LOAISANPHAM LOAISANPHAM { get; set; }
         public virtual THUONGHIEU THUONGHIEU { get; set; }
+        public virtual ICollection<CHITIETKM> CHITIETKMs { get; set; }
     }
 }

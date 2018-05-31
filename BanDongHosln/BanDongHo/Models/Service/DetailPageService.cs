@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using BanDongHo.Domain.DataContext;
+using BanDongHo.Models.ViewModel;
 
 namespace BanDongHo.Models.Service
 {
@@ -20,7 +21,12 @@ namespace BanDongHo.Models.Service
             SANPHAM product = LoadDetailProduct(Id);
             if (product == null)
             {
-                return ProductService.GetListNewProducts().Take(3);
+                List<SANPHAM> lstListNewProduct = new List<SANPHAM>();
+                foreach (ProductViewModel sp in ProductService.GetListNewProducts().Take(3))
+                {
+                    lstListNewProduct.Add(sp.Product);
+                }
+                return lstListNewProduct;
             }
             // nếu ID là có
             IEnumerable<SANPHAM> res = null;
@@ -38,10 +44,10 @@ namespace BanDongHo.Models.Service
                     lsp.Add(item);
                 }
                 // lấy những sản phẩm mới
-                IEnumerable<SANPHAM> NewProducts = ProductService.GetListNewProducts().Take(3 - amount);
-                foreach (var item in NewProducts)
+               // IEnumerable<SANPHAM> NewProducts = ;
+                foreach (var item in ProductService.GetListNewProducts().Take(3 - amount))
                 {
-                    lsp.Add(item);
+                    lsp.Add(item.Product);
                 }
                 return lsp;
             }

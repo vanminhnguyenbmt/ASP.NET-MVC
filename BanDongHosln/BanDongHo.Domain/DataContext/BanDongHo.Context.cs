@@ -26,7 +26,6 @@ namespace BanDongHo.Domain.DataContext
         }
     
         public DbSet<CHITIETDONHANG> CHITIETDONHANGs { get; set; }
-        public DbSet<CHITIETKM> CHITIETKMs { get; set; }
         public DbSet<DONHANG> DONHANGs { get; set; }
         public DbSet<KHACHHANG> KHACHHANGs { get; set; }
         public DbSet<KHUYENMAI> KHUYENMAIs { get; set; }
@@ -35,5 +34,7 @@ namespace BanDongHo.Domain.DataContext
         public DbSet<SANPHAM> SANPHAMs { get; set; }
         public DbSet<TAIKHOAN> TAIKHOANs { get; set; }
         public DbSet<THUONGHIEU> THUONGHIEUx { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
+        public DbSet<CHITIETKM> CHITIETKMs { get; set; }
     }
 }

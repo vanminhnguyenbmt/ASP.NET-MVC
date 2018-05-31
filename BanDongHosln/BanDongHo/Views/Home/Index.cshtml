@@ -80,19 +80,19 @@
             <div class="product-one">
                 @foreach (var item in Model.NewProducts.Skip(0).Take(4))
                 {
-                    string source = "~/images/HINHLON/" + item.HINHLON;
-                    string url = "~/Home/Detail/" + item.MASP;
+                    string source = "~/images/HINHLON/" + item.Product.HINHLON;
+                    string url = "~/Home/Detail/" + item.Product.MASP;
                     <div class="col-md-3 product-left">
                         <div class="product-main simpleCart_shelfItem">
                             <a href="@Url.Content(url)" class="mask"><img class="img-responsive zoom-img" src="@Url.Content(source)" alt="" /></a>
                             <div class="product-bottom">
-                                <h3>@item.TENSP</h3>
+                                <h3>@item.Product.TENSP</h3>
                                 <p>Explore Now</p>
                                 @*Dịch dấu chấm động đơn giá sử dụng string.Format("{0:0,0}", tham số)*@
-                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", item.DONGIA) VNĐ</span></h4>
+                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", (item.Product.DONGIA*(100-item.Promotion)/100)) VNĐ</span></h4>
                             </div>
                             <div class="srch">
-                                <span>-0%</span>
+                                <span>-@item.Promotion %</span>
                             </div>
                         </div>
                     </div>
@@ -102,19 +102,19 @@
             <div class="product-one">
                 @foreach (var item in Model.NewProducts.Skip(4).Take(4))
                 {
-                    string source = "~/images/HINHLON/" + item.HINHLON;
-                    string url = "~/Home/Detail/" + item.MASP;
+                    string source = "~/images/HINHLON/" + item.Product.HINHLON;
+                    string url = "~/Home/Detail/" + item.Product.MASP;
                     <div class="col-md-3 product-left">
                         <div class="product-main simpleCart_shelfItem">
                             <a href="@Url.Content(url)" class="mask"><img class="img-responsive zoom-img" src="@Url.Content(source)" alt="" /></a>
                             <div class="product-bottom">
-                                <h3>@item.TENSP</h3>
+                                <h3>@item.Product.TENSP</h3>
                                 <p>Explore Now</p>
                                 @*Dịch dấu chấm động đơn giá sử dụng string.Format("{0:0,0}", tham số)*@
-                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", item.DONGIA) VNĐ</span></h4>
+                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", (item.Product.DONGIA * (100 - item.Promotion) / 100)) VNĐ</span></h4>
                             </div>
                             <div class="srch">
-                                <span>-0%</span>
+                                <span>-@item.Promotion%</span>
                             </div>
                         </div>
                     </div>

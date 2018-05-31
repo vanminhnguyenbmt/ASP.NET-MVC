@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using BanDongHo.Domain.DataContext;
+using BanDongHo.Models.ViewModel;
 
 namespace BanDongHo.Models.Service
 {
     public class ProductService
     {
-        public static IEnumerable<SANPHAM> GetListProductsSelling()
+        public static List<SANPHAM> GetListProductsSelling()
         {
-            IEnumerable<SANPHAM> ListProductsSelling = null;
+            List<SANPHAM> ListProductsSelling = null;
 
             // nghiệp vụ
             // * Nếu ngày lấy danh sách trước ngày 15 hàng tháng thì sẽ lấy danh sách tháng trước
@@ -42,27 +43,81 @@ namespace BanDongHo.Models.Service
                                                             select ct.SOLUONG).Sum()
                                        where totalQuantity > 0
                                        orderby totalQuantity descending
-                                       select sp).Take(3);
+                                       select sp).Take(3).ToList();
             }
             catch (Exception e) { }
-            
-            if(ListProductsSelling==null || ListProductsSelling.ToList().Count<3)
+
+            if (ListProductsSelling == null || ListProductsSelling.ToList().Count < 3)
             {
-                return GetListNewProducts().Take(3);
+                List<SANPHAM> lstListNewProduct = new List<SANPHAM>();
+                foreach (ProductViewModel sp in GetListNewProducts().Take(3))
+                {
+                    lstListNewProduct.Add(sp.Product);
+                }
+                return lstListNewProduct;
             }
 
             List<SANPHAM> lsp = ListProductsSelling.ToList();
 
             return ListProductsSelling;
         }
-        public static IEnumerable<SANPHAM> GetListNewProducts()
+
+        internal static List<ProductViewModel> GetListProductRelative(int idTrademark)
         {
-            IEnumerable<SANPHAM> ListNewProducts = null;
-            BANDONGHOEntities db = new BANDONGHOEntities();
-            ListNewProducts = from sp in db.SANPHAMs
-                              orderby sp.MASP descending
-                              select sp;
-            return ListNewProducts;
+            List<ProductViewModel> result = new List<ProductViewModel>();
+            // Lấy danh sách sản phẩm
+            List<SANPHAM> ListProducts = new List<SANPHAM>();
+            using (var db = new BANDONGHOEntities())
+            {
+                ListProducts = (from sp in db.SANPHAMs
+                                  where sp.MATH == idTrademark
+                                  orderby sp.MASP descending
+                                  select sp).ToList();
+            }
+            foreach(SANPHAM sp in ListProducts)
+            {
+                int Promotion = PromotionService.GetPromotion(sp.MASP);
+                ProductViewModel productViewModel = new ProductViewModel { Product = sp, Promotion = Promotion };
+                result.Add(productViewModel);
+            }
+            return result;
         }
+
+        public static List<ProductViewModel> GetListNewProducts()
+        {
+            List<ProductViewModel> result = new List<ProductViewModel>();
+            // Lấy danh sách sản phẩm
+            List<SANPHAM> ListNewProducts = null;
+            using (var db = new BANDONGHOEntities())
+            {
+                ListNewProducts =( from sp in db.SANPHAMs
+                                  orderby sp.MASP descending
+                                  select sp).ToList();
+            }
+
+            // Lấy promotion của sản phẩm
+            foreach (SANPHAM sp in ListNewProducts)
+            {
+                int Promotion = PromotionService.GetPromotion(sp.MASP);
+                ProductViewModel productViewModel = new ProductViewModel { Product = sp, Promotion = Promotion };
+                result.Add(productViewModel);
+            }
+
+            return result;
+        }
+
+        public static SANPHAM Find(int id)
+        {
+
+            SANPHAM result = null;
+            using (var db = new BANDONGHOEntities())
+            {
+                result = db.SANPHAMs.Find(id);
+            }
+            return result;
+                
+        }
+
+
     }
 }
