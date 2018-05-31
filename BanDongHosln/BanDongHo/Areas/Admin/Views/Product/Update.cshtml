@@ -4,10 +4,13 @@
 }
 
 <div id="page-wrapper">
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Chỉnh sửa thông tin sản phẩm</h1>
-            <p style="color:green">@ViewBag.message</p>
+    <div class="row page-header">
+        <div class="col-md-8">
+            <h1>Chỉnh sửa thông tin sản phẩm</h1>
+
+        </div>
+        <div class="col-md-4">
+            <p style="color:green; margin-bottom: 10px;margin-top:40px">@ViewBag.message</p>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -75,7 +78,7 @@
                         <div class="col-md-4">
                             <label class="control-label">Hình lớn</label>
                             @Html.ValidationMessageFor(model => model.HINHLON, "", new { @class = "text-danger", @style = "color: red" })
-                            <input type="text" class="form-control form-group" id="TENHINHLON" name="HINHLON" accept="image/*" value="@Model.HINHLON" readonly />
+                            <input type="text" class="form-control form-group" id="TENHINHLON" name="HINHLON" value="@Model.HINHLON" readonly />
                             <input type="file" class="form-control" id="HINHLON" accept="image/*" />
                         </div>
                         <div class="col-md-8">
@@ -161,30 +164,25 @@
     }
 
     $("#form-update").submit(function () {
-        var filename = getFileName($('#TENHINHLON').val());
-        var extendFile = filename.split('.')[0];
        
         if ($('#HINHLON').val().length > 0) {
-            Image(filename);
+            Image($('#TENHINHLON').val());
         }
         if ($('#HINHNHO1').val().length > 0) {
-            Photo(extendFile, "1.jpg", "HINHNHO1");
+            Photo($('#HINHNHO').val(), "1.jpg", "HINHNHO1");
         }
-        if ($('#HINHNHO1').val().length > 0) {
-            Photo(extendFile, "2.jpg", "HINHNHO2");
+        if ($('#HINHNHO2').val().length > 0) {
+            Photo($('#HINHNHO').val(), "2.jpg", "HINHNHO2");
         }
-        if ($('#HINHNHO1').val().length > 0) {
-            Photo(extendFile, "3.jpg", "HINHNHO3");
+        if ($('#HINHNHO3').val().length > 0) {
+            Photo($('#HINHNHO').val(), "3.jpg", "HINHNHO3");
         }
        
     });
 
     /// preview image with onchange
     $("#HINHLON").change(function () {
-        var filename = getFileName($('#HINHLON').val());
-        var extendFile = filename.split('.')[1];
-        var hinh = tenhinh() + "." + extendFile;
-        document.getElementById("TENHINHLON").value = hinh;
+       
         readURL(this, 'HINH1');
     });
     $("#HINHNHO1").change(function () {
@@ -218,7 +216,6 @@
             reader.onload = function (e) {            
                 $('#' + id).attr('src', e.target.result);
             }
-
             reader.readAsDataURL(input.files[0]);
         }
     };
@@ -256,7 +253,7 @@
                 if (data.result == true) {
                     alert("upload image success");
                 } else {
-                    alert("upload image fail ccc");
+                    alert("upload image hinh lon fail");
                 }
 
             },
@@ -275,17 +272,21 @@
         }
         $.ajax({
             type: "POST",
-            url: '/Admin/Product/Photo?hinhlon=' + hinhlon + '&hinhnho=' + hinhnho,
+            url: '/Admin/Product/PhotoUpdate?hinhlon=' + hinhlon + '&hinhnho=' + hinhnho,
             data: formData,
             dataType: 'json',
             contentType: false,
             processData: false,
             success: function (data) {
-
+                if (data.result == true) {
+                    alert("upload image success");
+                } else {
+                    alert("upload image hinh nho fail");
+                }
 
             },
             error: function () {
-
+                alert("upload image fail");
             }
         });
     }

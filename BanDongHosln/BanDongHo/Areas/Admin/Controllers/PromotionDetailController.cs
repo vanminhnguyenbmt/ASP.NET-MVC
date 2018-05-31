@@ -46,7 +46,7 @@ namespace BanDongHo.Areas.Admin.Controllers
 
                 if (promotionDetailService.addPromotionDetail(chitietkm))
                 {
-                    ViewBag.message = "Thêm mới chi tiết khuyến mãi thành công";
+                    ViewBag.message = "Thêm mới chi tiết khuyến mãi thành công";                 
                 }
             }
             ViewBag.KHUYENMAIx = promotionDetailService.getALLPromotion();

@@ -47,9 +47,9 @@ namespace BanDongHo.Areas.Admin.Controllers
                 if (productCategoryService.addProductCategory(loaisp))
                 {
                     ViewBag.message = "Thêm mới loại sản phẩm thành công";
-                    ProductCategoryViewModel productCategoryViewModel = new ProductCategoryViewModel();
-                    productCategoryViewModel.MALOAISP = newMALOAISP(productCategoryService.getLastRecord());
-                    return RedirectToAction("Create", "ProductCategory", productCategoryViewModel);
+                    lsp = new ProductCategoryViewModel();
+                    lsp.MALOAISP = newMALOAISP(productCategoryService.getLastRecord());
+                    return View(lsp);
                 }
                 else
                 {

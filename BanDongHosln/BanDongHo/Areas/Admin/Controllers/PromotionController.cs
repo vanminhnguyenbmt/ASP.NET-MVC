@@ -47,9 +47,9 @@ namespace BanDongHo.Areas.Admin.Controllers
                 if (promotionService.addPromotion(khuyenmai))
                 {
                     ViewBag.message = "Thêm mới khuyến mãi thành công";
-                    PromotionViewModel promotionViewModel = new PromotionViewModel();
-                    promotionViewModel.MAKM = newMAKM(promotionService.getLastRecord());
-                    return RedirectToAction("Create", "Promotion", promotionViewModel);
+                    km = new PromotionViewModel();
+                    km.MAKM = newMAKM(promotionService.getLastRecord());
+                    return View(km);
                 }
                 else
                 {
@@ -84,8 +84,13 @@ namespace BanDongHo.Areas.Admin.Controllers
                 khuyenmai.NGAYKT = km.NGAYKT;
 
                 if (promotionService.updatePromotion(khuyenmai))
-                {                  
+                {
+                    ViewBag.message = "Sửa khuyến mãi thành công";
                     return RedirectToAction("Index","Promotion", promotionService.getAllPromotion());
+                }
+                else
+                {
+                    ViewBag.message = "Sửa khuyến mãi thất bại";
                 }
               
             }

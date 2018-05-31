@@ -5,12 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security;
+using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace BanDongHo.Areas.Admin.Controllers
 {
+   
     public class ProductController : Controller
     {
 
@@ -93,14 +96,15 @@ namespace BanDongHo.Areas.Admin.Controllers
                 if (productService.addProduct(sp))
                 {
                     ViewBag.message = "Thêm mới sản phẩm thành công";
+                    sanpham = new ProductViewModel();
+                    return View(sanpham);
                 }
                 return View(sanpham);
 
             }
-            else
-            {
-                return View(sanpham);
-            }
+            
+            return View(sanpham);
+           
         }
 
         [HttpGet]
@@ -194,13 +198,38 @@ namespace BanDongHo.Areas.Admin.Controllers
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 var file = Request.Files[i];
+                var FolderUploadDir = Server.MapPath("~/images/HINHNHO/" + hinhlon);
+           
+                if (file != null)
+                {
+                    if (!Directory.Exists(FolderUploadDir))
+                    {
+                        Directory.CreateDirectory(FolderUploadDir);
+                    }
+                    var path = Path.Combine(Server.MapPath("~/images/HINHNHO/" + hinhlon + "/"), hinhnho);
+                    
+                    file.SaveAs(path);
+                    return Json(new { result = true });
+                }
+                else
+                {
+                    return Json(new { result = false });
+                }
+
+            }
+            return Json(new { result = true });
+        }
+
+        [HttpPost]
+        public JsonResult PhotoUpdate(string hinhlon, string hinhnho)
+        {
+            for (int i = 0; i < Request.Files.Count; i++)
+            {
+                var file = Request.Files[i];
 
                 if (file != null)
-                {                  
-                    if (!Directory.Exists("~/images/HINHNHO/" + hinhlon))
-                    {
-                        Directory.CreateDirectory("~/images/HINHNHO/" + hinhlon);
-                    }
+                {
+                                
                     var path = Path.Combine(Server.MapPath("~/images/HINHNHO/" + hinhlon + "/"), hinhnho);
                     file.SaveAs(path);
                     return Json(new { result = true });
@@ -213,6 +242,7 @@ namespace BanDongHo.Areas.Admin.Controllers
             }
             return Json(new { result = true });
         }
+    
 
     }
 }
