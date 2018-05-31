@@ -100,6 +100,7 @@ C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin
 C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.WebPages.xml
 C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\obj\Debug\BanDongHo.Domain.csprojResolveAssemblyReference.cache
 C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\obj\Debug\BanDongHo.Domain.dll
 C:\Users\ochutgio\Documents\GitHub\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\obj\Debug\BanDongHo.Domain.pdb
 E:\User\HocTap\HK2-2017-2018\Net\Source\git2\ASP.NET-MVC\BanDongHosln\BanDongHo.Domain\bin\Debug\BanDongHo.Domain.dll.config

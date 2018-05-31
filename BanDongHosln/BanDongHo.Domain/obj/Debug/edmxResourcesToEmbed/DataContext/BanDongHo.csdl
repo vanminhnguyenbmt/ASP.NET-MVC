@@ -11,6 +11,19 @@
     <NavigationProperty Name="DONHANG" Relationship="Self.FK_CTDH_DH" FromRole="CHITIETDONHANG" ToRole="DONHANG" />
     <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CTDH_SP" FromRole="CHITIETDONHANG" ToRole="SANPHAM" />
   </EntityType>
+
+  <EntityType Name="CHITIETKM">
+    <Key>
+      <PropertyRef Name="MAKM" />
+      <PropertyRef Name="MASP" />
+    </Key>
+    <Property Name="MAKM" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MASP" Type="Int32" Nullable="false" />
+    <Property Name="PHANTRAMKM" Type="Int32" />
+    <NavigationProperty Name="KHUYENMAI" Relationship="Self.FK_CTKM_KM" FromRole="CHITIETKM" ToRole="KHUYENMAI" />
+    <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CTKM_SP" FromRole="CHITIETKM" ToRole="SANPHAM" />
+  </EntityType>
+
   <EntityType Name="DONHANG">
     <Key>
       <PropertyRef Name="MADH" />
@@ -49,7 +62,9 @@
     <Property Name="TENKM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="NGAYBD" Type="DateTime" Precision="3" />
     <Property Name="NGAYKT" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="CHITIETKMs" Relationship="BANDONGHOModel.FK_CTKM_KM" FromRole="KHUYENMAI" ToRole="CHITIETKM" />
+
+    <NavigationProperty Name="CHITIETKMs" Relationship="Self.FK_CTKM_KM" FromRole="KHUYENMAI" ToRole="CHITIETKM" />
+
   </EntityType>
   <EntityType Name="LOAISANPHAM">
     <Key>
@@ -132,6 +147,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+
+  <Association Name="FK_CTKM_KM">
+    <End Role="KHUYENMAI" Type="Self.KHUYENMAI" Multiplicity="1" />
+    <End Role="CHITIETKM" Type="Self.CHITIETKM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHUYENMAI">
+        <PropertyRef Name="MAKM" />
+      </Principal>
+      <Dependent Role="CHITIETKM">
+        <PropertyRef Name="MAKM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTKM_SP">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+    <End Role="CHITIETKM" Type="Self.CHITIETKM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MASP" />
+      </Principal>
+      <Dependent Role="CHITIETKM">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+
   <Association Name="FK_DH_KH">
     <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
     <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />

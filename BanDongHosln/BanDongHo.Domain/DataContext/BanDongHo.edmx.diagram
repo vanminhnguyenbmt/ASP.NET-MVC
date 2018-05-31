@@ -4,16 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3306459c3ffc4ca0b98d54e302b1f97a" Name="Diagram1">
-        <EntityTypeShape EntityType="BANDONGHOModel.CHITIETDONHANG" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="BANDONGHOModel.DONHANG" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BANDONGHOModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BANDONGHOModel.KHUYENMAI" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BANDONGHOModel.LOAISANPHAM" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BANDONGHOModel.LOAITK" Width="1.5" PointX="1.5" PointY="20.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BANDONGHOModel.SANPHAM" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BANDONGHOModel.TAIKHOAN" Width="1.5" PointX="1.5" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BANDONGHOModel.THUONGHIEU" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+
+      <Diagram DiagramId="e1cb176e9e1f4c4b8d6013208025c5b9" Name="Diagram1">
+        <EntityTypeShape EntityType="BANDONGHOModel.CHITIETDONHANG" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BANDONGHOModel.CHITIETKM" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BANDONGHOModel.DONHANG" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BANDONGHOModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BANDONGHOModel.KHUYENMAI" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BANDONGHOModel.LOAISANPHAM" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="BANDONGHOModel.LOAITK" Width="1.5" PointX="1.5" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="BANDONGHOModel.SANPHAM" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BANDONGHOModel.TAIKHOAN" Width="1.5" PointX="1.5" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BANDONGHOModel.THUONGHIEU" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+
         <AssociationConnector Association="BANDONGHOModel.FK_CTDH_DH" ManuallyRouted="false" />
         <AssociationConnector Association="BANDONGHOModel.FK_CTDH_SP" ManuallyRouted="false" />
         <AssociationConnector Association="BANDONGHOModel.FK_DH_KH" ManuallyRouted="false" />

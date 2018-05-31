@@ -8,9 +8,9 @@ namespace BanDongHo.Areas.Admin.Models
 {
     public class ProductCategoryViewModel
     {
-        [Required(ErrorMessage = "")]
+        [Required]
         public string MALOAISP { get; set; }
-        [Required(ErrorMessage ="")]
+        [Required(ErrorMessage ="Vui lòng nhập tên loại sản phẩm")]
         public string TENLOAISP { get; set; }
     }
 }

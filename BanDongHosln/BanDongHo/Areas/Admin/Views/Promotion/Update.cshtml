@@ -1,0 +1,82 @@
+﻿
+@model BanDongHo.Areas.Admin.Models.PromotionViewModel
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div id="page-wrapper">
+    <div class="row page-header">
+        <div class="col-md-8">
+            <h1>Chỉnh sửa khuyến mãi khuyến mãi</h1>
+
+        </div>
+        <div class="col-md-4">
+            <p style="color:green; margin-bottom: 10px;margin-top:40px">@ViewBag.message</p>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form method="post" action="~/Admin/Promotion/Update">
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label">Mã khuyến mãi</label>
+                            @Html.ValidationMessageFor(model => model.MAKM, "", new { @class = "text-danger", @style = "color: red" })
+                            <input type="text" class="form-control" id="MAKM" name="MAKM" placeholder="" value="@Model.MAKM" readonly />
+                        </div>
+
+                        <div class="col-md-8">
+                            @Html.ValidationMessageFor(model => model.TENKM, "", new { @class = "text-danger", @style = "color: red" })
+                            <label class="control-label">Tên khuyến mãi</label>
+                            <input type="text" class="form-control" id="TENKM" name="TENKM" placeholder="" required value="@Model.TENKM" />
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <label class="control-label">Ngày bắt đầu</label>
+                                @Html.ValidationMessageFor(model => model.NGAYBD, "", new { @class = "text-danger", @style = "color: red" })
+                                <input type="datetime-local" class="form-control" id="NGAYBD" name="NGAYBD" placeholder="" value='@Model.NGAYBD.ToString("yyyy-MM-ddTHH:mm")' />
+                            </div>
+
+                            <div class="col-md-8">
+                                @Html.ValidationMessageFor(model => model.NGAYKT, "", new { @class = "text-danger", @style = "color: red" })
+                                <label class="control-label">Ngày kết thúc</label>
+                                <input type="datetime-local" class="form-control" id="NGAYKT" name="NGAYKT" placeholder="" required value="@Model.NGAYKT.ToString("yyyy-MM-ddTHH:mm")" />
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <button class="btn btn-success" id="btn-ok-create" type="submit"> Ok </button>
+                        <button class="btn btn-danger" id="btn-cancel-create"> Cancel </button>
+                    </div>
+
+            </form>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+</div>
+
+
+<!-- javascript -->
+<script>
+        function validateName() {
+            var name = $('#MALOAISP').val();
+
+            if (isEmpty(name)) {
+                $('#MALOAISP').css("border-color", "red");
+                return false;
+            } else {
+                $('#MALOAISP').css("border-color", "green");
+            }
+            return true;
+        }
+</script>

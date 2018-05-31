@@ -1,8 +1,137 @@
-﻿
+﻿@model IEnumerable<BanDongHo.Domain.DataContext.LOAISANPHAM>
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";  
 }
 
-<h2>Index</h2>
+<link href="~/Areas/Admin/Content/css/style.css" rel="stylesheet" type="text/css" />
+
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Danh sách loại sản phẩm</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="padding: 0px 0px 10px 0px">
+                <a class="btn btn-success" title="Thêm sản phẩm" href="~/Admin/ProductCategory/Create" target="_blank">
+                    <span class="fa fa-plus" /> Thêm
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12" id="product-list">
+            <!-- /.table -->
+            <table style="width:100%" class="table table-striped table-bordered table-hover" id="table-list">
+                <thead class="th-bg">
+                    <tr>
+                        <th>Mã loại sản phẩm</th>
+                        <th>Tên loại sản phẩm</th>                     
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody class="tr-bg">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MALOAISP</td>
+                            <td>@item.TENLOAISP</td>                        
+                            <td>                       
+                                <a class="btn btn-default" title="Edit" href="~/Admin/ProductCategory/Update?malsp=@item.MALOAISP"> <span class="glyphicon glyphicon-edit" /></a>
+                                <button class="btn btn-danger" onclick="DeletePopup('Xóa loại sản phẩm','@item.MALOAISP')" title="Delete"> <span class="glyphicon glyphicon-remove" /></button>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+
+
+</div>
+
+
+<!-- Hiển thị popup delete -->
+<div id="myDeletePopup" class="popup">
+    <div class="popup-content">
+        <div class="popup-header">
+            <span id="span-close-delete" class="close">&times;</span>
+            <h2 id="hd-popup-content-delete"></h2>
+        </div>
+        <p id="bd-popup-content-delete" style="padding:20px;text-align:center;">
+            ...
+        </p>
+        <div style="text-align:center;padding-bottom:20px;">
+            <button class="btn btn-success" id="btn-ok-delete"> Ok </button>
+            <button class="btn btn-danger" id="btn-cancel-delete"> Cancel </button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function DeletePopup(header, malsp) {
+        // Get the popup
+        var popup = document.getElementById('myDeletePopup');
+        // Get the <span> element that closes the popup
+        var span = document.getElementById("span-close-delete");
+
+        var btn = document.getElementById('btn-cancel-delete');
+        // Get the <div> header
+        var a = document.getElementById('hd-popup-content-delete');
+        // Get the <span> content
+        var b = document.getElementById('bd-popup-content-delete');
+
+        a.innerText = header;
+        b.innerText = 'Bạn có muốn xóa loại sản phẩm này?';
+
+        popup.style.display = "block";
+        // When the user clicks on <span> (x), close the popup
+        span.onclick = function () {
+            popup.style.display = "none";
+        }
+        btn.onclick = function () {
+            popup.style.display = "none";
+        }
+
+        function handler() {
+            $.ajax(
+            {
+                type: 'POST',
+                url: '/Admin/ProductCategory/Delete?malsp=' + malsp,
+                dataType: 'json',
+                success: function (data) {                  
+                    if (data.result == true) {
+                        alert("delete successful");
+                        window.location.reload();
+                    } else {
+                        alert("delete fail");
+                    }
+
+                },
+                error: function () {
+                  
+                }
+            });
+            popup.style.display = "none";
+            $('#btn-ok-delete').unbind('click', handler);
+        }
+
+        $('#btn-ok-delete').bind('click', handler);
+    }
+
+</script>
+
 

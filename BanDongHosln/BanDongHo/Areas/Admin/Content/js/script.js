@@ -62,7 +62,7 @@ function DeletePopup(header, masp) {
         $.ajax(
         {
             type: 'POST',
-            url: '/Admin/Product/deleteProduct?masp=' + masp,
+            url: '/Admin/Product/Delete?masp=' + masp,
             dataType: 'json',      
             success: function (data) {
                 if (data.result == true) {
@@ -83,7 +83,7 @@ function DeletePopup(header, masp) {
     $('#btn-ok-delete').bind('click', handler);
 }
 
-// javascript function for edit infor for a product
+/* javascript function for edit infor for a product
 function UpdatePopup(element, header, masp) {
     // Get the popup
     var popup = document.getElementById('myPopup');
@@ -158,9 +158,9 @@ function UpdatePopup(element, header, masp) {
         $('#btn-ok-update').unbind('click', handler);
     }
 
-}
+}*/
 
-// javascript function for add a new product
+/* //javascript function for add a new product
 function CreatePopup(header) {
     // Get the popup
     var popup = document.getElementById('myPopup');
@@ -184,7 +184,10 @@ function CreatePopup(header) {
             $('#btn-cancel-create').click(function () {
                 popup.style.display = "none";
             });
-            $('#btn-ok-create').bind('click', Handler);
+            $('#formCreateProduct').submit(function (e) {
+                Handler(e);
+            });
+            //$('#btn-ok-create').bind('click', Handler);
 
         },
         error: function () {
@@ -196,7 +199,7 @@ function CreatePopup(header) {
         popup.style.display = "none";
     }
 
-    function Handler() {
+    function Handler(e) {
     
         var sanpham = {
             TENSP: $('#TENSP').val(),
@@ -215,28 +218,29 @@ function CreatePopup(header) {
             type: 'POST',
             url: '/Admin/Product/addProduct',
             data: sanpham,
-            dataType: 'json',
+            //dataType: 'json',
             cache: false,
             processData: true,
             success: function (data) {
-                if (data.result == true) {
-                    alert("create successful");
-                    getListProduct(1);
-                } else {
-                    alert("create not successful!");
-                }
+                //if (data.result == true) {
+                //    alert("create successful");
+                //    getListProduct(1);
+                //} else {
+                //    alert("create not successful!");
+                //}
             },
             error: function () {
-                alert("create fail");
+                //alert("create fail");
             }
         });
-        
-        popup.style.display = "none";
-        $('#btn-ok-create').unbind('click', Handler);
+        e.preventDefault();
+       // popup.style.display = "none";
+        //$('#formCreateProduct').unbind('submit', Handler(event));
+        //$('#btn-ok-create').unbind('click', Handler);
     }
     
     
-}
+}*/
 
 function getFileName(filePath) {
     return filePath.substr(filePath.lastIndexOf('\\') + 1);

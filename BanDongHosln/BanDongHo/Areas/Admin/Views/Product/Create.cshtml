@@ -1,84 +1,212 @@
-﻿@model BanDongHo.Areas.Admin.Models.ProductViewModel;
+﻿@model BanDongHo.Areas.Admin.Models.ProductViewModel
 
 @{
-    Layout = null;
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
 }
-<div class="form-group">
-    <label class="control-label">Tên sản phẩm</label>
-    <input type="text" class="form-control" id="TENSP" onblur="validateName()" placeholder="" />
-</div>
-<div class="form-group">
-    <label class="control-label">Số lượng</label>
-    <input type="number" class="form-control" id="SOLUONG" placeholder="" required value="1"/>
-</div>
-<div class="form-group">
-    <label class="control-label">Mô tả</label>
-    <textarea class="form-control" id="MOTA" placeholder="" />
-</div>
-<div class="form-group">
-    <label class="control-label">Thương hiệu</label>
-    <select id="MATH" class="form-control">
-        @foreach (var item in ViewBag.ThuongHieu)
-        {
-            <option value="@item.MATH"> @item.TENTH </option>
-        }
-    </select>
-</div>
-<div class="form-group">
-    <label class="control-label">Đơn giá(VNĐ)</label>
-    <input type="number" step="100000" class="form-control" id="DONGIA" value="1000000"/>
-</div>
-<div class="form-group">
-    <label class="control-label">Hình lớn</label>
-    <input type="file" class="form-control" id="HINHLON" accept="image/*"/>
-</div>
-<div class="form-group">
-    <label class="control-label">Hình nhỏ</label>
-    <input type="text" class="form-control" id="HINHNHO" />
-</div>
-<div class="form-group">
-    <label class="control-label">Loại sản phẩm</label>
-    <select id="MALOAISP" class="form-control">
-        @foreach (var item in ViewBag.LoaiSanPham)
-        {
-            <option value="@item.MALOAISP"> @item.TENLOAISP </option>
-        }
 
-    </select>
-</div>
+<div id="page-wrapper">
+    <div class="row page-header">
+        <div class="col-md-8">
+            <h1>Thêm mới sản phẩm</h1>
+            
+        </div>
+        <div class="col-md-4">          
+            <p style="color:green; margin-bottom: 10px;margin-top:40px">@ViewBag.message</p>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+   
+    <div class="row">
+        <div class="col-lg-12">
+            <form method="post" action="~/Admin/Product/Create" id="form-create">
 
-<div class="form-group">
-    <label class="control-label">Đánh giá</label>
-    <textarea class="form-control" id="DANHGIA" placeholder="" />
-</div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label class="control-label">Tên sản phẩm</label>
+                            @Html.ValidationMessageFor(model => model.TENSP, "", new { @class = "text-danger", @style = "color: red" })
+                            <input type="text" class="form-control" id="TENSP" name="TENSP" onblur="validateName()" placeholder="" value="@Model.TENSP" required />
+                        </div>
 
+                        <div class="col-md-4">
+                            @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger", @style = "color: red" })
+                            <label class="control-label">Số lượng</label>
+                            <input type="number" class="form-control" id="SOLUONG" name="SOLUONG" placeholder="" required value="@Model.SOLUONG" min="1" />
+                        </div>
+                    </div>                   
+                    
+                </div>
 
+                <div class="form-group">                 
+                    <label class="control-label">Mô tả</label>
+                    @Html.ValidationMessageFor(model => model.MOTA, "", new { @class = "text-danger", @style = "color: red" })
+                    <textarea class="form-control" id="MOTA" name="MOTA" placeholder="" value="@Model.MOTA" required></textarea>
+                </div>
+                <div class="form-group">              
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label">Thương hiệu</label>
+                                <select id="MATH" name="MATH" class="form-control">
+                                    @foreach (var item in ViewBag.ThuongHieu)
+                                    {
+                                        <option value="@item.MATH"> @item.TENTH </option>
+                                    }
+                                </select>
+                            </div>
 
+                            <div class="col-md-4">
+                                <label class="control-label">Loại sản phẩm</label>
+                                <select id="MALOAISP" name="MALOAISP" class="form-control">
+                                    @foreach (var item in ViewBag.LoaiSanPham)
+                                    {
+                                        <option value="@item.MALOAISP"> @item.TENLOAISP </option>
+                                    }
 
-<div>
-    <button class="btn btn-success" id="btn-ok-create"> Ok </button>
-    <button class="btn btn-danger" id="btn-cancel-create"> Cancel </button>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label">Đơn giá(VNĐ)</label>
+                                <input type="number" step="100000" class="form-control" id="DONGIA" name="DONGIA" required value="@Model.DONGIA" min="100000"/>
+                            </div>
+                        </div>                           
+                </div>
+              
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label">Hình lớn</label>
+                            @Html.ValidationMessageFor(model => model.HINHLON, "", new { @class = "text-danger", @style = "color: red" })
+                            <input type="text" class="form-control form-group" id="TENHINHLON" name="HINHLON" accept="image/*" value="@Model.HINHLON" readonly/>
+                            <input type="file" class="form-control" id="HINHLON" accept="image/*" required />
+                        </div>
+                        <div class="col-md-8">
+                            <img id="HINH1" src="" width="180" height="120" style="display:none;"/>
+                        </div>
+                    </div>
+                             
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label">Hình nhỏ 1</label>
+                            <input type="file" class="form-control form-group" id="HINHNHO1" name="HINHNHO1" accept="image/*" required />
+                            <div>
+                                <img id="HINH2" src="" width="180" height="120" style="display:none;"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="control-label">Hình nhỏ 2</label>
+                            <input type="file" class="form-control form-group" id="HINHNHO2" name="HINHNHO2" accept="image/*" required/>
+                            <div>
+                                <img id="HINH3" src="" width="180" height="120" style="display:none;"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="control-label">Hình nhỏ 3</label>
+                            <input type="file" class="form-control form-group" id="HINHNHO3" name="HINHNHO3" accept="image/*" required/>
+                            <div>
+                                <img id="HINH4" src="" width="180" height="120" style="display:none;"/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>           
+
+                <div class="form-group">
+                    <label class="control-label">Đánh giá</label>
+                    @Html.ValidationMessageFor(model => model.DANHGIA, "", new { @class = "text-danger", @style = "color: red" })
+                    <textarea class="form-control" id="DANHGIA" name="DANHGIA" placeholder="" value="@Model.DANHGIA" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-success" id="btn-ok-create" type="submit"> Ok </button>
+                    <button class="btn btn-danger" id="btn-cancel-create"> Cancel </button>
+                </div>
+            </form>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
 </div>
 
 <script>
 
-    function validateName() {
-       var name = $('#TENSP').val();
-
-        if (isEmpty(name)) {
-            $('#TENSP').css("border-color", "red");
-            return false;
-        } else {
-            $('#TENSP').css("border-color", "green");
-        }
-        return true;
-    }
-
-    $("#HINHLON").change(function () {
-        //productImage();
+    $("#form-create").submit(function () {
+        var filename = getFileName($('#HINHLON').val());
+        var extendFile = filename.split('.')[1];
+        var tam = tenhinh();
+        var hinh = tam + "." + extendFile;
+        document.getElementById("TENHINHLON").value = hinh;
+        Image(hinh);
+        Photo(tam, "1.jpg", "HINHNHO1");
+        Photo(tam, "2.jpg", "HINHNHO2");
+        Photo(tam, "3.jpg", "HINHNHO3");
     });
 
-    function productImage() {
+    /// preview image with onchange
+    $("#HINHLON").change(function () {
+        var filename = getFileName($('#HINHLON').val());
+        var extendFile = filename.split('.')[1];
+        var hinh = tenhinh() + "." + extendFile;
+        document.getElementById("TENHINHLON").value = hinh;
+        readURL(this, 'HINH1');
+    });
+    $("#HINHNHO1").change(function () {
+        readURL(this, 'HINH2');
+    });
+    $("#HINHNHO2").change(function () {
+        readURL(this, 'HINH3');
+    });
+    $("#HINHNHO3").change(function () {
+        readURL(this, 'HINH4');
+    });
+
+
+    function getFileName(filePath) {
+        return filePath.substr(filePath.lastIndexOf('\\') + 1);
+    };
+
+    function addZero(x, n) {
+        while (x.toString().length < n) {
+            x = "0" + x;
+        }
+        return x;
+    };
+
+    /// preview image
+    function readURL(input, id) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#' + id).css('display', 'block');              
+                $('#' + id).attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+
+    function tenhinh() {
+        var d = new Date();
+
+        var year = d.getFullYear();
+        var mont = addZero(d.getMonth() + 1, 2);
+        var date = addZero(d.getDate(), 2);
+        var h = addZero(d.getHours(), 2);
+        var m = addZero(d.getMinutes(), 2);
+        var s = addZero(d.getSeconds(), 2);
+        var ms = addZero(d.getMilliseconds(), 3);
+        var res = year + mont + date + h + m + s + ms;
+        
+        return res;
+    };
+
+    function Image(tenhinh) {
         var formData = new FormData();
         var totalFiles = document.getElementById("HINHLON").files.length;
         for (var i = 0; i < totalFiles; i++) {
@@ -87,14 +215,17 @@
         }
         $.ajax({
             type: "POST",
-            url: '/Admin/Product/Photo',
+            url: '/Admin/Product/PhotoCreate?tenhinh=' + tenhinh,
             data: formData,
             dataType: 'json',
             contentType: false,
             processData: false,
-            success: function () {
-                
-                alert("upload image success");
+            success: function (data) {
+                if (data.result == true) {
+                    alert("upload image success");
+                } else {
+                    alert("upload image hinh lon fail ");
+                }
 
             },
             error: function () {
@@ -102,7 +233,36 @@
             }
         });
     }
-  
-</script>
+
+        function Photo(hinhlon, hinhnho, id) {
+            var formData = new FormData();
+            var totalFiles = document.getElementById(id).files.length;
+            for (var i = 0; i < totalFiles; i++) {
+                var file = document.getElementById(id).files[i];
+                formData.append(id, file);
+            }
+            $.ajax({
+                type: "POST",
+                url: '/Admin/Product/Photo?hinhlon=' + hinhlon + '&hinhnho=' + hinhnho,
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (data) {
+
+                    if (data.result == true) {
+                        alert("upload image success");
+                    } else {
+                        alert("upload image hinh nho fail");
+                    }
+                },
+                error: function () {
+                    alert("upload image fail");
+                }
+            });
+        }
+    
+
+    </script>
 
 

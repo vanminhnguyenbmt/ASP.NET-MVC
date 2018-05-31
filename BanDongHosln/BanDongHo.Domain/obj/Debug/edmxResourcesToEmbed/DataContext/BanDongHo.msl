@@ -10,6 +10,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+
+    <EntitySetMapping Name="CHITIETKMs">
+      <EntityTypeMapping TypeName="BANDONGHOModel.CHITIETKM">
+        <MappingFragment StoreEntitySet="CHITIETKM">
+          <ScalarProperty Name="MAKM" ColumnName="MAKM" />
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="PHANTRAMKM" ColumnName="PHANTRAMKM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+
     <EntitySetMapping Name="DONHANGs">
       <EntityTypeMapping TypeName="BANDONGHOModel.DONHANG">
         <MappingFragment StoreEntitySet="DONHANG">
@@ -45,6 +56,8 @@
           <ScalarProperty Name="NGAYBD" ColumnName="NGAYBD" />
           <ScalarProperty Name="MAKM" ColumnName="MAKM" />
           <ScalarProperty Name="TENKM" ColumnName="TENKM" />
+          <ScalarProperty Name="NGAYBD" ColumnName="NGAYBD" />
+          <ScalarProperty Name="NGAYKT" ColumnName="NGAYKT" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
