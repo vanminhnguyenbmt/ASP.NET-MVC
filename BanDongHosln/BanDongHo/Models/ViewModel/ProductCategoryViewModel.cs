@@ -9,6 +9,8 @@ namespace BanDongHo.Models.ViewModel
     public class ProductCategoryViewModel
     {
         public List<SANPHAM> ListProduct{ get; set;}
+
+        public List<ProductViewModel> ListProductCategory { get; set; }
         public int TotalPage { get; set; }
         public int Index { get; set; }
         public int Next

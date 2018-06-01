@@ -21,21 +21,21 @@ namespace BanDongHo.Controllers
             //lấy ra danh sách sản phẩm theo loại
             if(cateKey=="tat-ca")
             {
-                prctViewModel.ListProduct = ProductCategoryService.LoadProductAll().ToList();
+                prctViewModel.ListProductCategory = ProductCategoryService.LoadProductAll();
             }
             else
             {
                 if(cateKey == "dong-ho-nam")
                 {
-                    prctViewModel.ListProduct = ProductCategoryService.LoadProductMen().ToList();
+                    prctViewModel.ListProductCategory = ProductCategoryService.LoadProductMen();
                 }
                 else
                 {
-                    prctViewModel.ListProduct = ProductCategoryService.LoadProductWomen().ToList();
+                    prctViewModel.ListProductCategory = ProductCategoryService.LoadProductWomen();
                 }
             }
 
-            int totalRecord = prctViewModel.ListProduct.Count;
+            int totalRecord = prctViewModel.ListProductCategory.Count;
             prctViewModel.CateKey = cateKey;
             prctViewModel.Index = page;
             prctViewModel.TotalPage= (int)(Math.Ceiling(((double)totalRecord / pageSize)));

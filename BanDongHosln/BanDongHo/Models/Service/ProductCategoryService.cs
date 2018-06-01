@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using BanDongHo.Domain.DataContext;
+using BanDongHo.Models.ViewModel;
 
 namespace BanDongHo.Models.Service
 {
@@ -78,28 +79,70 @@ namespace BanDongHo.Models.Service
         /// Service load tất cả sản phẩm
         /// </summary>
         /// <returns></returns>
-        public static IEnumerable<SANPHAM> LoadProductAll()
+        public static List<ProductViewModel> LoadProductAll()
         {
             BANDONGHOEntities db = new BANDONGHOEntities();
-            return db.SANPHAMs;
+            List<ProductViewModel> result = new List<ProductViewModel>();
+            IEnumerable<SANPHAM> LoadProductAll = new List<SANPHAM>();
+            LoadProductAll = (from sp in db.SANPHAMs
+                              orderby sp.MASP descending
+                              select sp);
+            // Lấy promotion của sản phẩm
+            foreach (SANPHAM sp in LoadProductAll)
+            {
+                int Promotion = PromotionService.GetPromotion(sp.MASP);
+                ProductViewModel productViewModel = new ProductViewModel { Product = sp, Promotion = Promotion };
+                result.Add(productViewModel);
+            }
+            return result;
         }
         /// <summary>
         /// Service load sản phẩm nam
         /// </summary>
         /// <returns></returns>
-        public static IEnumerable<SANPHAM> LoadProductMen()
+        public static List<ProductViewModel> LoadProductMen()
         {
             BANDONGHOEntities db = new BANDONGHOEntities();
-            return db.SANPHAMs.Where(n=>n.MALOAISP == "LP00001");
+            List<ProductViewModel> result = new List<ProductViewModel>();
+            IEnumerable<SANPHAM> LoadProductMen = new List<SANPHAM>();
+
+            LoadProductMen = (from sp in db.SANPHAMs
+                              where sp.MALOAISP == "LP00001"
+                              orderby sp.MASP descending
+                              select sp);
+
+            // Lấy promotion của sản phẩm
+            foreach (SANPHAM sp in LoadProductMen)
+            {
+                int Promotion = PromotionService.GetPromotion(sp.MASP);
+                ProductViewModel productViewModel = new ProductViewModel { Product = sp, Promotion = Promotion };
+                result.Add(productViewModel);
+            }
+            return result;
         }
         /// <summary>
         /// Service load sản phẩm nữ
         /// </summary>
         /// <returns></returns>
-        public static IEnumerable<SANPHAM> LoadProductWomen()
+        public static List<ProductViewModel> LoadProductWomen()
         {
             BANDONGHOEntities db = new BANDONGHOEntities();
-            return db.SANPHAMs.Where(n => n.MALOAISP == "LP00002");
+            List<ProductViewModel> result = new List<ProductViewModel>();
+            IEnumerable<SANPHAM> LoadProductWomen = new List<SANPHAM>();
+
+            LoadProductWomen = (from sp in db.SANPHAMs
+                              where sp.MALOAISP == "LP00002"
+                              orderby sp.MASP descending
+                              select sp);
+
+            // Lấy promotion của sản phẩm
+            foreach (SANPHAM sp in LoadProductWomen)
+            {
+                int Promotion = PromotionService.GetPromotion(sp.MASP);
+                ProductViewModel productViewModel = new ProductViewModel { Product = sp, Promotion = Promotion };
+                result.Add(productViewModel);
+            }
+            return result;
         }
     }
 }

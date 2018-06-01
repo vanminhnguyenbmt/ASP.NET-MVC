@@ -40,19 +40,19 @@
         <div class="prdt-top">
             <div class="col-md-12 prdt-left">
                 <div class="product-one">
-                    @foreach (var item in Model.ListProduct.Skip((Model.Index-1)* (int)(ViewData["pageSize"])).Take(4))
+                    @foreach (var item in Model.ListProductCategory.Skip((Model.Index-1)* (int)(ViewData["pageSize"])).Take(4))
                     {
-                        var source = "~/images/HINHLON/" + item.HINHLON;
+                        var source = "~/images/HINHLON/" + item.Product.HINHLON;
                     <div class="col-md-3 product-left p-left">
                         <div class="product-main simpleCart_shelfItem">
-                            <a href="~/san-pham/@Model.CateKey/@item.MASP" class="mask"><img class="img-responsive zoom-img" src="@Url.Content(source)" alt="" /></a>
+                            <a href="~/san-pham/@Model.CateKey/@item.Product.MASP" class="mask"><img class="img-responsive zoom-img" src="@Url.Content(source)" alt="" /></a>
                             <div class="product-bottom">
-                                <h3>@item.TENSP</h3>
+                                <h3>@item.Product.TENSP</h3>
                                 <p>Explore Now</p>
-                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", item.DONGIA) VNĐ</span></h4>
+                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", (item.Product.DONGIA * (100 - item.Promotion) / 100)) VNĐ</span></h4>
                             </div>
                             <div class="srch srch1">
-                                <span>-0%</span>
+                                <span>-@item.Promotion %</span>
                             </div>
                         </div>
                     </div>
@@ -60,19 +60,19 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="product-one">
-                    @foreach (var item in Model.ListProduct.Skip((Model.Index - 1) * (int)(ViewData["pageSize"]) + 4).Take(4))
+                    @foreach (var item in Model.ListProductCategory.Skip((Model.Index - 1) * (int)(ViewData["pageSize"]) + 4).Take(4))
                     {
-                        var source = "~/images/HINHLON/" + item.HINHLON;
+                        var source = "~/images/HINHLON/" + item.Product.HINHLON;
                     <div class="col-md-3 product-left p-left">
                         <div class="product-main simpleCart_shelfItem">
-                            <a href="~/san-pham/@Model.CateKey/@item.MASP" class="mask"><img class="img-responsive zoom-img" src="@Url.Content(source)" alt="" /></a>
+                            <a href="~/san-pham/@Model.CateKey/@item.Product.MASP" class="mask"><img class="img-responsive zoom-img" src="@Url.Content(source)" alt="" /></a>
                             <div class="product-bottom">
-                                <h3>@item.TENSP</h3>
+                                <h3>@item.Product.TENSP</h3>
                                 <p>Explore Now</p>
-                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", item.DONGIA) VNĐ</span></h4>
+                                <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", (item.Product.DONGIA * (100 - item.Promotion) / 100)) VNĐ</span></h4>
                             </div>
                             <div class="srch srch1">
-                                <span>-0%</span>
+                                <span>-@item.Promotion %</span>
                             </div>
                         </div>
                     </div>
