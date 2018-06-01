@@ -1,0 +1,33 @@
+﻿@using BanDongHo.Models.Models
+
+@{
+    var sessionCart = (Cart)Session["Cart"];
+}
+
+@if (sessionCart == null || sessionCart.Equals(""))
+{
+    <div class="cart box_1">
+        <a href="~/Cart">
+            <div class="total">
+                <span></span>
+            </div>
+            <img src="~/images/cart-1.png" alt="" />
+        </a>
+        <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+        <div class="clearfix"> </div>
+    </div>
+}
+else
+{
+    <div class="cart box_1">
+        <a href="~/Cart">
+            <div class="total">
+                <span>@String.Format("{0:0,0}", sessionCart.TotalMoney()) VNĐ</span>
+            </div>
+            <img src="~/images/cart-1.png" alt="" />
+        </a>
+        <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+        <div class="clearfix"> </div>
+    </div>
+}
+

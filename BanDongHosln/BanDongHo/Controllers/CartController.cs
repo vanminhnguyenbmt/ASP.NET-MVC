@@ -113,5 +113,11 @@ namespace BanDongHo.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        [ChildActionOnly]
+        public ActionResult CartMenu()
+        {
+            return PartialView();
+        }
     }
 }

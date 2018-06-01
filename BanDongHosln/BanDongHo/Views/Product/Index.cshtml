@@ -84,9 +84,10 @@
                 {
                     int PageDislayNumber = 5;
                     //tinh start page
-                    int start = Model.Index <= (PageDislayNumber / 2 + 1) ? 1 : Model.Index > Model.TotalPage - (PageDislayNumber / 2) ? Model.TotalPage - (PageDislayNumber-1) : Model.Index - (PageDislayNumber / 2);
-                    start = start <= 0 ? 1 : start;
+                    int start = Math.Max(1, Model.Index - PageDislayNumber / 2);
                     // tinh end page
+                    int end = Math.Min(Model.TotalPage, Model.Index + PageDislayNumber / 2);
+
                     var link = "/san-pham/" + Model.CateKey;
                     <nav aria-label="Page navigation example">
                         <ul class="pagination" style="padding: 15px 15px 15px 15px">
@@ -99,7 +100,7 @@
                                     </a>
                                 </li>
                             }
-                            @for (int i = start; i < start + PageDislayNumber; i++)
+                            @for (int i = start; i <= end; i++)
                             {
                                 if (i > Model.TotalPage)
                                 {

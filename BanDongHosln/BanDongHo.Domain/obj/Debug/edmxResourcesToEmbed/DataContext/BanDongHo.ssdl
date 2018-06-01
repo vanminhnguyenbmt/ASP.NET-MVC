@@ -22,7 +22,7 @@
     <Key>
       <PropertyRef Name="MADH" />
     </Key>
-    <Property Name="MADH" Type="int" Nullable="false" />
+    <Property Name="MADH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MAKH" Type="int" />
     <Property Name="TRANGTHAI" Type="nvarchar" MaxLength="20" />
     <Property Name="DIACHIGIAO" Type="ntext" />
@@ -82,16 +82,6 @@
     <Property Name="MALOAISP" Type="char" MaxLength="7" />
     <Property Name="DONGIA" Type="float" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="TAIKHOAN">
     <Key>
       <PropertyRef Name="MATK" />
@@ -99,9 +89,9 @@
     <Property Name="MATK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TENDN" Type="varchar" MaxLength="20" />
     <Property Name="MATKHAU" Type="varchar" MaxLength="32" />
-    <Property Name="MALOAITK" Type="char" MaxLength="7" />
     <Property Name="NGAYDANGKY" Type="datetime" />
     <Property Name="TRANGTHAI" Type="bit" />
+    <Property Name="MALOAITK" Type="char" MaxLength="7" />
   </EntityType>
   <EntityType Name="THUONGHIEU">
     <Key>
@@ -109,7 +99,7 @@
     </Key>
     <Property Name="MATH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TENTH" Type="nvarchar" MaxLength="50" />
-    <Property Name="HINHTH" Type="char" MaxLength="50" />
+    <Property Name="HINHTH" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_CTDH_DH">
     <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
@@ -228,7 +218,6 @@
     <EntitySet Name="LOAISANPHAM" EntityType="Self.LOAISANPHAM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LOAITK" EntityType="Self.LOAITK" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="THUONGHIEU" EntityType="Self.THUONGHIEU" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CTDH_DH" Association="Self.FK_CTDH_DH">

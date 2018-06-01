@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BANDONGHOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BANDONGHOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CHITIETDONHANG">
           <Key>
             <PropertyRef Name="MADH" />
@@ -27,7 +27,7 @@
           <Key>
             <PropertyRef Name="MADH" />
           </Key>
-          <Property Name="MADH" Type="int" Nullable="false" />
+          <Property Name="MADH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MAKH" Type="int" />
           <Property Name="TRANGTHAI" Type="nvarchar" MaxLength="20" />
           <Property Name="DIACHIGIAO" Type="ntext" />
@@ -87,16 +87,6 @@
           <Property Name="MALOAISP" Type="char" MaxLength="7" />
           <Property Name="DONGIA" Type="float" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="TAIKHOAN">
           <Key>
             <PropertyRef Name="MATK" />
@@ -104,9 +94,9 @@
           <Property Name="MATK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TENDN" Type="varchar" MaxLength="20" />
           <Property Name="MATKHAU" Type="varchar" MaxLength="32" />
-          <Property Name="MALOAITK" Type="char" MaxLength="7" />
           <Property Name="NGAYDANGKY" Type="datetime" />
           <Property Name="TRANGTHAI" Type="bit" />
+          <Property Name="MALOAITK" Type="char" MaxLength="7" />
         </EntityType>
         <EntityType Name="THUONGHIEU">
           <Key>
@@ -114,7 +104,7 @@
           </Key>
           <Property Name="MATH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TENTH" Type="nvarchar" MaxLength="50" />
-          <Property Name="HINHTH" Type="char" MaxLength="50" />
+          <Property Name="HINHTH" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_CTDH_DH">
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
@@ -233,7 +223,6 @@
           <EntitySet Name="LOAISANPHAM" EntityType="Self.LOAISANPHAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOAITK" EntityType="Self.LOAITK" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THUONGHIEU" EntityType="Self.THUONGHIEU" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CTDH_DH" Association="Self.FK_CTDH_DH">
@@ -273,7 +262,8 @@
             <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BANDONGHOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -288,7 +278,6 @@
           <NavigationProperty Name="DONHANG" Relationship="Self.FK_CTDH_DH" FromRole="CHITIETDONHANG" ToRole="DONHANG" />
           <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CTDH_SP" FromRole="CHITIETDONHANG" ToRole="SANPHAM" />
         </EntityType>
-
         <EntityType Name="CHITIETKM">
           <Key>
             <PropertyRef Name="MAKM" />
@@ -300,12 +289,11 @@
           <NavigationProperty Name="KHUYENMAI" Relationship="Self.FK_CTKM_KM" FromRole="CHITIETKM" ToRole="KHUYENMAI" />
           <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CTKM_SP" FromRole="CHITIETKM" ToRole="SANPHAM" />
         </EntityType>
-
         <EntityType Name="DONHANG">
           <Key>
             <PropertyRef Name="MADH" />
           </Key>
-          <Property Name="MADH" Type="Int32" Nullable="false" />
+          <Property Name="MADH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MAKH" Type="Int32" />
           <Property Name="TRANGTHAI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DIACHIGIAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -339,9 +327,7 @@
           <Property Name="TENKM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NGAYBD" Type="DateTime" Precision="3" />
           <Property Name="NGAYKT" Type="DateTime" Precision="3" />
-
           <NavigationProperty Name="CHITIETKMs" Relationship="Self.FK_CTKM_KM" FromRole="KHUYENMAI" ToRole="CHITIETKM" />
-
         </EntityType>
         <EntityType Name="LOAISANPHAM">
           <Key>
@@ -374,9 +360,9 @@
           <Property Name="MALOAISP" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
           <Property Name="DONGIA" Type="Double" />
           <NavigationProperty Name="CHITIETDONHANGs" Relationship="Self.FK_CTDH_SP" FromRole="SANPHAM" ToRole="CHITIETDONHANG" />
+          <NavigationProperty Name="CHITIETKMs" Relationship="Self.FK_CTKM_SP" FromRole="SANPHAM" ToRole="CHITIETKM" />
           <NavigationProperty Name="LOAISANPHAM" Relationship="Self.FK_SP_LSP" FromRole="SANPHAM" ToRole="LOAISANPHAM" />
           <NavigationProperty Name="THUONGHIEU" Relationship="Self.FK_SP_TH" FromRole="SANPHAM" ToRole="THUONGHIEU" />
-          <NavigationProperty Name="CHITIETKMs" Relationship="BANDONGHOModel.FK_CTKM_SP" FromRole="SANPHAM" ToRole="CHITIETKM" />
         </EntityType>
         <EntityType Name="TAIKHOAN">
           <Key>
@@ -397,7 +383,7 @@
           </Key>
           <Property Name="MATH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TENTH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HINHTH" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="HINHTH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_SP_TH" FromRole="THUONGHIEU" ToRole="SANPHAM" />
         </EntityType>
         <Association Name="FK_CTDH_DH">
@@ -424,7 +410,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK_CTKM_KM">
           <End Role="KHUYENMAI" Type="Self.KHUYENMAI" Multiplicity="1" />
           <End Role="CHITIETKM" Type="Self.CHITIETKM" Multiplicity="*" />
@@ -449,7 +434,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
         <Association Name="FK_DH_KH">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
@@ -512,6 +496,7 @@
         </Association>
         <EntityContainer Name="BANDONGHOEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CHITIETDONHANGs" EntityType="Self.CHITIETDONHANG" />
+          <EntitySet Name="CHITIETKMs" EntityType="Self.CHITIETKM" />
           <EntitySet Name="DONHANGs" EntityType="Self.DONHANG" />
           <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
           <EntitySet Name="KHUYENMAIs" EntityType="Self.KHUYENMAI" />
@@ -527,6 +512,14 @@
           <AssociationSet Name="FK_CTDH_SP" Association="Self.FK_CTDH_SP">
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
             <End Role="CHITIETDONHANG" EntitySet="CHITIETDONHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTKM_KM" Association="Self.FK_CTKM_KM">
+            <End Role="KHUYENMAI" EntitySet="KHUYENMAIs" />
+            <End Role="CHITIETKM" EntitySet="CHITIETKMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTKM_SP" Association="Self.FK_CTKM_SP">
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="CHITIETKM" EntitySet="CHITIETKMs" />
           </AssociationSet>
           <AssociationSet Name="FK_DH_KH" Association="Self.FK_DH_KH">
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
@@ -548,62 +541,7 @@
             <End Role="THUONGHIEU" EntitySet="THUONGHIEUx" />
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
           </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="BANDONGHOModel.sysdiagram" />
-          <EntitySet Name="CHITIETKMs" EntityType="BANDONGHOModel.CHITIETKM" />
-          <AssociationSet Name="FK_CTKM_KM" Association="BANDONGHOModel.FK_CTKM_KM">
-            <End Role="KHUYENMAI" EntitySet="KHUYENMAIs" />
-            <End Role="CHITIETKM" EntitySet="CHITIETKMs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CTKM_SP" Association="BANDONGHOModel.FK_CTKM_SP">
-            <End Role="SANPHAM" EntitySet="SANPHAMs" />
-            <End Role="CHITIETKM" EntitySet="CHITIETKMs" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="CHITIETKM">
-          <Key>
-            <PropertyRef Name="MAKM" />
-            <PropertyRef Name="MASP" />
-          </Key>
-          <Property Name="MAKM" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
-          <Property Name="MASP" Type="Int32" Nullable="false" />
-          <Property Name="PHANTRAMKM" Type="Int32" />
-          <NavigationProperty Name="KHUYENMAI" Relationship="BANDONGHOModel.FK_CTKM_KM" FromRole="CHITIETKM" ToRole="KHUYENMAI" />
-          <NavigationProperty Name="SANPHAM" Relationship="BANDONGHOModel.FK_CTKM_SP" FromRole="CHITIETKM" ToRole="SANPHAM" />
-        </EntityType>
-        <Association Name="FK_CTKM_KM">
-          <End Type="BANDONGHOModel.KHUYENMAI" Role="KHUYENMAI" Multiplicity="1" />
-          <End Type="BANDONGHOModel.CHITIETKM" Role="CHITIETKM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KHUYENMAI">
-              <PropertyRef Name="MAKM" />
-            </Principal>
-            <Dependent Role="CHITIETKM">
-              <PropertyRef Name="MAKM" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CTKM_SP">
-          <End Type="BANDONGHOModel.SANPHAM" Role="SANPHAM" Multiplicity="1" />
-          <End Type="BANDONGHOModel.CHITIETKM" Role="CHITIETKM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SANPHAM">
-              <PropertyRef Name="MASP" />
-            </Principal>
-            <Dependent Role="CHITIETKM">
-              <PropertyRef Name="MASP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -619,7 +557,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-
           <EntitySetMapping Name="CHITIETKMs">
             <EntityTypeMapping TypeName="BANDONGHOModel.CHITIETKM">
               <MappingFragment StoreEntitySet="CHITIETKM">
@@ -629,7 +566,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-
           <EntitySetMapping Name="DONHANGs">
             <EntityTypeMapping TypeName="BANDONGHOModel.DONHANG">
               <MappingFragment StoreEntitySet="DONHANG">
@@ -661,8 +597,6 @@
           <EntitySetMapping Name="KHUYENMAIs">
             <EntityTypeMapping TypeName="BANDONGHOModel.KHUYENMAI">
               <MappingFragment StoreEntitySet="KHUYENMAI">
-                <ScalarProperty Name="NGAYKT" ColumnName="NGAYKT" />
-                <ScalarProperty Name="NGAYBD" ColumnName="NGAYBD" />
                 <ScalarProperty Name="MAKM" ColumnName="MAKM" />
                 <ScalarProperty Name="TENKM" ColumnName="TENKM" />
                 <ScalarProperty Name="NGAYBD" ColumnName="NGAYBD" />
@@ -720,26 +654,6 @@
                 <ScalarProperty Name="MATH" ColumnName="MATH" />
                 <ScalarProperty Name="TENTH" ColumnName="TENTH" />
                 <ScalarProperty Name="HINHTH" ColumnName="HINHTH" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="BANDONGHOModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CHITIETKMs">
-            <EntityTypeMapping TypeName="BANDONGHOModel.CHITIETKM">
-              <MappingFragment StoreEntitySet="CHITIETKM">
-                <ScalarProperty Name="PHANTRAMKM" ColumnName="PHANTRAMKM" />
-                <ScalarProperty Name="MASP" ColumnName="MASP" />
-                <ScalarProperty Name="MAKM" ColumnName="MAKM" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -4,8 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-
-      <Diagram DiagramId="e1cb176e9e1f4c4b8d6013208025c5b9" Name="Diagram1">
+      <Diagram DiagramId="1ec348a5e31445cba6f90243feb7e455" Name="Diagram1">
         <EntityTypeShape EntityType="BANDONGHOModel.CHITIETDONHANG" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BANDONGHOModel.CHITIETKM" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BANDONGHOModel.DONHANG" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
@@ -16,18 +15,15 @@
         <EntityTypeShape EntityType="BANDONGHOModel.SANPHAM" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BANDONGHOModel.TAIKHOAN" Width="1.5" PointX="1.5" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BANDONGHOModel.THUONGHIEU" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-
         <AssociationConnector Association="BANDONGHOModel.FK_CTDH_DH" ManuallyRouted="false" />
         <AssociationConnector Association="BANDONGHOModel.FK_CTDH_SP" ManuallyRouted="false" />
+        <AssociationConnector Association="BANDONGHOModel.FK_CTKM_KM" ManuallyRouted="false" />
+        <AssociationConnector Association="BANDONGHOModel.FK_CTKM_SP" ManuallyRouted="false" />
         <AssociationConnector Association="BANDONGHOModel.FK_DH_KH" ManuallyRouted="false" />
         <AssociationConnector Association="BANDONGHOModel.FK_KH_TK" ManuallyRouted="false" />
         <AssociationConnector Association="BANDONGHOModel.FK_SP_LSP" ManuallyRouted="false" />
         <AssociationConnector Association="BANDONGHOModel.FK_TK_LTK" ManuallyRouted="false" />
         <AssociationConnector Association="BANDONGHOModel.FK_SP_TH" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="BANDONGHOModel.sysdiagram" Width="1.5" PointX="5.375" PointY="6.75" />
-        <EntityTypeShape EntityType="BANDONGHOModel.CHITIETKM" Width="1.5" PointX="1.625" PointY="7.375" />
-        <AssociationConnector Association="BANDONGHOModel.FK_CTKM_KM" />
-        <AssociationConnector Association="BANDONGHOModel.FK_CTKM_SP" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
