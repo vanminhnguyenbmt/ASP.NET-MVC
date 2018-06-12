@@ -1,0 +1,112 @@
+﻿.col-right{
+	float: right;
+    margin: 2% 2% 0 0;
+}
+
+.col-left{
+	float: left;
+    margin: 2% 2% 0 0;
+}
+
+#col-right > .timkiem{
+	float: right;
+	margin: 5px
+}
+
+#col-left{
+	width: 40%;
+}
+
+.form-style > label,.form-style > input{
+	margin-top: 10px;
+}
+
+.form-style {
+	background-color: white;
+}
+
+.titleHoaDon {
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#btn-xoaloaisanpham{
+	margin: 5px;
+}
+
+select {
+	text-transform: none;
+}
+
+.themhoadon table{
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 10px 5px;
+}
+
+.themhoadon table th{
+	width: 50%;
+	background: white!important;
+	color: black!important;
+}
+
+.btn-themchitiethoadon {
+	background-color: #F0F0F0;
+    border-color: #EAEAEA; 
+}
+
+.btn-themchitiethoadon:hover {
+	background-color: #ccc;
+}
+
+.anbutton{
+	display: none;
+}
+
+.card {
+    background-color: #FFF;
+    border-radius: 1px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    border: 0px solid #E4E4E4;
+}
+
+.table {
+	background-color: transparent!important;
+	border-spacing: 0!important;
+    border-collapse: collapse!important;
+}
+
+
+table tr td {
+    background: white;
+    color: #424242;
+    font-size: 12px;
+}
+
+table th {
+	font-size: 12px;
+}
+
+td span {
+    padding: 0px;
+    font-size: 12px;
+}
+
+#btn-timkiemsanpham {
+	background-color: #F0F0F0;
+    border-color: #EAEAEA;
+}
+
+#btn-timkiemsanpham:hover {
+	background-color: #ccc;
+}
+
+.btn-capnhathoadon {
+	font-size: 12px;
+}

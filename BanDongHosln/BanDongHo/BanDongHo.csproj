@@ -173,6 +173,7 @@
     <Compile Include="Areas\Admin\Models\LoginService.cs" />
     <Compile Include="Areas\Admin\Models\LoginViewModel.cs" />
     <Compile Include="Areas\Admin\Models\OrderService.cs" />
+    <Compile Include="Areas\Admin\Models\OrderViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Pager.cs" />
     <Compile Include="Areas\Admin\Models\ProductBrandService.cs" />
     <Compile Include="Areas\Admin\Models\ProductBrandViewModel.cs" />
@@ -230,12 +231,15 @@
     <Content Include="Areas\Admin\Content\bootstrap\js\bootstrap.js" />
     <Content Include="Areas\Admin\Content\bootstrap\js\bootstrap.min.js" />
     <Content Include="Areas\Admin\Content\css\admin.css" />
+    <Content Include="Areas\Admin\Content\css\custom.css" />
     <Content Include="Areas\Admin\Content\css\style.css" />
     <Content Include="Areas\Admin\Content\font-awesome\css\font-awesome.css" />
     <Content Include="Areas\Admin\Content\font-awesome\css\font-awesome.min.css" />
     <Content Include="Areas\Admin\Content\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Areas\Admin\Content\font-awesome\HELP-US-OUT.txt" />
     <Content Include="Areas\Admin\Content\js\admin.js" />
+    <Content Include="Areas\Admin\Content\js\jquery.bootpag.js" />
+    <Content Include="Areas\Admin\Content\js\jquery.bootpag.min.js" />
     <Content Include="Areas\Admin\Content\js\jquery.js" />
     <Content Include="Areas\Admin\Content\js\jquery.min.js" />
     <Content Include="Areas\Admin\Content\js\script.js" />
