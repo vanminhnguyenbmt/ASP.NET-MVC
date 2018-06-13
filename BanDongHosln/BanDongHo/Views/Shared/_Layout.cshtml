@@ -3,8 +3,10 @@
 <head>
     <title>Luxury Watches</title>
     <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/css/jquery-ui.css" rel="stylesheet" />
     <!--jQuery(necessary for Bootstrap's JavaScript plugins)-->
     <script src="~/Scripts/js/jquery-1.11.0.min.js"></script>
+    <script src="~/Scripts/js/jquery-ui.js"></script>
     <!--Custom-Theme-files-->
     <!--theme-style-->
     <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -89,8 +91,10 @@
                 </div>
                 <div class="col-md-3 header-right">
                     <div class="search-bar">
-                        <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-                        <input type="submit" value="" class="glyphicon-search">
+                        <form action="/tim-kiem" method="get">
+                            <input type="text" value="Search" name="keyword" id="txtkeyword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                            <input type="submit" value="" class="glyphicon-search">
+                        </form>
                     </div>
                 </div>
                 <div class="clearfix"> </div>
@@ -165,5 +169,6 @@
         </div>
     </div>
     <!--footer-end-->
+    <script src="~/Scripts/js/baseController.js"></script>
 </body>
 </html>

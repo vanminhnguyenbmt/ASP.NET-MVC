@@ -1,0 +1,124 @@
+﻿@model BanDongHo.Models.ViewModel.ProductCategoryViewModel
+
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--start-breadcrumbs-->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="breadcrumbs-main">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Search</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!--end-breadcrumbs-->
+<!--prdt-starts-->
+<div class="prdt">
+    <div class="container">
+        <div class="prdt-top">
+            <div class="col-md-12 prdt-left">
+                <div class="product-one">
+                    @foreach (var item in Model.ListProductCategory.Skip((Model.Index - 1) * (int)(ViewData["pageSize"])).Take(4))
+                    {
+                        var source = "~/images/HINHLON/" + item.Product.HINHLON;
+                        <div class="col-md-3 product-left p-left">
+                            <div class="product-main simpleCart_shelfItem">
+                                <a href="~/san-pham/tim-kiem/@item.Product.MASP" class="mask"><img class="img-responsive zoom-img" src="@Url.Content(source)" alt="" /></a>
+                                <div class="product-bottom">
+                                    <h3>@item.Product.TENSP</h3>
+                                    <p>Explore Now</p>
+                                    <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", (item.Product.DONGIA * (100 - item.Promotion) / 100)) VNĐ</span></h4>
+                                </div>
+                                <div class="srch srch1">
+                                    <span>-@item.Promotion %</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="clearfix"></div>
+                </div>
+                <div class="product-one">
+                    @foreach (var item in Model.ListProductCategory.Skip((Model.Index - 1) * (int)(ViewData["pageSize"]) + 4).Take(4))
+                    {
+                        var source = "~/images/HINHLON/" + item.Product.HINHLON;
+                        <div class="col-md-3 product-left p-left">
+                            <div class="product-main simpleCart_shelfItem">
+                                <a href="~/san-pham/tim-kiem/@item.Product.MASP" class="mask"><img class="img-responsive zoom-img" src="@Url.Content(source)" alt="" /></a>
+                                <div class="product-bottom">
+                                    <h3>@item.Product.TENSP</h3>
+                                    <p>Explore Now</p>
+                                    <h4><a class="item_add" href="#"><i></i></a> <span class="item_price">@String.Format("{0:0,0}", (item.Product.DONGIA * (100 - item.Promotion) / 100)) VNĐ</span></h4>
+                                </div>
+                                <div class="srch srch1">
+                                    <span>-@item.Promotion %</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="clearfix"></div>
+                </div>
+                @* Phân trang sản phẩm *@
+                @if (Model.TotalPage > 1)
+                {
+                    int PageDislayNumber = 5;
+                    //tinh start page
+                    int start = Math.Max(1, Model.Index - PageDislayNumber / 2);
+                    // tinh end page
+                    int end = Math.Min(Model.TotalPage, Model.Index + PageDislayNumber / 2);
+
+                    var link = "/tim-kiem?keyword=" + ViewBag.Keyword;
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination" style="padding: 15px 15px 15px 15px">
+                            @if (Model.Index != 1)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@link&page=@Model.Prev" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                            }
+                            @for (int i = start; i <= end; i++)
+                            {
+                                if (i > Model.TotalPage)
+                                {
+                                    break;
+                                }
+                                if (Model.Index == i)
+                                {
+                                    <li class="page-item"><a class="page-link active" href="@link&page=@i">@i</a></li>
+                                }
+                                else
+                                {
+                                    <li class="page-item"><a class="page-link" href="@link&page=@i">@i</a></li>
+                                }
+                            }
+                            @if (Model.Index != Model.TotalPage)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@link&page=@Model.Next" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+                    </nav>
+                }
+                else if(ViewBag.TotalRecord == 0)
+                {
+                    <span>Không có sản phẩm nào</span>
+                }
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--product-end-->

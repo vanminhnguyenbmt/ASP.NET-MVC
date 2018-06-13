@@ -253,6 +253,7 @@
     <Content Include="Content\css\cart.css" />
     <Content Include="Content\css\cusinfo.css" />
     <Content Include="Content\css\flexslider.css" />
+    <Content Include="Content\css\jquery-ui.css" />
     <Content Include="Content\css\memenu.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\Custom.css" />
@@ -378,8 +379,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\baseController.js" />
     <Content Include="Scripts\js\imagezoom.js" />
     <Content Include="Scripts\js\jquery-1.11.0.min.js" />
+    <Content Include="Scripts\js\jquery-ui.js" />
     <Content Include="Scripts\js\jquery.easydropdown.js" />
     <Content Include="Scripts\js\jquery.flexslider.js" />
     <Content Include="Scripts\js\memenu.js" />
@@ -417,6 +420,7 @@
     <Content Include="Views\Home\Account.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Shared\CartMenu.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -118,6 +118,43 @@ namespace BanDongHo.Models.Service
                 
         }
 
+        /// <summary>
+        /// Lấy ra danh sách tên sản phẩm theo keyword
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        public static List<string> ListName(string keyword)
+        {
+            using (var db = new BANDONGHOEntities())
+            {
+                return db.SANPHAMs.Where(n => n.TENSP.Contains(keyword)).Select(n => n.TENSP).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Tìm kiếm theo tên sản phẩm
+        /// </summary>
+        public static List<ProductViewModel> Search(string keyword)
+        {
+            using (var db = new BANDONGHOEntities())
+            {
+                List<ProductViewModel> result = new List<ProductViewModel>();
+                List<SANPHAM> listProduct = new List<SANPHAM>();
+
+                listProduct = (from sp in db.SANPHAMs
+                               where sp.TENSP.Contains(keyword)
+                               select sp).ToList();
+
+                // Lấy promotion của sản phẩm
+                foreach (SANPHAM sp in listProduct)
+                {
+                    int Promotion = PromotionService.GetPromotion(sp.MASP);
+                    ProductViewModel productViewModel = new ProductViewModel { Product = sp, Promotion = Promotion };
+                    result.Add(productViewModel);
+                }
+                return result;
+            }
+        }
 
     }
 }

@@ -42,5 +42,33 @@ namespace BanDongHo.Controllers
 
             return View(prctViewModel);
         }
+
+        public JsonResult ListName(String q)
+        {
+            var data = ProductService.ListName(q);
+            return Json(new
+            {
+                data = data,
+                status = true
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Search(string keyword, int page = 1)
+        {
+            int pageSize = 8;
+            ViewData["pageSize"] = pageSize;
+            ViewBag.Keyword = keyword;
+            ProductCategoryViewModel prctViewModel = new ProductCategoryViewModel();
+
+            //lấy ra danh sách sản phẩm theo tên
+            prctViewModel.ListProductCategory = ProductService.Search(keyword);
+
+            int totalRecord = prctViewModel.ListProductCategory.Count;
+            ViewBag.TotalRecord = totalRecord;
+            prctViewModel.Index = page;
+            prctViewModel.TotalPage = (int)(Math.Ceiling(((double)totalRecord / pageSize)));
+
+            return View(prctViewModel);
+        }
     }
 }
