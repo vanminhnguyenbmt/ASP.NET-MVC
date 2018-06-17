@@ -19,7 +19,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <form method="post" action="~/Admin/Promotion/Create">
+            <form method="post" action="~/Admin/Promotion/Create" id="form-promotion">            
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-4">
@@ -31,27 +31,27 @@
                         <div class="col-md-8">
                             @Html.ValidationMessageFor(model => model.TENKM, "", new { @class = "text-danger", @style = "color: red" })
                             <label class="control-label">Tên Khuyến mãi</label>
-                            <input type="text" class="form-control" id="TENKM" name="TENKM" placeholder="" required value="@Model.TENKM" />
+                            <input type="text" class="form-control" id="TENKM" name="TENKM" placeholder="" value="@Model.TENKM" required/>
                         </div>
                     </div>
                 </div>
-                    <div class="form-group">
+
+                <div class="form-group">
                         <div class="row">
 
                             <div class="col-md-4">
                                 <label class="control-label">Ngày bắt đầu</label>
                                 @Html.ValidationMessageFor(model => model.NGAYBD, "", new { @class = "text-danger", @style = "color: red" })
-                                <input type="datetime-local" class="form-control" id="NGAYBD" name="NGAYBD" placeholder="" value="@Model.NGAYBD"/>
+                                <input type="datetime-local" class="form-control" id="NGAYBD" name="NGAYBD" placeholder="" value="@Model.NGAYBD" required/>
                             </div>
 
                             <div class="col-md-8">
                                 @Html.ValidationMessageFor(model => model.NGAYKT, "", new { @class = "text-danger", @style = "color: red" })
                                 <label class="control-label">Ngày kết thúc</label>
-                                <input type="datetime-local" class="form-control" id="NGAYKT" name="NGAYKT" placeholder="" required value="@Model.NGAYKT" />
+                                <input type="datetime-local" class="form-control" id="NGAYKT" name="NGAYKT" placeholder="" value="@Model.NGAYKT" required/>
                             </div>
                         </div>
-
-                    </div>
+                </div>
                    
                 <div class="form-group">
                     <button class="btn btn-success" id="btn-ok-create" type="submit"> Ok </button>
@@ -66,15 +66,41 @@
 
 <!-- javascript -->
 <script>
-        function validateName() {
-            var name = $('#MALOAISP').val();
 
-            if (isEmpty(name)) {
-                $('#MALOAISP').css("border-color", "red");
+    $("#form-promotion").submit(function () {
+
+        var today = new Date();
+        var date = new Date(today.toLocaleString());
+        
+        var ngbd = $("#NGAYBD").val();
+        var ngaybd = new Date(ngbd.toLocaleString());
+       
+        var ngkt = $("#NGAYKT").val();
+
+        if (date.getDate() >= ngaybd.getDate()) {
+            if (date.getTime() > ngaybd.getTime()) {
+                alert("Ngày bắt đầu phải lớn hơn ngày hiện tại");
                 return false;
-            } else {
-                $('#MALOAISP').css("border-color", "green");
             }
-            return true;
+           
         }
+
+        if (ngbd > ngkt) {
+            alert("Ngày kết thúc phải lớn hơn ngày bắt đầu");
+            return false;
+        }
+        return true;
+    });
+
+    function validateName() {
+        var name = $('#MALOAISP').val();
+
+        if (isEmpty(name)) {
+            $('#MALOAISP').css("border-color", "red");
+            return false;
+        } else {
+            $('#MALOAISP').css("border-color", "green");
+        }
+        return true;
+    }
 </script>

@@ -13,10 +13,10 @@ namespace BanDongHo.Areas.Admin.Models
         [Required(ErrorMessage = "Vui lòng nhập tên khuyến mãi")]
         public string TENKM { get; set; }
         [Required(ErrorMessage = "Vui lòng chọn ngày tháng bắt đầu")]
-        [DataType(DataType.DateTime, ErrorMessage = "")]     
+        [DataType(DataType.DateTime,ErrorMessage = "ccccccccccc")]     
         public DateTime NGAYBD { get; set; }
-        [Required(ErrorMessage = "")]
-        [DataType(DataType.DateTime, ErrorMessage = "Vui lòng chọn ngày tháng kết thúc")]
+        [Required(ErrorMessage = "Vui lòng chọn ngày tháng kết thúc")]
+        [DataType(DataType.DateTime, ErrorMessage = "ccccccccccc")]
         public DateTime NGAYKT { get; set; }
     }
 }
