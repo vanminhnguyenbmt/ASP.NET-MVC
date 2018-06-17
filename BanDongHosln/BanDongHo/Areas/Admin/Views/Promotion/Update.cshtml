@@ -19,7 +19,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <form method="post" action="~/Admin/Promotion/Update">
+            <form method="post" action="~/Admin/Promotion/Update" id="form-prom">
 
                 <div class="form-group">
                     <div class="row">
@@ -43,7 +43,7 @@
                             <div class="col-md-4">
                                 <label class="control-label">Ngày bắt đầu</label>
                                 @Html.ValidationMessageFor(model => model.NGAYBD, "", new { @class = "text-danger", @style = "color: red" })
-                                <input type="datetime-local" class="form-control" id="NGAYBD" name="NGAYBD" placeholder="" value='@Model.NGAYBD.ToString("yyyy-MM-ddTHH:mm")' />
+                                <input type="datetime-local" class="form-control" id="NGAYBD" name="NGAYBD" placeholder="" value='@Model.NGAYBD.ToString("yyyy-MM-ddTHH:mm")'/>
                             </div>
 
                             <div class="col-md-8">
@@ -68,15 +68,82 @@
 
 <!-- javascript -->
 <script>
-        function validateName() {
-            var name = $('#MALOAISP').val();
+    $(document).ready(function () {
+        var today = new Date();
+        var date = new Date(today.toLocaleString());
 
-            if (isEmpty(name)) {
-                $('#MALOAISP').css("border-color", "red");
-                return false;
-            } else {
-                $('#MALOAISP').css("border-color", "green");
+        var ngbd = $("#NGAYBD").val();
+        var ngaybd = new Date(ngbd.toLocaleString());
+
+        if (date.getDate() >= ngaybd.getDate()) {
+            if (date.getTime() > ngaybd.getTime()) {
+                $('#NGAYBD').attr("readonly", "readonly");
             }
-            return true;
         }
+    });
+
+    function flag() {
+        var today = new Date();
+        var date = new Date(today.toLocaleString());
+
+        var ngbd = $("#NGAYBD").val();
+        var ngaybd = new Date(ngbd.toLocaleString());
+
+        if (date.getDate() >= ngaybd.getDate()) {
+            if (date.getTime() > ngaybd.getTime()) {              
+                return 1;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    $("#form-prom").submit(function () {
+        var today = new Date();
+        var date = new Date(today.toLocaleString());
+
+        var ngbd = $("#NGAYBD").val();
+        var ngaybd = new Date(ngbd.toLocaleString());
+
+        var ngkt = $("#NGAYKT").val();
+        var ngaykt = new Date(ngkt.toLocaleString());
+
+        if (flag() == 1) {
+            if (date.getDate() >= ngaykt.getDate()) {
+                if (date.getTime() > ngaykt.getTime()) {
+                    alert("Ngày kết thúc phải lớn hơn ngày hiện tại");
+                    return false;
+                }
+
+            }
+        } else {
+            if (date.getDate() >= ngaybd.getDate()) {
+                if (date.getTime() > ngaybd.getTime()) {
+                    alert("Ngày bắt đầu phải lớn hơn ngày hiện tại");
+                    return false;
+                }
+
+            }
+        }
+
+        if (ngbd > ngkt) {
+            alert("Ngày kết thúc phải lớn hơn ngày bắt đầu");
+            return false;
+        }
+        return true;
+    });
+
+    function validateName() {
+        var name = $('#MALOAISP').val();
+
+        if (isEmpty(name)) {
+            $('#MALOAISP').css("border-color", "red");
+            return false;
+        } else {
+            $('#MALOAISP').css("border-color", "green");
+        }
+        return true;
+    }
 </script>
