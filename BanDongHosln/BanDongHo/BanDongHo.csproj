@@ -417,10 +417,12 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\CusInfo\Index.cshtml" />
     <Content Include="Views\CusInfo\Success.cshtml" />
+
     <Content Include="Views\Home\Account.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Shared\CartMenu.cshtml" />
     <Content Include="Views\Product\Search.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
